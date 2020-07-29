@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: int_pinterest_ads__most_recent_ad_group
+    columns:
+      - name: ad_group_id
+        tests:
+          - unique
+          - not_null
+
+  - name: int_pinterest_ads__most_recent_campaign
+    columns:
+      - name: campaign_id
+        tests:
+          - unique
+          - not_null
+
+  - name: int_pinterest_ads__most_recent_pin_promotion
+    columns:
+      - name: pin_promotion_id
+        tests:
+          - unique
+          - not_null

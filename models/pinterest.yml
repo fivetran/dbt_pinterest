@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: pinterest_ads__ad_adapter
+    columns:
+      - name: daily_id
+        tests:
+          - unique
+          - not_null
