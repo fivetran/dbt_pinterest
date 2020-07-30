@@ -56,7 +56,7 @@ with report as (
                 'ad_group_id',
                 'destination_url'
             ]
-        ) }}::varchar as daily_id,
+        ) }} as daily_id,
 
         campaign_date,
         base_url,
