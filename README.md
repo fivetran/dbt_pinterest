@@ -8,9 +8,9 @@ The main focus of the package is to transform the core ad object tables into ana
 
 This package contains transformation models, designed to work simultaneously with our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source). A depenedency on the source package is declared in this package's `packages.yml` file, so it will automatically download when you run `dbt deps`. The primary outputs of this package are described below.
 
-| **model**            | **description**                                                                                                             |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| linkedin__ad_adapter | Each record represents the daily ad performance of each pin promotion, including information about the used UTM parameters. |
+| **model**                 | **description**                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| pinterest_ads__ad_adapter | Each record represents the daily ad performance of each pin promotion, including information about the used UTM parameters. |
 
 ## Installation Instructions
 Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
