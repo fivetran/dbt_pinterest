@@ -1,6 +1,6 @@
 name: 'pinterest_integration_tests'
 version: '1.0.0'
-profile: 'integration_tests'
+profile: 'integration_test'
 config-version: 2
 
 vars:
@@ -8,3 +8,25 @@ vars:
   campaign_history: "{{ ref('campaign_history_data') }}"
   pin_promotion_history: "{{ ref('pin_promotion_history_data') }}"
   pin_promotion_report: "{{ ref('pin_promotion_report_data') }}"
+
+seeds:
+  +quote_columns: "{{ true if target.type == 'redshift' else false }}"
+  pinterest_integration_tests:
+    ad_group_history_data:
+      +column_types:
+        ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        CAMPAIGN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+    campaign_history_data:
+      +column_types:
+        ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+    pin_promotion_history_data:
+      +column_types:
+        ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        AD_GROUP_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        PIN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+    pin_promotion_report_data:
+      +column_types:
+        PIN_PROMOTION_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        AD_GROUP_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        CAMPAIGN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        ADVERTISER_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
