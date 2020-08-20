@@ -1,3 +1,5 @@
 packages:
-
-  - local: ../dbt_pinterest_source
+  
+  - git: "https://github.com/fivetran/dbt_pinterest_source.git"
+    revision: master
+    warn-unpinned: false
