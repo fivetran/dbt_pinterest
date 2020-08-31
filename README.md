@@ -2,21 +2,21 @@
 
 This package models Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1YMsP4fBwb0sGoOgDWfIEVVOkfXfljOseulgx9wC87qk/edit).
 
-The main focus of the package is to transform the core ad object tables into analytics-ready models, including an 'ad adapter' model that can be easily unioned in to other ad platform packages to get a single-view 
+This package transforms the core ad object tables into analytics-ready models, including an 'ad adapter' model that can be easily unioned in to other ad platform packages to get a single view.
 
 ## Models
 
-This package contains transformation models, designed to work simultaneously with our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source). A depenedency on the source package is declared in this package's `packages.yml` file, so it will automatically download when you run `dbt deps`. The primary outputs of this package are described below.
+This package contains transformation models, designed to work simultaneously with our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source). A dependency on the source package is declared in this package's `packages.yml` file, so it will automatically download when you run `dbt deps`. The primary outputs of this package are described below.
 
 | **model**                 | **description**                                                                                                             |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| pinterest_ads__ad_adapter | Each record represents the daily ad performance of each pin promotion, including information about the used UTM parameters. |
+| pinterest_ads__ad_adapter | Each record represents the daily ad performance of each pin promotion, including information about its UTM parameters. |
 
 ## Installation Instructions
 Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
 ## Configuration
-By default this package will look for your Pinterest data in the `pinterest_ads` schema of your [target database](https://docs.getdbt.com/docs/running-a-dbt-project/using-the-command-line-interface/configure-your-profile). If this is not where your Pinterest Ads data is, please add the following configuration to your `dbt_project.yml` file:
+By default, this package will look for your Pinterest Ads data in the `pinterest_ads` schema of your [target database](https://docs.getdbt.com/docs/running-a-dbt-project/using-the-command-line-interface/configure-your-profile). If this is not where your Pinterest Ads data is, add the following configuration to your `dbt_project.yml` file:
 
 ```yml
 # dbt_project.yml
@@ -29,7 +29,7 @@ vars:
     pinterest_database: your_schema_name 
 ```
 
-For additional configurations for the source models, please visit the [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
+For additional source model configurations, see our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
 
 ## Contributions
 
