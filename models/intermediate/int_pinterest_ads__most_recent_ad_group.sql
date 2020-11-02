@@ -1,7 +1,7 @@
 with base as (
 
     select *
-    from {{ ref('stg_pinterest_ads__ad_group_history') }}
+    from {{ var('ad_group_history') }}
 
 ), row_num as (
 
