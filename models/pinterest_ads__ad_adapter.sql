@@ -1,7 +1,7 @@
 with report as (
 
     select *
-    from {{ ref('stg_pinterest_ads__pin_promotion_report') }}
+    from {{ var('pin_promotion_report') }}
 
 ), pins as (
 
