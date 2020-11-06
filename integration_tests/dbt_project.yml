@@ -1,13 +1,14 @@
 name: 'pinterest_integration_tests'
 version: '1.0.0'
-profile: 'integration_test'
+profile: 'integration_tests'
 config-version: 2
 
 vars:
-  ad_group_history: "{{ ref('ad_group_history_data') }}"
-  campaign_history: "{{ ref('campaign_history_data') }}"
-  pin_promotion_history: "{{ ref('pin_promotion_history_data') }}"
-  pin_promotion_report: "{{ ref('pin_promotion_report_data') }}"
+  pinterest_source:
+    ad_group_history: "{{ ref('ad_group_history_data') }}"
+    campaign_history: "{{ ref('campaign_history_data') }}"
+    pin_promotion_history: "{{ ref('pin_promotion_history_data') }}"
+    pin_promotion_report: "{{ ref('pin_promotion_report_data') }}"
 
 seeds:
   +quote_columns: "{{ true if target.type == 'redshift' else false }}"
