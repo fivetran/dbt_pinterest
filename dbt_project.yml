@@ -15,4 +15,4 @@ vars:
     ad_group_history: "{{ ref('stg_pinterest_ads__ad_group_history') }}"
     campaign_history: "{{ ref('stg_pinterest_ads__campaign_history') }}"
     pin_promotion_history: "{{ ref('stg_pinterest_ads__pin_promotion_history') }}"
-    passthrough_variable: []
+    pin_promotion_report_pass_through_metric: []

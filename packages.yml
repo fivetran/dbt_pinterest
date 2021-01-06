@@ -1,3 +1,4 @@
 packages:
-  - git: "https://github.com/fivetran/dbt_pinterest_source.git" # git URL
-    revision: passthrough_variable
+  # - git: "https://github.com/fivetran/dbt_pinterest_source.git" # git URL
+  #   revision: passthrough_variable
+  - local: ../dbt_pinterest_source
