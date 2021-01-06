@@ -27,6 +27,11 @@ with report as (
         report.spend,
         report.impressions,
         report.clicks,
+        {% if var('pin_promotion_report_pass_through_metric') %}
+        ,
+        {{ var('pin_promotion_report_pass_through_metric') | join (", ")}}
+
+        {% endif %}
         campaigns.name as campaign_name,
         ad_groups.name as ad_group_name,
         pins.destination_url,
@@ -76,6 +81,11 @@ with report as (
         sum(clicks) as clicks,
         sum(impressions) as impressions,
         sum(spend) as spend
+        {% if var('pin_promotion_report_pass_through_metric') %}
+        ,
+        {{ sum(var('pin_promotion_report_pass_through_metric')) | join (", ")}}
+
+        {% endif %}
     from joined
     {{ dbt_utils.group_by(15) }}
     
