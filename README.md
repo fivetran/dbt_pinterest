@@ -1,6 +1,6 @@
 # Pinterest Ads ([docs](https://fivetran-dbt-pinterest.netlify.app/#!/overview))
 
-This package models Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1YMsP4fBwb0sGoOgDWfIEVVOkfXfljOseulgx9wC87qk/edit).
+This package models Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/pinterest-ads#schemainformation).
 
 This package transforms the core ad object tables into analytics-ready models, including an 'ad adapter' model that can be easily unioned in to other ad platform packages to get a single view.
 
@@ -29,8 +29,8 @@ By default, this package will look for your Pinterest Ads data in the `pinterest
 config-version: 2
 
 vars:
-    pinterest_schema: your_database_name
-    pinterest_database: your_schema_name 
+    pinterest_database: your_database_name
+    pinterest_schema: your_schema_name 
 ```
 
 For additional source model configurations, see our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
