@@ -1,14 +1,14 @@
 # Pinterest Ads ([docs](https://fivetran-dbt-pinterest.netlify.app/#!/overview))
 
-This package models Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1YMsP4fBwb0sGoOgDWfIEVVOkfXfljOseulgx9wC87qk/edit).
+This package models Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/pinterest-ads#schemainformation).
 
-This package transforms the core ad object tables into analytics-ready models, including an 'ad adapter' model that can be easily unioned in to other ad platform packages to get a single view.
+This package transforms the core ad object tables into analytics-ready models, including an 'ad adapter' model that can be easily unioned in to other ad platform packages to get a single view.  This is especially easy using our [Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting).
 
 > The Pinterest Ads dbt package is compatible with BigQuery, Redshift, and Snowflake.
 
 ## Models
 
-This package contains transformation models, designed to work simultaneously with our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source). A dependency on the source package is declared in this package's `packages.yml` file, so it will automatically download when you run `dbt deps`. The primary outputs of this package are described below.
+This package contains transformation models, designed to work simultaneously with our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source) and our [multi-platform Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting). A dependency on the source package is declared in this package's `packages.yml` file, so it will automatically download when you run `dbt deps`. The primary outputs of this package are described below.
 
 | **model**                         | **description**                                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -29,11 +29,25 @@ By default, this package will look for your Pinterest Ads data in the `pinterest
 config-version: 2
 
 vars:
-    pinterest_schema: your_database_name
-    pinterest_database: your_schema_name 
+    pinterest_database: your_database_name
+    pinterest_schema: your_schema_name 
 ```
 
 For additional source model configurations, see our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
+
+### Changing the Build Schema
+By default this package will build the Pinterest Ads staging models within a schema titled (<target_schema> + `_stg_pinterest`) and the Pinterest Ads final models with a schema titled (<target_schema> + `_pinterest`) in your target database. If this is not where you would like your modeled Pinterest Ads data to be written to, add the following configuration to your `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+
+...
+models:
+  pinterest:
+    +schema: my_new_schema_name # leave blank for just the target_schema
+  pinterest_source:
+    +schema: my_new_schema_name # leave blank for just the target_schema
+```
 
 ## Contributions
 
