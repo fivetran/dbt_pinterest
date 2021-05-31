@@ -38,11 +38,9 @@ with report as (
         pins.utm_campaign,
         pins.utm_content,
         pins.utm_term
-        {% if var('pin_promotion_report_pass_through_metric') %}
-        ,
-        {{ var('pin_promotion_report_pass_through_metric') | join (", ")}}
-
-        {% endif %}
+        {% for metric in var('pin_promotion_report_pass_through_metric') %}
+        , report.{{ metric }}
+        {% endfor %}
     from report 
     left join pins 
         on report.pin_promotion_id = pins.pin_promotion_id
@@ -81,11 +79,9 @@ with report as (
         sum(clicks) as clicks,
         sum(impressions) as impressions,
         sum(spend) as spend
-        {% if var('pin_promotion_report_pass_through_metric') %}
-        , sum(
-        {{ var('pin_promotion_report_pass_through_metric') | join (", ")}}
-        )
-        {% endif %}
+        {% for metric in var('pin_promotion_report_pass_through_metric') %}
+        , sum({{ metric }}) as {{ metric }}
+        {% endfor %}
     from joined
     {{ dbt_utils.group_by(15) }}
     
