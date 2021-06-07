@@ -39,7 +39,7 @@ with report as (
         pins.utm_content,
         pins.utm_term
         {% for metric in var('pin_promotion_report_pass_through_metric') %}
-        , report.{{ metric }}
+        , report.{{ metric.name }}
         {% endfor %}
     from report 
     left join pins 
@@ -80,7 +80,7 @@ with report as (
         sum(impressions) as impressions,
         sum(spend) as spend
         {% for metric in var('pin_promotion_report_pass_through_metric') %}
-        , sum({{ metric }}) as {{ metric }}
+        , sum({{ metric.name }} ) as {{ metric.name}}
         {% endfor %}
     from joined
     {{ dbt_utils.group_by(15) }}
