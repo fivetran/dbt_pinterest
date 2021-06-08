@@ -36,7 +36,7 @@ vars:
 For additional source model configurations, see our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
 
 ### Passthrough Columns
-This package allows for custom columns not defined within the [`stg_pinterest_ads__pin_promotion_report`](https://github.com/fivetran/dbt_pinterest_source/blob/master/models/stg_pinterest_ads__pin_promotion_report.sql) model to be passed through to the final models within this package. These custom columns may be applied using the `pin_promotion_report_pass_through_metric` variable. To apply a custom passthrough column you will set the `name` and `transform_sql` for each custom field you would like to passthrough. The `name` argument is what you would like the custom field to be named in the generated table. The `transform_sql` argument is the sql required to generate the desired custom column while omitting the `as field_name` at the end. Use the below format for declaring the respective passthrough variables:
+This package allows for custom columns not defined within the [`stg_pinterest_ads__pin_promotion_report`](https://github.com/fivetran/dbt_pinterest_source/blob/master/models/stg_pinterest_ads__pin_promotion_report.sql) model to be passed through to the final models within this package. These custom columns may be applied using the `pin_promotion_report_pass_through_metric` variable. To apply a custom passthrough column use the below format:
 
 ```yml
 # dbt_project.yml
@@ -44,12 +44,11 @@ This package allows for custom columns not defined within the [`stg_pinterest_ad
 ...
 vars:
   pin_promotion_report_pass_through_metric:
-    - name:           'cool_new_field'
-      transform_sql:  'coalesce(new_field_1,0) + coalesce(new_field_2,0)'
-    - name:           'this_other_field'
-      transform_sql:  'other_field / 10000.0'
-    - name:           'simple_field'
-      transform_sql:  'simple_field'
+    - 'cool_new_field'
+    - 'my_other_column'
+    - 'pass_this_through_too' 
+
+```
 
 ### Changing the Build Schema
 By default this package will build the Pinterest Ads staging models within a schema titled (<target_schema> + `_stg_pinterest`) and the Pinterest Ads final models with a schema titled (<target_schema> + `_pinterest`) in your target database. If this is not where you would like your modeled Pinterest Ads data to be written to, add the following configuration to your `dbt_project.yml` file:

@@ -13,7 +13,7 @@ with adapter as (
         sum(clicks) as clicks, 
         sum(impressions) as impressions
         {% for metric in var('pin_promotion_report_pass_through_metric') %}
-            , sum({{ metric.name }}) as {{ metric.name }}
+            , sum({{ metric }}) as {{ metric }}
         {% endfor %}
     from adapter
     {{ dbt_utils.group_by(3) }}
