@@ -36,7 +36,7 @@ vars:
 For additional source model configurations, see our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
 
 ### Passthrough Columns
-This package allows for custom columns not defined within the [`stg_pinterest_ads__pin_promotion_report`](https://github.com/fivetran/dbt_pinterest_source/blob/master/models/stg_pinterest_ads__pin_promotion_report.sql) model to be passed through to the final models within this package. These custom columns may be applied using the `pin_promotion_report_pass_through_metric` variable. To apply a custom passthrough column use the below format:
+This package allows for custom columns not defined within the [`stg_pinterest_ads__pin_promotion_report`](https://github.com/fivetran/dbt_pinterest_source/blob/master/models/stg_pinterest_ads__pin_promotion_report.sql) model to be passed through to the final models within this package. These custom columns may be applied using the `pin_promotion_report_pass_through_metric` variable. To apply custom passthrough columns use the below format:
 
 ```yml
 # dbt_project.yml
