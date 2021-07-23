@@ -1,17 +1,15 @@
 name: 'pinterest'
-version: '0.3.3'
+version: '0.4.0'
 config-version: 2
-require-dbt-version: [">=0.18.0", "<0.20.0"]
-
+require-dbt-version: [">=0.20.0"]
 models:
   pinterest:
     +schema: pinterest
     +materialized: table
     intermediate:
       +materialized: ephemeral
-
 vars:
-  pinterest: 
+  pinterest:
     pin_promotion_report: "{{ ref('stg_pinterest_ads__pin_promotion_report') }}"
     ad_group_history: "{{ ref('stg_pinterest_ads__ad_group_history') }}"
     campaign_history: "{{ ref('stg_pinterest_ads__campaign_history') }}"
