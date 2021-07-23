@@ -31,3 +31,7 @@ seeds:
         AD_GROUP_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         CAMPAIGN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         ADVERTISER_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
