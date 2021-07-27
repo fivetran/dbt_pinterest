@@ -15,5 +15,3 @@ vars:
     campaign_history: "{{ ref('stg_pinterest_ads__campaign_history') }}"
     pin_promotion_history: "{{ ref('stg_pinterest_ads__pin_promotion_history') }}"
   pin_promotion_report_pass_through_metric: []
-  dbt_utils_dispatch_list: ['spark_utils', 'fivetran_utils']
-  fivetran_utils_dispatch_list: ['spark_utils']
