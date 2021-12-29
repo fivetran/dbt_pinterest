@@ -1,3 +1,10 @@
+# dbt_pinterest 0.5.1
+# Feature Additions
+- The `stg_pinterest_ads__advertiser_history` model has been joined to the `pinterest_ads__ad_adapter` model to include the `advertiser_id` and `advertiser_name`. These fields will be able to then be included for further analysis and be used in the downstream `ad_reporting` model. ([#19](https://github.com/fivetran/dbt_pinterest/pull/19))
+
+# Contributors
+- @bnealdefero ([#19](https://github.com/fivetran/dbt_pinterest/pull/19))
+
 # dbt_pinterest v0.5.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
