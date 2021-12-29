@@ -21,6 +21,7 @@ seeds:
     campaign_history_data:
       +column_types:
         ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        ADVERTISER_ID: "{{ 'string' if target.name in ('bigquery', 'spark') else 'varchar' }}"
     pin_promotion_history_data:
       +column_types:
         ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
@@ -32,6 +33,9 @@ seeds:
         AD_GROUP_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         CAMPAIGN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         ADVERTISER_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+    advertiser_history:
+        id: "{{ 'string' if target.name in ('bigquery', 'spark') else 'varchar' }}"
+        owner_user_id: "{{ 'string' if target.name in ('bigquery', 'spark') else 'varchar' }}"
         
 dispatch:
   - macro_namespace: dbt_utils
