@@ -11,6 +11,10 @@ models:
           - not_null
       - name: campaign_date
         description: The performance date of the record.
+      - name: advertiser_id
+        description: The unique identifier of the advertiser.
+      - name: advertiser_name
+        description: The name of the advertiser.
       - name: base_url
         description: The base URL of the ad, extracted from the `destination_url`.
       - name: url_host

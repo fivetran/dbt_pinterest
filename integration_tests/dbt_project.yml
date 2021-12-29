@@ -1,5 +1,5 @@
 name: 'pinterest_integration_tests'
-version: '0.4.0'
+version: '0.5.1'
 profile: 'integration_tests'
 config-version: 2
 
@@ -9,6 +9,7 @@ vars:
     campaign_history: "{{ ref('campaign_history_data') }}"
     pin_promotion_history: "{{ ref('pin_promotion_history_data') }}"
     pin_promotion_report: "{{ ref('pin_promotion_report_data') }}"
+    advertiser_history: "{{ ref('advertiser_history_data') }}"
 
 seeds:
   +quote_columns: "{{ true if target.type == 'redshift' else false }}"

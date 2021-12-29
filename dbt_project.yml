@@ -1,5 +1,5 @@
 name: 'pinterest'
-version: '0.5.0'
+version: '0.5.1'
 config-version: 2
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 models:
@@ -14,4 +14,5 @@ vars:
     ad_group_history: "{{ ref('stg_pinterest_ads__ad_group_history') }}"
     campaign_history: "{{ ref('stg_pinterest_ads__campaign_history') }}"
     pin_promotion_history: "{{ ref('stg_pinterest_ads__pin_promotion_history') }}"
+    advertiser_history: "{{ ref('stg_pinterest_ads__advertiser_history') }}"
   pin_promotion_report_pass_through_metric: []

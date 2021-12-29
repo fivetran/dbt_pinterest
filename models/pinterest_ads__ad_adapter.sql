@@ -18,10 +18,17 @@ with report as (
     select *
     from {{ ref('int_pinterest_ads__most_recent_campaign') }}
 
+), advertiser as (
+    
+    select *
+    from {{ ref('int_pinterest_ads__most_recent_advertiser') }} 
+
 ), joined as (
 
     select 
         report.date_day as campaign_date,
+        advertiser.advertiser_id,
+        advertiser.name as advertiser_name,
         report.ad_group_id,
         report.campaign_id,
         report.spend,
@@ -48,6 +55,8 @@ with report as (
         on report.ad_group_id = ad_groups.ad_group_id
     left join campaigns 
         on report.campaign_id = campaigns.campaign_id
+    left join advertiser
+        on campaigns.advertiser_id = advertiser.advertiser_id
 
 ), aggregates as (
 
@@ -62,6 +71,8 @@ with report as (
         ) }} as daily_id,
 
         campaign_date,
+        advertiser_id,
+        advertiser_name,
         base_url,
         url_host,
         url_path,
@@ -83,7 +94,7 @@ with report as (
             , sum({{ metric }}) as {{ metric }}
         {% endfor %}
     from joined
-    {{ dbt_utils.group_by(15) }}
+    {{ dbt_utils.group_by(17) }}
     
 )
 
