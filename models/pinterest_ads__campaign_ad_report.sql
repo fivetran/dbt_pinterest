@@ -18,7 +18,7 @@ with adapter as (
             , sum({{ metric }}) as {{ metric }}
         {% endfor %}
     from adapter
-    {{ dbt_utils.group_by(3) }}
+    {{ dbt_utils.group_by(5) }}
 
 )
 
