@@ -51,6 +51,10 @@ models:
   - name: pinterest_ads__ad_group_ad_report
     description: Each record in this table represents the daily performance of ads at the ad group level.
     columns:
+      - name: advertiser_id
+        description: The unique identifier of the advertiser.
+      - name: advertiser_name
+        description: The name of the advertiser.
       - name: campaign_date
         description: The performance date of the record.
       - name: campaign_id
@@ -71,6 +75,10 @@ models:
   - name: pinterest_ads__campaign_ad_report
     description: Each record in this table represents the daily performance of ads at the campaign level.
     columns:
+      - name: advertiser_id
+        description: The unique identifier of the advertiser.
+      - name: advertiser_name
+        description: The name of the advertiser.
       - name: campaign_date
         description: The performance date of the record.
       - name: campaign_id

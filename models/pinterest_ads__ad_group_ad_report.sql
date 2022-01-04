@@ -6,6 +6,8 @@ with adapter as (
 ), grouped as (
 
     select 
+        advertiser_id,
+        advertiser_name,
         campaign_date,
         campaign_id,
         campaign_name,
@@ -18,7 +20,7 @@ with adapter as (
             , sum({{ metric }}) as {{ metric }}
         {% endfor %}
     from adapter
-    {{ dbt_utils.group_by(5) }}
+    {{ dbt_utils.group_by(7) }}
 
 )
 

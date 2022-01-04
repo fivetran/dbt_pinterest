@@ -6,6 +6,8 @@ with adapter as (
 ), grouped as (
 
     select 
+        advertiser_id,
+        advertiser_name,
         campaign_date,
         campaign_id,
         campaign_name,
