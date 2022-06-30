@@ -1,5 +1,5 @@
 name: 'pinterest'
-version: '0.5.0'
+version: '0.6.0'
 config-version: 2
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 models:
@@ -8,10 +8,22 @@ models:
     +materialized: table
     intermediate:
       +materialized: ephemeral
+
 vars:
   pinterest:
     pin_promotion_report: "{{ ref('stg_pinterest_ads__pin_promotion_report') }}"
     ad_group_history: "{{ ref('stg_pinterest_ads__ad_group_history') }}"
     campaign_history: "{{ ref('stg_pinterest_ads__campaign_history') }}"
     pin_promotion_history: "{{ ref('stg_pinterest_ads__pin_promotion_history') }}"
-  pin_promotion_report_pass_through_metric: []
+    ad_group_report: "{{ ref('stg_pinterest_ads__ad_group_report') }}"
+    advertiser_history: "{{ ref('stg_pinterest_ads__advertiser_history') }}"
+    advertiser_report: "{{ ref('stg_pinterest_ads__advertiser_report') }}"
+    campaign_report: "{{ ref('stg_pinterest_ads__campaign_report') }}"
+    keyword_history: "{{ ref('stg_pinterest_ads__keyword_history') }}"
+    keyword_report: "{{ ref('stg_pinterest_ads__keyword_report') }}"
+
+  pinterest__pin_promotion_report_passthrough_metrics: []
+  pinterest__ad_group_report_passthrough_metrics: []
+  pinterest__advertiser_report_passthrough_metrics: []
+  pinterest__campaign_report_passthrough_metrics: []
+  pinterest__keyword_report_passthrough_metrics: []

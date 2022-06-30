@@ -1,3 +1,4 @@
+# dbt_pinterest v0.6.0
 # dbt_pinterest v0.5.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨

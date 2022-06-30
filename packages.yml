@@ -1,3 +1,9 @@
 packages:
-- package: fivetran/pinterest_source
-  version: [">=0.5.0", "<0.6.0"]
+# - package: fivetran/pinterest_source
+#   version: [">=0.6.0", "<0.7.0"]
+
+## SWITCH BEFORE RELEASE!
+  - git: https://github.com/fivetran/dbt_pinterest_source.git
+    revision: feature/v2-updates
+    warn-unpinned: false
+# - local: ../dbt_pinterest_source

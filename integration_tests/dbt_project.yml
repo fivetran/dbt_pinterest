@@ -1,36 +1,33 @@
 name: 'pinterest_integration_tests'
-version: '0.4.0'
+version: '0.6.0'
 profile: 'integration_tests'
 config-version: 2
 
 vars:
-  pinterest_source:
-    ad_group_history: "{{ ref('ad_group_history_data') }}"
-    campaign_history: "{{ ref('campaign_history_data') }}"
-    pin_promotion_history: "{{ ref('pin_promotion_history_data') }}"
-    pin_promotion_report: "{{ ref('pin_promotion_report_data') }}"
+  pinterest_schema: pinterest_integration_tests
+  pinterest_ad_group_history_identifier: "ad_group_history_data"
+  pinterest_campaign_history_identifier: "campaign_history_data"
+  pinterest_pin_promotion_history_identifier: "pin_promotion_history_data"
+  pinterest_pin_promotion_report_identifier: "pin_promotion_report_data"
+  pinterest_keyword_history_identifier: "keyword_history_data"
+  pinterest_keyword_report_identifier: "keyword_report_data"
+  pinterest_ad_group_report_identifier: "ad_group_report_data"
+  pinterest_campaign_report_identifier: "campaign_report_data"
+  pinterest_advertiser_history_identifier: "advertiser_history_data"
+  pinterest_advertiser_report_identifier: "advertiser_report_data"
 
 seeds:
-  +quote_columns: "{{ true if target.type == 'redshift' else false }}"
+  +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
   pinterest_integration_tests:
-    ad_group_history_data:
-      +column_types:
-        ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        CAMPAIGN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-    campaign_history_data:
-      +column_types:
-        ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-    pin_promotion_history_data:
-      +column_types:
-        ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        AD_GROUP_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        PIN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-    pin_promotion_report_data:
-      +column_types:
-        PIN_PROMOTION_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        AD_GROUP_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        CAMPAIGN_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        ADVERTISER_ID: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+    +column_types:
+        id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        campaign_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        ad_group_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        pin_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        campaign_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        advertiser_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        pin_promotion_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        keyword_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         
 dispatch:
   - macro_namespace: dbt_utils

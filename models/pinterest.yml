@@ -1,14 +1,14 @@
 version: 2
 
 models:
-  - name: pinterest_ads__ad_adapter
+  - name: pinterest_ads__url_report
     description: Each record in this table represents the daily performance of ads at the ad group and url level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - pin_promotion_id
+            - date_day
     columns:
-      - name: daily_id
-        description: A unique key, a combination of the campaign, ad group and campaign date.
-        tests:
-          - unique
-          - not_null
       - name: campaign_date
         description: The performance date of the record.
       - name: base_url
@@ -44,8 +44,13 @@ models:
       - name: spend
         description: The amount of spend that occurred on the day of the record.
 
-  - name: pinterest_ads__ad_group_ad_report
+  - name: pinterest_ads__ad_group_report
     description: Each record in this table represents the daily performance of ads at the ad group level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - ad_group_id
+            - date_day
     columns:
       - name: campaign_date
         description: The performance date of the record.
@@ -64,8 +69,13 @@ models:
       - name: spend
         description: The amount of spend that occurred on the day of the record.
 
-  - name: pinterest_ads__campaign_ad_report
+  - name: pinterest_ads__campaign_report
     description: Each record in this table represents the daily performance of ads at the campaign level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - campaign_id
+            - date_day
     columns:
       - name: campaign_date
         description: The performance date of the record.
@@ -79,3 +89,27 @@ models:
         description: The number of clicks that occurred on the day of the record.
       - name: spend
         description: The amount of spend that occurred on the day of the record.
+
+  - name: pinterest_ads__advertiser_report
+    description: TBD
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - advertiser_id
+            - date_day
+
+  - name: pinterest_ads__keyword_report
+    description: TBD
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - keyword_id
+            - date_day
+
+  - name: pinterest_ads__pin_promotion_report
+    description: TBD
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - pin_promotion_id
+            - date_day
