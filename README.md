@@ -23,12 +23,12 @@ The following table provides a detailed list of all models materialized within t
 
 | **Model**                | **Description**                                                                                                                                |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [pinterest__advertiser_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest__advertiser_report)             | Each record in this table represents the daily performance at the advertiser level. |
-| [pinterest__campaign_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest__campaign_report)            | Each record in this table represents the daily performance of a campaign. |
-| [pinterest__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest__ad_group_report)            | Each record in this table represents the daily performance at the ad group level. |
-| [pinterest__keyword_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest__keyword_report)            | Each record in this table represents the daily performance at the ad group level for keywords. |
-| [pinterest__pin_promotion_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest__pin_promotion_report)            | Each record in this table represents the daily performance at the pin level. |
-| [pinterest__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest__url_report)            | Each record in this table represents the daily performance of URLs at the ad level. |
+| [pinterest_ads__advertiser_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__advertiser_report)             | Each record in this table represents the daily performance at the advertiser level. |
+| [pinterest_ads__campaign_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_report)            | Each record in this table represents the daily performance of a campaign. |
+| [pinterest_ads__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__ad_group_report)            | Each record in this table represents the daily performance at the ad group level. |
+| [pinterest_ads__keyword_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report)            | Each record in this table represents the daily performance at the ad group level for keywords. |
+| [pinterest_ads__pin_promotion_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__pin_promotion_report)            | Each record in this table represents the daily performance at the pin level. |
+| [pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)            | Each record in this table represents the daily performance of URLs at the ad level. |
 
 # 🎯 How do I use the dbt package?
 
