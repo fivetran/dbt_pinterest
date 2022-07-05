@@ -1,4 +1,30 @@
 # dbt_pinterest v0.6.0
+PR [#21](https://github.com/fivetran/dbt_pinterest/pull/21) includes the following changes:
+## 🚨 Breaking Changes 🚨
+- The `pin_promotion_report_pass_through_metric` variable has been renamed to `pinterest__pin_promotion_report_passthrough_metrics`.
+- The `pinterest_ads__ad_adapter` has been renamed to `pinterest_ads__url_report`.
+- The `pinterest_ads__ad_group_ad_report` has been renamed to `pinterest_ads__ad_group_report`.
+- The `pinterest_ads__campaign_ad_report` has been renamed to `pinterest_ads__campaign_report`.
+## 🎉 Feature Enhancements 🎉
+- Addition of the following new end models: 
+  - `pinterest_ads__pin_promotion_report`
+    - Each record in this table represents the daily performance at the pin level.
+  - `pinterest_ads__advertiser_report`
+    - Each record in this table represents the daily performance at the advertiser level.
+  - `pinterest_ads__keyword_report`
+    - Each record in this table represents the daily performance at the ad group level for keywords.
+
+- Inclusion of additional passthrough metrics: 
+  - `pinterest__ad_group_report_passthrough_metrics`
+  - `pinterest__campaign_report_passthrough_metrics`
+  - `pinterest__advertiser_report_passthrough_metrics`
+  - `pinterest__keyword_report_passthrough_metrics`
+
+- README updates for easier navigation and use of the package. 
+- Included grain uniqueness tests for each end model. 
+
+## Contributors
+- [@bnealdefero](https://github.com/bnealdefero) [#21](https://github.com/fivetran/dbt_pinterest/pull/21)
 # dbt_pinterest v0.5.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
