@@ -102,6 +102,12 @@ models:
         description: The name of the related Ad group.
       - name: ad_group_status
         description: Status of the ad group.
+      - name: created_at
+        description: Ad group creation time.
+      - name: start_time
+        description: Ad group start time. 
+      - name: end_time
+        description: Ad group end time. 
       - name: impressions
         description: "{{ doc('impressions') }}"
       - name: clicks
