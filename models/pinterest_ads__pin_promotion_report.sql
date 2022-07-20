@@ -45,7 +45,7 @@ joined as (
         ad_groups.ad_group_name,
         ad_groups.ad_group_status,
         pins.creative_type,
-        pins.pin_promotion_id,
+        report.pin_promotion_id,
         pins.pin_name,
         pins.pin_status,
         pins.destination_url,

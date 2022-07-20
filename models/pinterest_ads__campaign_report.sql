@@ -23,7 +23,7 @@ fields as (
         advertisers.advertiser_name,
         advertisers.advertiser_id,
         campaigns.campaign_name,
-        campaigns.campaign_id,
+        report.campaign_id,
         campaigns.campaign_status,
         sum(report.spend) as spend,
         sum(report.clicks) as clicks,

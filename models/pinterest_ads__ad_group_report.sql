@@ -35,7 +35,7 @@ fields as (
         campaigns.campaign_status,
         campaigns.campaign_id,
         ad_groups.ad_group_name,
-        ad_groups.ad_group_id,
+        report.ad_group_id,
         ad_groups.created_at,
         ad_groups.start_time,
         ad_groups.end_time,

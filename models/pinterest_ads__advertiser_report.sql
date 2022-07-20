@@ -16,7 +16,7 @@ fields as (
     select
         report.date_day,
         advertisers.advertiser_name,
-        advertisers.advertiser_id,
+        report.advertiser_id,
         advertisers.advertiser_status,
         advertisers.currency_code,
         advertisers.country,

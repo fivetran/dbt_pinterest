@@ -42,7 +42,7 @@ fields as (
         campaigns.campaign_id,
         ad_groups.ad_group_name,
         ad_groups.ad_group_id,
-        keywords.keyword_id,
+        report.keyword_id,
         keywords.match_type,
         keywords.parent_type,
         keywords.keyword_value,
