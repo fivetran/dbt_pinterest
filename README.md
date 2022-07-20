@@ -71,7 +71,7 @@ By default, this package will select `clicks`, `impressions`, and `cost` from `_
 
 ```yml
 vars:
-    pin_promotion_report_pass_through_metric: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.pin_promotion_report
+    pinterest__pin_promotion_report_pass_through_metric: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.pin_promotion_report
     pinterest__ad_group_report_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.ad_group_report
     pinterest__advertiser_report_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.advertiser_report
     pinterest__campaign_report_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.campaign_report
