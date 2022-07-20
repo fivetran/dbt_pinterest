@@ -36,6 +36,9 @@ fields as (
         campaigns.campaign_id,
         ad_groups.ad_group_name,
         ad_groups.ad_group_id,
+        ad_groups.created_at,
+        ad_groups.start_time,
+        ad_groups.end_time,
         ad_groups.ad_group_status,
         sum(report.spend) as spend,
         sum(report.clicks) as clicks,
@@ -52,7 +55,7 @@ fields as (
         on ad_groups.campaign_id = campaigns.campaign_id
     left join advertisers
         on campaigns.advertiser_id = advertisers.advertiser_id
-    {{ dbt_utils.group_by(9) }}
+    {{ dbt_utils.group_by(12) }}
 )
 
 select *

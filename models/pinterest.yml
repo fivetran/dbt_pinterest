@@ -2,11 +2,14 @@ version: 2
 
 models:
   - name: pinterest_ads__url_report
-    description: Each record in this table represents the daily performance of ads at the ad group and url level.
+    description: Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and url level.
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - pin_promotion_id
+            - ad_group_id
+            - campaign_id
+            - advertiser_id
             - date_day
     columns:
       - name: date_day
@@ -24,7 +27,7 @@ models:
       - name: destination_url
         description: Pin destination URL.
       - name: pin_promotion_id
-        description: Pin promotion ID.
+        description: "{{ doc('pin_promotion_id') }}"
         tests:
           - not_null
       - name: pin_name
@@ -53,60 +56,27 @@ models:
       - name: utm_term
         description: The utm_term parameter of the ad, extracted from the `destination_url`.
       - name: campaign_id
-        description: The ID of the related Campaign.
+        description: "{{ doc('campaign_id') }}"
       - name: campaign_name
         description: The name of the related Campaign.
       - name: ad_group_id
-        description: The ID of the related Ad group.
+        description: "{{ doc('ad_group_id') }}"
       - name: ad_group_name
         description: The name of the related Ad group.
       - name: impressions
-        description: The number of impressions that occurred on the day of the record.
+        description: "{{ doc('impressions') }}"
       - name: clicks
-        description: The number of clicks that occurred on the day of the record.
+        description: "{{ doc('clicks') }}"
       - name: spend
-        description: The amount of spend that occurred on the day of the record.
+        description: "{{ doc('spend') }}"
 
   - name: pinterest_ads__ad_group_report
-    description: Each record in this table represents the daily performance of ads at the ad group level.
+    description: Each record in this table represents the daily performance of ads at the campaign, advertiser, and ad group level.
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - ad_group_id
-            - date_day
-    columns:
-      - name: date_day
-        description: "{{ doc('date_day') }}"
-        tests:
-          - not_null
-      - name: advertiser_id
-        description: "{{ doc('advertiser_id') }}"
-      - name: advertiser_name
-        description: Name of the advertiser.
-      - name: campaign_id
-        description: The ID of the related Campaign.
-      - name: campaign_name
-        description: The name of the related Campaign.
-      - name: campaign_status
-        description: Status of the campaign.
-      - name: ad_group_id
-        description: The ID of the related Ad group.
-      - name: ad_group_name
-        description: The name of the related Ad group.
-      - name: ad_group_status
-        description: Status of the ad group.
-      - name: impressions
-        description: The number of impressions that occurred on the day of the record.
-      - name: clicks
-        description: The number of clicks that occurred on the day of the record.
-      - name: spend
-        description: The amount of spend that occurred on the day of the record.
-
-  - name: pinterest_ads__campaign_report
-    description: Each record in this table represents the daily performance of ads at the campaign level.
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
+            - advertiser_id
             - campaign_id
             - date_day
     columns:
@@ -119,17 +89,57 @@ models:
       - name: advertiser_name
         description: Name of the advertiser.
       - name: campaign_id
-        description: The ID of the related Campaign.
+        description: "{{ doc('campaign_id') }}"
+      - name: campaign_name
+        description: The name of the related Campaign.
+      - name: campaign_status
+        description: Status of the campaign.
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+        tests:
+          - not_null
+      - name: ad_group_name
+        description: The name of the related Ad group.
+      - name: ad_group_status
+        description: Status of the ad group.
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: spend
+        description: "{{ doc('spend') }}"
+
+  - name: pinterest_ads__campaign_report
+    description: Each record in this table represents the daily performance of ads at the advertiser and campaign level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - campaign_id
+            - advertiser_id
+            - date_day
+    columns:
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+        tests:
+          - not_null
+      - name: advertiser_id
+        description: "{{ doc('advertiser_id') }}"
+      - name: advertiser_name
+        description: Name of the advertiser.
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
       - name: campaign_name
         description: The name of the related Campaign.
       - name: campaign_status
         description: Status of the campaign.
       - name: impressions
-        description: The number of impressions that occurred on the day of the record.
+        description: "{{ doc('impressions') }}"
       - name: clicks
-        description: The number of clicks that occurred on the day of the record.
+        description: "{{ doc('clicks') }}"
       - name: spend
-        description: The amount of spend that occurred on the day of the record.
+        description: "{{ doc('spend') }}"
 
   - name: pinterest_ads__advertiser_report
     description: Each record in this table represents the daily performance of an advertiser on the Pinterest Ads platform.
@@ -147,7 +157,7 @@ models:
         description: Name of the advertiser.
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
-        tests:  
+        tests:
           - not_null
       - name: advertiser_status
         description: Status of the advertiser account.
@@ -165,12 +175,14 @@ models:
         description: "{{ doc('impressions') }}"
 
   - name: pinterest_ads__keyword_report
-    description: Each record in this table represents the daily performance of a keyword.
+    description: Each record in this table represents the daily performance of a keyword at the advertiser, campaign, ad group, and keyword level.
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - keyword_id
             - ad_group_id
+            - campaign_id
+            - advertiser_id
             - date_day
     columns:
       - name: date_day
@@ -207,11 +219,14 @@ models:
         description: "{{ doc('impressions') }}"
 
   - name: pinterest_ads__pin_promotion_report
-    description: Each record in this table represents the daily performance of ads at the pin level.
+    description: Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and pin level.
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - pin_promotion_id
+            - ad_group_id
+            - campaign_id
+            - advertiser_id
             - date_day
     columns:
       - name: date_day

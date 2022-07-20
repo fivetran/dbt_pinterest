@@ -6,8 +6,6 @@ models:
   pinterest:
     +schema: pinterest
     +materialized: table
-    intermediate:
-      +materialized: ephemeral
 
 vars:
   pinterest:
