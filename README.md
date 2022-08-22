@@ -65,17 +65,25 @@ vars:
 
 ## (Optional) Step 4: Additional configurations
 ### Passing Through Additional Metrics
-By default, this package will select `clicks`, `impressions`, and `cost` from `_report` source tables used by the respective staging models. If you would like to pass through additional metrics to the staging and final models, add the following configuration to your `dbt_project.yml` file:
+By default, this package will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
 
-> Please ensure you use due diligence when adding metrics to these models. The metrics added by default (`clicks`, `impressions`, and `cost`) have been vetting by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports which are comprised of averages. You will want to ensure whichever metrics you pass through are indeed appropriate to aggregate.
+>**Note** Please ensure you exercised due diligence when adding metrics to these models. The metrics added by default (taps, impressions, and spend) have been vetted by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports, for example metric averages, which may be inaccurately represented at the grain for reports created in this package. You will want to ensure whichever metrics you pass through are indeed appropriate to aggregate at the respective reporting levels provided in this package.
 
 ```yml
 vars:
-    pinterest__pin_promotion_report_pass_through_metric: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.pin_promotion_report
-    pinterest__ad_group_report_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.ad_group_report
-    pinterest__advertiser_report_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.advertiser_report
-    pinterest__campaign_report_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.campaign_report
-    pinterest__keyword_report_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from pinterest.keyword
+    pinterest__pin_promotion_report_passthrough_metrics: 
+      - name: "new_custom_field"
+        alias: "custom_field"
+    pinterest__ad_group_report_passthrough_metrics:
+      - name: "this_field"
+    pinterest__advertiser_report_passthrough_metrics:
+      - name: "unique_string_field"
+        alias: "field_id"
+    pinterest__campaign_report_passthrough_metrics:
+      - name: "that_field"
+    pinterest__keyword_report_passthrough_metrics:
+      - name: "other_id"
+        alias: "another_id"
 ```
 ### Change the build schema
 By default, this package builds the Pinterest Ads staging models within a schema titled (`<target_schema>` + `_pinterest_source`) and your Pinterest Ads modeling models within a schema titled (`<target_schema>` + `_pinterest`) in your destination. If this is not where you would like your Pinterest Ads data to be written to, add the following configuration to your root `dbt_project.yml` file:

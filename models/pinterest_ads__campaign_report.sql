@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__pinterest_ads_enabled', True)) }}
+
 with report as (
     select *
     from {{ var('campaign_report') }}
@@ -29,9 +31,7 @@ fields as (
         sum(report.clicks) as clicks,
         sum(report.impressions) as impressions
 
-        {% for metric in var('google_ads__ad_group_stats_passthrough_metrics', []) %}
-        , sum(report.{{ metric }}) as {{ metric }}
-        {% endfor %}
+        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='pinterest__campaign_report_passthrough_metrics', transform = 'sum') }}
 
     from report
     left join campaigns

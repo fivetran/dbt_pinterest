@@ -2,6 +2,14 @@
 PR [#21](https://github.com/fivetran/dbt_pinterest/pull/21) includes the following changes:
 ## 🚨 Breaking Changes 🚨
 - The `pin_promotion_report_pass_through_metric` variable has been renamed to `pinterest__pin_promotion_report_passthrough_metrics`.
+- The declaration of passthrough variables within your root `dbt_project.yml` has changed. To allow for more flexibility and better tracking of passthrough columns, you will now want to define passthrough metrics in the following format:
+> This applies to all passthrough metrics within the `dbt_pinterest` package and not just the `pinterest__pin_promotion_report_passthrough_metrics` example.
+```yml
+vars:
+  pinterest__pin_promotion_report_passthrough_metrics:
+    - name: "my_field_to_include" # Required: Name of the field within the source.
+      alias: "field_alias" # Optional: If you wish to alias the field within the staging model.
+```
 - The `pinterest_ads__ad_adapter` has been renamed to `pinterest_ads__url_report`.
 - The `pinterest_ads__ad_group_ad_report` has been renamed to `pinterest_ads__ad_group_report`.
 - The `pinterest_ads__campaign_ad_report` has been renamed to `pinterest_ads__campaign_report`.

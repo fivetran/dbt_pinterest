@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__pinterest_ads_enabled', True)) }}
+
 with report as (
 
     select *
@@ -54,9 +56,7 @@ joined as (
         sum(report.impressions) as impressions,
         sum(report.spend) as spend
 
-        {% for metric in var('pinterest__pin_promotion_report_passthrough_metrics',[]) %}
-        , sum({{ report.metric }}) as {{ metric }}
-        {% endfor %}
+        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_report_passthrough_metrics', transform = 'sum') }}
 
     from report 
     left join pins 
