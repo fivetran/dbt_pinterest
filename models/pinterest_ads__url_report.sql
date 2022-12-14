@@ -75,11 +75,7 @@ joined as (
     left join advertisers
         on campaigns.advertiser_id = advertisers.advertiser_id
 
-    {% if (var('allow_pinterest_ads_null_urls', False)) or
-        (var('allow_ad_reporting_null_urls', False))  %}
-        -- In this case, skip where clause to include all rows whether or not the url field is populated.
-    {% else %}
-        -- We only want utm ads to populate this report. Therefore, we filter where url pins are populated.
+    {% if var('ad_reporting__url_report__using_null_filter', True) %}
     where pins.destination_url is not null
     {% endif %}
 
