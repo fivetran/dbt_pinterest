@@ -37,6 +37,12 @@
     - `dbt.current_timestamp_in_utc_backcompat`
 - Dependencies on `fivetran/fivetran_utils` have been upgraded, previously `[">=0.3.0", "<0.4.0"]` now `[">=0.4.0", "<0.5.0"]`.
 
+## 🎉 Features 🎉
+- For use in the [dbt_ad_reporting package](https://github.com/fivetran/dbt_ad_reporting), users can now allow records having nulls in url fields to be included in the `ad_reporting__url_report` model. See the [dbt_ad_reporting README](https://github.com/fivetran/dbt_ad_reporting) for more details ([#23](https://github.com/fivetran/dbt_pinterest/pull/23)).
+## 🚘 Under the Hood 🚘
+- Disabled the `not_null` test for `pinterest_ads__url_report` when null urls are allowed ([#23](https://github.com/fivetran/dbt_pinterest/pull/23)).
+
+
 # dbt_pinterest v0.6.0
 PR [#21](https://github.com/fivetran/dbt_pinterest/pull/21) includes the following changes:
 ## 🚨 Breaking Changes 🚨
