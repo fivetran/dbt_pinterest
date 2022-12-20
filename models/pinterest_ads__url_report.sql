@@ -75,8 +75,10 @@ joined as (
     left join advertisers
         on campaigns.advertiser_id = advertisers.advertiser_id
 
-    -- We only want utm ads to populate this report. Therefore, we filter where url pins are populated.
+    {% if var('ad_reporting__url_report__using_null_filter', True) %}
     where pins.destination_url is not null
+    {% endif %}
+
     {{ dbt_utils.group_by(22) }}
 )
 

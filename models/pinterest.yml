@@ -11,6 +11,9 @@ models:
             - campaign_id
             - advertiser_id
             - date_day
+          config:
+            # Below is so we don't run this test if the user has allowed urls to have null entries
+            enabled: "{{ var('ad_reporting__url_report__using_null_filter', true) }}"
     columns:
       - name: date_day
         description: "{{ doc('date_day') }}"
@@ -26,6 +29,11 @@ models:
         description: Status of the ad group.
       - name: destination_url
         description: Pin destination URL.
+        tests:
+          - not_null:
+              config:
+                # Below is so we don't run this test if the user has allowed urls to have null entries
+                enabled: "{{ var('ad_reporting__url_report__using_null_filter', true) }}"
       - name: pin_promotion_id
         description: "{{ doc('pin_promotion_id') }}"
         tests:
