@@ -52,8 +52,11 @@ Include the following pinterest package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/pinterest
-    version: [">=0.7.0", "<0.8.0"]
+    version: [">=0.7.0", "<0.8.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
+
+Do NOT include the `pinterest_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
+
 ## Step 3: Define database and schema variables
 By default, this package runs using your destination and the `pinterest` schema. If this is not where your Pinterest Ads data is (for example, if your Pinterest Ads schema is named `pinterest_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
