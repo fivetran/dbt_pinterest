@@ -66,7 +66,15 @@ vars:
     pinterest_schema: your_schema_name 
 ```
 
-## (Optional) Step 4: Additional configurations
+### Step 4: Disabling Keyword Models
+This package takes into consideration that not every Pinterest account tracks `keyword` performance, and allows you to disable the corresponding functionality by adding the following variable configuration:
+```yml
+# dbt_project.yml
+vars:
+    pinterest__using_keywords: False # Default = true
+```
+
+## (Optional) Step 5: Additional configurations
 <details><summary>Expand for configurations</summary>
 
 ### Passing Through Additional Metrics
@@ -113,7 +121,7 @@ vars:
 
 </details>
 
-## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™   
+## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™   
 <details><summary>Expand for more details</summary>
 
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
