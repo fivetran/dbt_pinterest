@@ -1,6 +1,7 @@
 # dbt_pinterest v0.7.1
 ## Features
-- Addition of the `pinterest__using_keywords` (default=`true`) variable that allows users to disable the relevant keyword reports in the downstream Pinterest models if they are not used.
+- Addition of the `pinterest__using_keywords` (default=`true`) variable that allows users to disable the relevant keyword reports in the downstream Pinterest models if they are not used. ([#25](https://github.com/fivetran/dbt_pinterest/pull/25))
+
 ## Under the Hood:
 - Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job. ([PR #24](https://github.com/fivetran/dbt_pinterest/pull/24))
 - Updated the pull request [templates](/.github). ([PR #24](https://github.com/fivetran/dbt_pinterest/pull/24))
