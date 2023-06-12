@@ -1,4 +1,4 @@
-{{ config(enabled=var('ad_reporting__pinterest_ads_enabled', True)) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest__using_keywords'])) }}
 
 with report as (
 
