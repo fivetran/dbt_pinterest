@@ -19,10 +19,8 @@ fields as (
         report.date_day,
         advertisers.advertiser_name,
         report.advertiser_id,
-        advertisers.advertiser_status,
         advertisers.currency_code,
         advertisers.country,
-        advertisers.billing_type,
         sum(report.spend) as spend,
         sum(report.clicks) as clicks,
         sum(report.impressions) as impressions
@@ -32,7 +30,7 @@ fields as (
     from report
     left join advertisers
         on report.advertiser_id = advertisers.advertiser_id
-    {{ dbt_utils.group_by(7) }}
+    {{ dbt_utils.group_by(5) }}
 )
 
 select *
