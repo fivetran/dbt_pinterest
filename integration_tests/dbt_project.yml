@@ -25,6 +25,7 @@ seeds:
         ad_group_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         pin_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         campaign_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+        ad_account_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         advertiser_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         pin_promotion_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
         keyword_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
