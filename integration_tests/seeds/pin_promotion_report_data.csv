@@ -1,4 +1,4 @@
-﻿date,pin_promotion_id,ad_group_id,campaign_id,ad_account_id,_fivetran_synced,impression_1,impression_2,clickthrough_1,clickthrough_2,spend_in_micro_dollar
+﻿date,pin_promotion_id,ad_group_id,campaign_id,advertiser_id,_fivetran_synced,impression_1,impression_2,clickthrough_1,clickthrough_2,spend_in_micro_dollar
 2020-04-20 00:00:00,687205395433,2680065434898,626741793779,549760489669,2020-05-21 15:09:01.558 +0000,5167,,38,,5898162
 2020-04-20 00:00:00,687205395434,2680065434898,626741793779,549760489669,2020-05-21 15:09:01.558 +0000,607,1,14,,2234418
 2020-04-20 00:00:00,687205395435,2680065434898,626741793779,549760489669,2020-05-21 15:09:01.558 +0000,1169,,4,,594512
