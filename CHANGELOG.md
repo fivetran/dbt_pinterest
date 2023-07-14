@@ -8,8 +8,9 @@
 |---|---|---|
 |  [pinterest_ads__advertiser_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__advertiser_report) | `billing_type`, `status`  |   |
 
-- In the v5 upgrade, `advertiser_id` has been replaced by `ad_account_id` and is a net new field in `ad_group_history` and `pin_promotion_history` source tables. However, to keep our Pinterest Ads package standard with our other ad packages, we have kept it as `advertiser_id`.
+- In the v5 upgrade, `advertiser_id` has been replaced by `ad_account_id`. Also, `ad_account_id`  is a net new field in `ad_group_history` and `pin_promotion_history`. 
 
+However, to keep our Pinterest Ads package standard with our other ad packages, we have kept it as `advertiser_id`.
 
 # dbt_pinterest v0.7.1
 ## Features

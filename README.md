@@ -52,7 +52,7 @@ Include the following pinterest package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/pinterest
-    version: [">=0.7.0", "<0.8.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 Do NOT include the `pinterest_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
