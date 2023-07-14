@@ -5,16 +5,16 @@ config-version: 2
 
 vars:
   pinterest_schema: pinterest_integration_tests_3
-  pinterest_ad_group_history_identifier: "ad_group_history_data"
-  pinterest_campaign_history_identifier: "campaign_history_data"
-  pinterest_pin_promotion_history_identifier: "pin_promotion_history_data"
-  pinterest_pin_promotion_report_identifier: "pin_promotion_report_data"
-  pinterest_keyword_history_identifier: "keyword_history_data"
-  pinterest_keyword_report_identifier: "keyword_report_data"
-  pinterest_ad_group_report_identifier: "ad_group_report_data"
-  pinterest_campaign_report_identifier: "campaign_report_data"
-  pinterest_advertiser_history_identifier: "advertiser_history_data"
-  pinterest_advertiser_report_identifier: "advertiser_report_data"
+  pinterest_ad_group_history_identifier: "pinterest_ad_group_history_data"
+  pinterest_campaign_history_identifier: "pinterest_campaign_history_data"
+  pinterest_pin_promotion_history_identifier: "pinterest_pin_promotion_history_data"
+  pinterest_pin_promotion_report_identifier: "pinterest_pin_promotion_report_data"
+  pinterest_keyword_history_identifier: "pinterest_keyword_history_data"
+  pinterest_keyword_report_identifier: "pinterest_keyword_report_data"
+  pinterest_ad_group_report_identifier: "pinterest_ad_group_report_data"
+  pinterest_campaign_report_identifier: "pinterest_campaign_report_data"
+  pinterest_advertiser_history_identifier: "pinterest_advertiser_history_data"
+  pinterest_advertiser_report_identifier: "pinterest_advertiser_report_data"
 
 seeds:
   +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
