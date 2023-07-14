@@ -38,7 +38,7 @@ joined as (
 
     select
         report.date_day,
-        campaigns.advertiser_id,
+        pins.advertiser_id,
         advertisers.advertiser_name,
         report.campaign_id,
         campaigns.campaign_name,

@@ -32,7 +32,7 @@ fields as (
     select
         report.date_day,
         advertisers.advertiser_name,
-        advertisers.advertiser_id,
+        ad_groups.advertiser_id,
         campaigns.campaign_name,
         campaigns.campaign_status,
         campaigns.campaign_id,
