@@ -1,4 +1,3 @@
 packages:
-    - git: https://github.com/fivetran/dbt_pinterest_source.git
-      revision: feature/pinterest_v5_API_support
-      warn-unpinned: false
+  - package: fivetran/pinterest_source
+    version: [">=0.8.0", "<0.9.0"]
