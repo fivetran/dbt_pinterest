@@ -1,3 +1,23 @@
+# dbt_pinterest v0.9.0
+
+# Pinterest Ads v5 Upgrade
+## 🚨 Breaking Changes 🚨:
+[PR #26](https://github.com/fivetran/dbt_pinterest/pull/26) introduces the following changes:
+
+- Following Pinterest Ads deprecating the v4 API on June 30, 2023 in place of v5, the Pinterest Ads Fivetran connector now leverages the Pinterest v5 API. The following fields have been deprecated/introduced:
+
+| **Model** | **Removed**  | **New**   |
+|---|---|---|
+|  [pinterest_ads__advertiser_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__advertiser_report) | `billing_type`, `status`  |   |
+
+## Under the Hood:
+- Following the v5 upgrade, `ad_account_id` is a net new field within `ad_group_history` and `pin_promotion_history` source tables synced via the connector. However, to keep these fields standard across the package, we have renamed them as `advertiser_id` within the respective staging models.
+- Seed data were updated with new/removed fields following the v5 upgrade
+
+
+# dbt_pinterest v0.8.0
+- This was an accidental release
+
 # dbt_pinterest v0.7.1
 ## Features
 - Addition of the `pinterest__using_keywords` (default=`true`) variable that allows users to disable the relevant keyword reports in the downstream Pinterest models if they are not used. ([#25](https://github.com/fivetran/dbt_pinterest/pull/25))

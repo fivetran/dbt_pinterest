@@ -173,14 +173,10 @@ models:
         description: "{{ doc('advertiser_id') }}"
         tests:
           - not_null
-      - name: advertiser_status
-        description: Status of the advertiser account.
       - name: currency_code
         description: The currency code which the advertiser is set up using.
       - name: country
         description: The country code where the advertiser is located.
-      - name: billing_type
-        description: The billing type of the advertiser. Will typically be CREDIT_CARD or INVOICE.
       - name: spend
         description: "{{ doc('spend') }}"
       - name: clicks
