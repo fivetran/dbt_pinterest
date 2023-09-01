@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest__using_keywords'])) }}
 
 with report as (
@@ -37,6 +39,7 @@ keywords as (
 fields as (
 
     select
+        report.source_relation,
         report.date_day,
         advertisers.advertiser_name,
         advertisers.advertiser_id,
@@ -57,13 +60,17 @@ fields as (
     from report
     left join keywords
         on report.keyword_id = keywords.keyword_id
+        and report.source_relation = keywords.source_relation
     left join ad_groups
         on keywords.ad_group_id = ad_groups.ad_group_id
+        and keywords.source_relation = ad_groups.source_relation
     left join campaigns
         on ad_groups.campaign_id = campaigns.campaign_id
+        and ad_groups.source_relation = campaigns.source_relation
     left join advertisers
         on campaigns.advertiser_id = advertisers.advertiser_id
-    {{ dbt_utils.group_by(11) }}
+        and campaigns.source_relation = advertisers.source_relation
+    {{ dbt_utils.group_by(12) }}
 )
 
 select *

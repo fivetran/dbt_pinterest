@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__pinterest_ads_enabled', True)) }}
 
 with report as (
@@ -37,6 +39,7 @@ advertisers as (
 joined as (
 
     select
+        report.source_relation,
         report.date_day,
         campaigns.advertiser_id,
         advertisers.advertiser_name,
@@ -68,18 +71,22 @@ joined as (
     from report 
     left join pins 
         on report.pin_promotion_id = pins.pin_promotion_id
+        and report.source_relation = pins.source_relation
     left join ad_groups
         on report.ad_group_id = ad_groups.ad_group_id
+        and report.source_relation = ad_groups.source_relation
     left join campaigns 
         on report.campaign_id = campaigns.campaign_id
+        and report.source_relation = campaigns.source_relation
     left join advertisers
         on campaigns.advertiser_id = advertisers.advertiser_id
+        and campaigns.source_relation = advertisers.source_relation
 
     {% if var('ad_reporting__url_report__using_null_filter', True) %}
     where pins.destination_url is not null
     {% endif %}
 
-    {{ dbt_utils.group_by(22) }}
+    {{ dbt_utils.group_by(23) }}
 )
 
 select * 
