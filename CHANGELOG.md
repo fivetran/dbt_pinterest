@@ -1,13 +1,31 @@
 # dbt_pinterest v0.10.0
 [PR #30](https://github.com/fivetran/dbt_pinterest/pull/30) includes the following updates:
+
+## Breaking changes
+- Updated the following identifiers for consistency with the source name and compatibility with the union schema feature:
+
+| current  | previous |
+|----------|----------|
+| pinterest_ads_ad_group_history_identifier | pinterest_ad_group_history_identifier |
+| pinterest_ads_campaign_history_identifier | pinterest_campaign_history_identifier |
+| pinterest_ads_pin_promotion_report_identifier | pinterest_pin_promotion_report_identifier |
+| pinterest_ads_keyword_history_identifier | pinterest_keyword_history_identifier |
+| pinterest_ads_keyword_report_identifier | pinterest_keyword_report_identifier |
+| pinterest_ads_ad_group_report_identifier | pinterest_ad_group_report_identifier |
+| pinterest_ads_campaign_report_identifier | pinterest_campaign_report_identifier |
+| pinterest_ads_advertiser_history_identifier | pinterest_advertiser_history_identifier |
+| pinterest_ads_advertiser_report_identifier | pinterest_advertiser_report_identifier |
+
+- If you are using the previous identifier, be sure to update to the current version!
+
 ## Feature update 🎉
 - Unioning capability! This adds the ability to union source data from multiple pinterest connectors. Refer to the [Union Multiple Connectors README section](https://github.com/fivetran/dbt_pinterest/blob/main/README.md#union-multiple-connectors) for more details.
 
 ## Under the hood 🚘
 - In the source package, updated tmp models to union source data using the `fivetran_utils.union_data` macro. 
 - To distinguish which source each field comes from, added `source_relation` column in each staging and downstream model and applied the `fivetran_utils.source_relation` macro.
+  - The `source_relation` column is included in all joins in the transform package. 
 - Updated tests to account for the new `source_relation` column.
-    - The `source_relation` column is included in all joins in the transform package. 
 
 # dbt_pinterest v0.9.0
 
