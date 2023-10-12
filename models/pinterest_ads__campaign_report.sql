@@ -21,6 +21,7 @@ advertisers as (
 fields as (
 
     select
+        report.source_relation,
         report.date_day,
         advertisers.advertiser_name,
         advertisers.advertiser_id,
@@ -36,9 +37,11 @@ fields as (
     from report
     left join campaigns
         on report.campaign_id = campaigns.campaign_id
+        and report.source_relation = campaigns.source_relation
     left join advertisers
         on campaigns.advertiser_id = advertisers.advertiser_id
-    {{ dbt_utils.group_by(6) }}
+        and campaigns.source_relation = advertisers.source_relation
+    {{ dbt_utils.group_by(7) }}
 )
 
 select *
