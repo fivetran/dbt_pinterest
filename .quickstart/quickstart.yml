@@ -1,0 +1,15 @@
+database_key: pinterest_database
+schema_key: pinterest_schema
+
+dbt_versions: ">=1.3.0 <2.0.0"
+
+table_variables:
+  pinterest__using_keywords:
+    - keyword_history
+    - keyword_report
+
+destination_configurations:
+  databricks:
+    dispatch:
+      - macro_namespace: dbt_utils
+        search_order: [ 'spark_utils', 'dbt_utils' ]
