@@ -13,3 +13,12 @@ destination_configurations:
     dispatch:
       - macro_namespace: dbt_utils
         search_order: [ 'spark_utils', 'dbt_utils' ]
+
+public_models: [
+  "pinterest_ads__url_report",
+  "pinterest_ads__campaign_report",
+  "pinterest_ads__keyword_report",
+  "pinterest_ads__advertiser_report",
+  "pinterest_ads__pin_promotion_report",
+  "pinterest_ads__ad_group_report"
+]
