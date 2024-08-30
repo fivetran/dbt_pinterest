@@ -33,6 +33,8 @@ seeds:
         advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         pin_promotion_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         keyword_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+        total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
 
 dispatch:
   - macro_namespace: dbt_utils
