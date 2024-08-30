@@ -14,6 +14,10 @@ vars:
   pinterest_ads_ad_group_report_identifier: "pinterest_ad_group_report_data"
   pinterest_ads_campaign_report_identifier: "pinterest_campaign_report_data"
   pinterest_ads_advertiser_history_identifier: "pinterest_advertiser_history_data"
+  pinterest__ad_group_report_passthrough_metrics: 
+    - name: "total_conversions"
+    - name: "total_view_checkout"
+      alias: "t_view_checkout"
 
 
 seeds:
