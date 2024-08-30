@@ -64,7 +64,7 @@ joined as (
         sum(report.impressions) as impressions,
         sum(report.spend) as spend
 
-        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_report_passthrough_metrics', transform = 'sum') }}
+        {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_report_passthrough_metrics', identifier='stats', transform='sum', coalesce_with=0, exclude_fields=['total_conversions','total_conversions_quantity','total_conversions_value_in_micro_dollar']) }}
 
     from report 
     left join pins 
