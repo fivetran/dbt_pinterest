@@ -47,12 +47,12 @@ dispatch:
 ```
 
 ## Step 2: Install the package (skip if also using the `ad_reporting` combo package)
-Include the following google_ads package version in your `packages.yml` file _if_ you are not also using the upstream [Ad Reporting combination package](https://github.com/fivetran/dbt_ad_reporting):
+Include the following pinterest_ads package version in your `packages.yml` file _if_ you are not also using the upstream [Ad Reporting combination package](https://github.com/fivetran/dbt_ad_reporting):
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
 packages:
   - package: fivetran/pinterest
-    version: [">=0.10.0", "<0.11.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=v0.11.0", "<0.12.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 Do NOT include the `pinterest_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
@@ -143,7 +143,7 @@ This dbt package is dependent on the following dbt packages. Please be aware tha
 ```yml
 packages:
     - package: fivetran/pinterest_source
-      version: [">=0.10.0", "<0.11.0"]
+      version: [">=0.11.0", "<0.12.0"]
 
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]

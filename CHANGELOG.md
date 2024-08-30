@@ -1,4 +1,4 @@
-# dbt_pinterest v0.10.1
+# dbt_pinterest v0.11.0
 [PR #34](https://github.com/fivetran/dbt_pinterest/pull/34) includes the following updates:
 
 ## Feature update
@@ -7,6 +7,8 @@
   - `total_conversions_quantity`
   - `total_conversions_value_in_micro_dollar`
 - In the event that you were already passing the above fields in via our [passthrough columns](https://github.com/fivetran/dbt_pinterest/blob/main/README.md#passing-through-additional-metrics), the package will dynamically avoid "duplicate column" errors.
+
+> The above new field additions are 🚨 **breaking changes** 🚨 for users who were not already bringing in conversion fields via passthrough columns.
 
 ## Under the hood
 - Created `pinterest_ads_persist_pass_through_columns` macro to ensure that the new conversion fields are backwards compatible with users who have already included them via passthrough fields.
