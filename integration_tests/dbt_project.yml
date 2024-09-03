@@ -4,7 +4,7 @@ profile: 'integration_tests'
 config-version: 2
 
 vars:
-  pinterest_schema: pinterest_integration_tests_4
+  pinterest_schema: pinterest_integration_tests_5
   pinterest_ads_ad_group_history_identifier: "pinterest_ad_group_history_data"
   pinterest_ads_campaign_history_identifier: "pinterest_campaign_history_data"
   pinterest_ads_pin_promotion_history_identifier: "pinterest_pin_promotion_history_data"
@@ -14,11 +14,14 @@ vars:
   pinterest_ads_ad_group_report_identifier: "pinterest_ad_group_report_data"
   pinterest_ads_campaign_report_identifier: "pinterest_campaign_report_data"
   pinterest_ads_advertiser_history_identifier: "pinterest_advertiser_history_data"
-  pinterest__ad_group_report_passthrough_metrics: 
-    - name: "total_conversions"
-    - name: "total_view_checkout"
-      alias: "t_view_checkout"
+  pinterest_ads_advertiser_report_identifier: "pinterest_advertiser_report_data"
+  # pinterest__ad_group_report_passthrough_metrics: 
+  #   - name: "total_conversions"
+  #   - name: "total_view_checkout"
+  #     alias: "t_view_checkout"
 
+models:
+  +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
 
 seeds:
   +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
