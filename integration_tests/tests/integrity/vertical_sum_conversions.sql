@@ -96,7 +96,7 @@ keyword_model as (
         sum(coalesce(total_conversions_quantity, 0)) as total_conversions_quantity,
         sum(coalesce(total_conversions_value_in_micro_dollar, 0)) as total_conversions_value_in_micro_dollar
     from {{ ref('pinterest_ads__keyword_report') }}
-)
+),
 
 pin_promotion_source as (
 

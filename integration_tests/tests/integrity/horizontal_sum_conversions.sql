@@ -58,11 +58,29 @@ pin_promotion_report as (
 )
 
 select 
-    'ad group vs advertiser' as comparison
-from ad_group_report 
+    'campaign vs advertiser' as comparison
+from campaign_report 
 join advertiser_report on true
-where ad_group_report.total_conversions != advertiser_report.total_conversions
-    or ad_group_report.total_conversions_quantity != advertiser_report.total_conversions_quantity
-    or ad_group_report.total_conversions_value_in_micro_dollar != advertiser_report.total_conversions_value_in_micro_dollar
+where campaign_report.total_conversions != advertiser_report.total_conversions
+    or campaign_report.total_conversions_quantity != advertiser_report.total_conversions_quantity
+    or campaign_report.total_conversions_value_in_micro_dollar != advertiser_report.total_conversions_value_in_micro_dollar
 
--- finish
+union all
+
+select
+    'ad group vs campaign' as comparison
+from ad_group_report 
+join campaign_report on true
+where ad_group_report.total_conversions != campaign_report.total_conversions
+    or ad_group_report.total_conversions_quantity != campaign_report.total_conversions_quantity
+    or ad_group_report.total_conversions_value_in_micro_dollar != campaign_report.total_conversions_value_in_micro_dollar
+
+union all
+
+select
+    'ad group vs pin_promotion' as comparison
+from ad_group_report 
+join pin_promotion_report on true
+where ad_group_report.total_conversions != pin_promotion_report.total_conversions
+    or ad_group_report.total_conversions_quantity != pin_promotion_report.total_conversions_quantity
+    or ad_group_report.total_conversions_value_in_micro_dollar != pin_promotion_report.total_conversions_value_in_micro_dollar
