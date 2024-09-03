@@ -10,6 +10,8 @@
 
 > The above new field additions are 🚨 **breaking changes** 🚨 for users who were not already bringing in conversion fields via passthrough columns.
 
+- Added more information about the difference in grains and their relationships in the [DECISIONLOG](https://github.com/fivetran/dbt_pinterest/blob/main/DECISIONLOG.md#pinterest-ads-grains).
+
 ## Under the hood
 - Created `pinterest_ads_persist_pass_through_columns` macro to ensure that the new conversion fields are backwards compatible with users who have already included them via passthrough fields.
 - Added integrity and consistency validation tests within `integration_tests` folder for the transformation models (to be used by maintainers only).
