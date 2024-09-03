@@ -33,7 +33,7 @@ fields as (
 
     from report
     left join advertisers
-        on report.advertiser_id = advertisers.advertiser_id
+        on cast(report.advertiser_id as {{ dbt.type_string() }}) = cast(advertisers.advertiser_id as {{ dbt.type_string() }})
         and report.source_relation = advertisers.source_relation
     {{ dbt_utils.group_by(6) }}
 )
