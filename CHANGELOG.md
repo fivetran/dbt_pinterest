@@ -15,6 +15,7 @@
 ## Under the hood
 - Created `pinterest_ads_persist_pass_through_columns` macro to ensure that the new conversion fields are backwards compatible with users who have already included them via passthrough fields.
 - Added integrity and consistency validation tests within `integration_tests` folder for the transformation models (to be used by maintainers only).
+- Updated seed data to represent an e-commerce customer scenario.
 
 # dbt_pinterest v0.10.0
 [PR #30](https://github.com/fivetran/dbt_pinterest/pull/30) includes the following updates:
