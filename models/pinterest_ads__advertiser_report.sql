@@ -24,13 +24,16 @@ fields as (
         advertisers.country,
         sum(report.spend) as spend,
         sum(report.clicks) as clicks,
-        sum(report.impressions) as impressions
+        sum(report.impressions) as impressions,
+        sum(report.total_conversions) as total_conversions,
+        sum(report.total_conversions_quantity) as total_conversions_quantity,
+        sum(report.total_conversions_value_in_micro_dollar) as total_conversions_value_in_micro_dollar
 
-        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='pinterest__advertiser_report_passthrough_metrics', transform = 'sum') }}
+        {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__advertiser_report_passthrough_metrics', identifier='stats', transform='sum', coalesce_with=0, exclude_fields=['total_conversions','total_conversions_quantity','total_conversions_value_in_micro_dollar']) }}
 
     from report
     left join advertisers
-        on report.advertiser_id = advertisers.advertiser_id
+        on cast(report.advertiser_id as {{ dbt.type_string() }}) = cast(advertisers.advertiser_id as {{ dbt.type_string() }})
         and report.source_relation = advertisers.source_relation
     {{ dbt_utils.group_by(6) }}
 )

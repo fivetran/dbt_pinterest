@@ -1,3 +1,22 @@
+# dbt_pinterest v0.11.0
+[PR #34](https://github.com/fivetran/dbt_pinterest/pull/34) includes the following updates:
+
+## Feature update
+- We have added the following fields to each `pinterest_ads` end model:
+  - `total_conversions`
+  - `total_conversions_quantity`
+  - `total_conversions_value_in_micro_dollar`
+- In the event that you were already passing the above fields in via our [passthrough columns](https://github.com/fivetran/dbt_pinterest/blob/main/README.md#passing-through-additional-metrics), the package will dynamically avoid "duplicate column" errors.
+
+> The above new field additions are 🚨 **breaking changes** 🚨 for users who were not already bringing in conversion fields via passthrough columns.
+
+- Added more information about the difference in grains and their relationships in the [DECISIONLOG](https://github.com/fivetran/dbt_pinterest/blob/main/DECISIONLOG.md#pinterest-ads-grains).
+
+## Under the hood
+- Created `pinterest_ads_persist_pass_through_columns` macro to ensure that the new conversion fields are backwards compatible with users who have already included them via passthrough fields.
+- Added integrity and consistency validation tests within `integration_tests` folder for the transformation models (to be used by maintainers only).
+- Updated seed data to represent an e-commerce customer scenario.
+
 # dbt_pinterest v0.10.0
 [PR #30](https://github.com/fivetran/dbt_pinterest/pull/30) includes the following updates:
 

@@ -80,6 +80,12 @@ models:
         description: "{{ doc('clicks') }}"
       - name: spend
         description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value_in_micro_dollar
+        description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
 
   - name: pinterest_ads__ad_group_report
     description: Each record in this table represents the daily performance of ads at the campaign, advertiser, and ad group level.
@@ -128,6 +134,12 @@ models:
         description: "{{ doc('clicks') }}"
       - name: spend
         description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value_in_micro_dollar
+        description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
 
   - name: pinterest_ads__campaign_report
     description: Each record in this table represents the daily performance of ads at the advertiser and campaign level.
@@ -163,6 +175,12 @@ models:
         description: "{{ doc('clicks') }}"
       - name: spend
         description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value_in_micro_dollar
+        description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
 
   - name: pinterest_ads__advertiser_report
     description: Each record in this table represents the daily performance of an advertiser on the Pinterest Ads platform.
@@ -195,6 +213,12 @@ models:
         description: "{{ doc('clicks') }}"
       - name: impressions
         description: "{{ doc('impressions') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value_in_micro_dollar
+        description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
 
   - name: pinterest_ads__keyword_report
     description: Each record in this table represents the daily performance of a keyword at the advertiser, campaign, ad group, and keyword level.
@@ -242,6 +266,12 @@ models:
         description: "{{ doc('clicks') }}"
       - name: impressions
         description: "{{ doc('impressions') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value_in_micro_dollar
+        description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
 
   - name: pinterest_ads__pin_promotion_report
     description: Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and pin level.
@@ -300,3 +330,9 @@ models:
         description: "{{ doc('impressions') }}"
       - name: spend
         description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value_in_micro_dollar
+        description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
