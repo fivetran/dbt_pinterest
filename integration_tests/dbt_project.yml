@@ -4,7 +4,7 @@ profile: 'integration_tests'
 config-version: 2
 
 vars:
-  pinterest_schema: pinterest_integration_tests_7
+  pinterest_schema: pinterest_tests
   pinterest_ads_ad_group_history_identifier: "pinterest_ad_group_history_data"
   pinterest_ads_campaign_history_identifier: "pinterest_campaign_history_data"
   pinterest_ads_pin_promotion_history_identifier: "pinterest_pin_promotion_history_data"
@@ -21,8 +21,8 @@ vars:
   #   - name: "total_view_checkout"
   #     alias: "t_view_checkout"
 
-models:
-  +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
+# models:
+#   +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
 
 seeds:
   +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
@@ -32,7 +32,6 @@ seeds:
         campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         pin_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
-        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         ad_account_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         pin_promotion_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
