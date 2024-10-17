@@ -1,7 +1,7 @@
 # dbt_pinterest v0.11.0
 [PR #34](https://github.com/fivetran/dbt_pinterest/pull/34) includes the following updates:
 
-## Introducing...Native Conversion Field Support
+## Feature Updates: Conversion Metrics
 - We have added the following fields to each `pinterest_ads` end model:
   - `total_conversions`
   - `total_conversions_quantity`
