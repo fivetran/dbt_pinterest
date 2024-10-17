@@ -28,7 +28,7 @@ The following table provides a detailed list of all models materialized within t
 | [pinterest_ads__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__ad_group_report)            | Each record in this table represents the daily performance of ads at the campaign, advertiser, and ad group level.|
 | [pinterest_ads__keyword_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report)            | Each record in this table represents the daily performance of a keyword at the advertiser, campaign, ad group, and keyword level. |
 | [pinterest_ads__pin_promotion_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__pin_promotion_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and pin level. |
-| [pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)            |Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and url level. |
+| [pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and url level. |
 
 # 🎯 How do I use the dbt package?
 
@@ -54,7 +54,7 @@ Include the following pinterest_ads package version in your `packages.yml` file 
 ```yml
 packages:
   - package: fivetran/pinterest
-    version: [">=v0.11.0", "<0.12.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.11.0", "<0.12.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 Do NOT include the `pinterest_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
@@ -78,6 +78,9 @@ vars:
 ```
 
 ## (Optional) Step 5: Additional configurations
+
+<details open><summary>Expand/Collapse details</summary>
+
 ### Union multiple connectors
 If you have multiple pinterest connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `pinterest_ads_union_schemas` OR `pinterest_ads_union_databases` variables (cannot do both) in your root `dbt_project.yml` file:
 
@@ -113,7 +116,7 @@ vars:
 ```
 
 ### Change the build schema
-By default, this package builds the Pinterest Ads staging models within a schema titled (`<target_schema>` + `_pinterest_source`) and your Pinterest Ads modeling models within a schema titled (`<target_schema>` + `_pinterest`) in your destination. If this is not where you would like your Pinterest Ads data to be written to, add the following configuration to your root `dbt_project.yml` file:
+By default, this package builds the Pinterest Ads staging models (10 views, 10 models) within a schema titled (`<target_schema>` + `_pinterest_source`) and your Pinterest Ads modeling models (6 tables) within a schema titled (`<target_schema>` + `_pinterest`) in your destination. If this is not where you would like your Pinterest Ads data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 models:
@@ -132,6 +135,8 @@ If an individual source table has a different name than the package expects, add
 vars:
     pinterest_<default_source_table_name>_identifier: your_table_name 
 ```
+
+</details>
 
 ## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™   
 <details><summary>Expand for more details</summary>
@@ -167,10 +172,15 @@ The Fivetran team maintaining this package _only_ maintains the latest version o
 ## Opinionated Decisions
 In creating this package, which is meant for a wide range of use cases, we had to take opinionated stances on a few different questions we came across during development. We've consolidated significant choices we made in the [DECISIONLOG.md](https://github.com/fivetran/dbt_pinterest/blob/main/DECISIONLOG.md), and will continue to update as the package evolves. We are always open to and encourage feedback on these choices, and the package in general.
 
-## Contributions
-A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions! 
+### Contributions
+A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions.
 
-We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package!
+We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package.
+
+#### Contributors
+We thank [everyone](https://github.com/fivetran/dbt_pinterest/graphs/contributors) who has taken the time to contribute. Each PR, bug report, and feature request has made this package better and is truly appreciated.
+
+A special thank you to [Seer Interactive](https://www.seerinteractive.com/?utm_campaign=Fivetran%20%7C%20Models&utm_source=Fivetran&utm_medium=Fivetran%20Documentation), who we closely collaborated with to introduce native conversion support to our Ad packages.
 
 # 🏪 Are there any resources available?
 - If you have questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_pinterest/issues/new/choose) section to find the right avenue of support for you.
