@@ -1,11 +1,11 @@
 # dbt_pinterest v0.11.0
 [PR #34](https://github.com/fivetran/dbt_pinterest/pull/34) includes the following updates:
 
-## Feature Updates: Conversion Metrics
-- We have added the following fields to each `pinterest_ads` end model:
-  - `total_conversions`
-  - `total_conversions_quantity`
-  - `total_conversions_value`: Converted from `total_conversions_value_in_micro_dollar`
+## Feature Updates: Native Conversion Support
+- We have added the following conversion metrics to each `pinterest_ads` end model:
+  - `total_conversions`: The sum of all website conversion events.
+  - `total_conversions_quantity`: The total count of items or units involved in conversions.
+  - `total_conversions_value` (converted from `total_conversions_value_in_micro_dollar`) Total order value associated with conversions.
 - In the event that you were already passing the above fields in via our [passthrough columns](https://github.com/fivetran/dbt_pinterest/blob/main/README.md#passing-through-additional-metrics), the package will dynamically avoid "duplicate column" errors.
 
 > The above new field additions are **breaking changes** for users who were not already bringing in conversion fields via passthrough columns.
