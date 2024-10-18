@@ -1,5 +1,5 @@
 # dbt_pinterest v0.11.0
-[PR #34](https://github.com/fivetran/dbt_pinterest/pull/34) includes the following updates:
+[PR #34](https://github.com/fivetran/dbt_pinterest/pull/34) includes the following **BREAKING CHANGE** updates:
 
 ## Feature Updates: Native Conversion Support
 - We have added the following conversion metrics to each `pinterest_ads` end model:
