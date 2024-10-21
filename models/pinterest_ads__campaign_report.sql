@@ -30,9 +30,12 @@ fields as (
         campaigns.campaign_status,
         sum(report.spend) as spend,
         sum(report.clicks) as clicks,
-        sum(report.impressions) as impressions
+        sum(report.impressions) as impressions,
+        sum(report.total_conversions) as total_conversions,
+        sum(report.total_conversions_quantity) as total_conversions_quantity,
+        sum(report.total_conversions_value) as total_conversions_value
 
-        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='pinterest__campaign_report_passthrough_metrics', transform = 'sum') }}
+        {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__campaign_report_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0, exclude_fields=['total_conversions','total_conversions_quantity','total_conversions_value']) }}
 
     from report
     left join campaigns
