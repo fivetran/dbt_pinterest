@@ -23,8 +23,8 @@ vars:
     - name: "total_conversions_quantity"
       alias: "total_conversions_quantity_aliased"
 
-# models:
-#   +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
+models:
+  +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
 
 seeds:
   +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
