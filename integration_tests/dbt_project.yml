@@ -1,10 +1,10 @@
 name: 'pinterest_integration_tests'
-version: '0.10.0'
+version: '0.11.0'
 profile: 'integration_tests'
 config-version: 2
 
 vars:
-  pinterest_schema: pinterest_integration_tests_4
+  pinterest_schema: pinterest_integration_tests_7
   pinterest_ads_ad_group_history_identifier: "pinterest_ad_group_history_data"
   pinterest_ads_campaign_history_identifier: "pinterest_campaign_history_data"
   pinterest_ads_pin_promotion_history_identifier: "pinterest_pin_promotion_history_data"
@@ -16,20 +16,31 @@ vars:
   pinterest_ads_advertiser_history_identifier: "pinterest_advertiser_history_data"
   pinterest_ads_advertiser_report_identifier: "pinterest_advertiser_report_data"
 
+  pinterest__ad_group_report_passthrough_metrics: 
+    - name: "total_conversions"
+    - name: "total_view_checkout"
+      alias: "t_view_checkout"
+    - name: "total_conversions_quantity"
+      alias: "total_conversions_quantity_aliased"
+
+models:
+  +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
+
 seeds:
   +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
   pinterest_integration_tests:
     +column_types:
-        id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        campaign_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        ad_group_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        pin_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        campaign_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        ad_account_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        advertiser_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        pin_promotion_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        keyword_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-        
+        id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        pin_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        ad_account_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        pin_promotion_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        keyword_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+        total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+
 dispatch:
   - macro_namespace: dbt_utils
     search_order: ['spark_utils', 'dbt_utils']
