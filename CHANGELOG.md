@@ -19,6 +19,9 @@
 - Updated seed data to represent an e-commerce customer scenario.
 - Coalesces `spend` with 0 to ensure proper downstream aggregations.
 
+## Contributors
+- [Seer Interactive](https://www.seerinteractive.com/?utm_campaign=Fivetran%20%7C%20Models&utm_source=Fivetran&utm_medium=Fivetran%20Documentation)
+
 # dbt_pinterest v0.10.0
 [PR #30](https://github.com/fivetran/dbt_pinterest/pull/30) includes the following updates:
 
