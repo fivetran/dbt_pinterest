@@ -1,3 +1,9 @@
+# dbt_pinterest version.version
+
+## Documentation
+- Added Quickstart model counts to README. ([#38](https://github.com/fivetran/dbt_pinterest/pull/38))
+- Corrected references to connectors and connections in the README. ([#38](https://github.com/fivetran/dbt_pinterest/pull/38))
+
 # dbt_pinterest v0.11.0
 [PR #34](https://github.com/fivetran/dbt_pinterest/pull/34) includes the following **BREAKING CHANGE** updates:
 
