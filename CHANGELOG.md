@@ -1,4 +1,5 @@
-# dbt_pinterest version.version
+# dbt_pinterest v0.12.0
+[PR #39](https://github.com/fivetran/dbt_pinterest/pull/39) includes the following **BREAKING CHANGE** updates:
 
 ## Documentation
 - Added Quickstart model counts to README. ([#38](https://github.com/fivetran/dbt_pinterest/pull/38))
