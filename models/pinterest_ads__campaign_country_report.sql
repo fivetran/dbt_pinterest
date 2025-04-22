@@ -39,7 +39,7 @@ fields as (
         sum(report.total_conversions_quantity) as total_conversions_quantity,
         sum(report.total_conversions_value) as total_conversions_value
 
-        {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_targeting_report_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0, exclude_fields=['total_conversions','total_conversions_quantity','total_conversions_value']) }}
+        {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_targeting_report_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0) }}
 
     from report
     left join countries
