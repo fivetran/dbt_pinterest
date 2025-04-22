@@ -6,6 +6,11 @@ with report as (
     where lower(targeting_type) = 'geo'
 ),
 
+regions as (
+    select *
+    from {{ var('targeting_geo_region') }}
+),
+
 campaigns as (
 
     select *
@@ -13,9 +18,10 @@ campaigns as (
     where is_most_recent_record = True
 ),
 
-regions as (
+advertisers as (
     select *
-    from {{ var('targeting_geo_region') }}
+    from {{ var('advertiser_history') }}
+    where is_most_recent_record = True
 ),
 
 fields as (
@@ -26,9 +32,7 @@ fields as (
         regions.region_name,
         regions.region_id,
         regions.country_id,
-        campaigns.campaign_name,
         report.campaign_id,
-        campaigns.campaign_status,
         sum(report.spend) as spend,
         sum(report.clicks) as clicks,
         sum(report.impressions) as impressions,
@@ -39,14 +43,38 @@ fields as (
         {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_targeting_report_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0, exclude_fields=['total_conversions','total_conversions_quantity','total_conversions_value']) }}
 
     from report
-    left join campaigns
-        on report.campaign_id = campaigns.campaign_id
-        and report.source_relation = campaigns.source_relation
     left join regions
         on report.targeting_value = regions.region_id
         and report.source_relation = regions.source_relation
-    {{ dbt_utils.group_by(8) }}
+
+    {{ dbt_utils.group_by(6) }}
+
+),
+
+final as (
+    select
+        fields.*,
+        advertisers.advertiser_name,
+        advertisers.advertiser_id,
+        campaigns.campaign_name,
+        campaigns.campaign_status,
+        campaigns.budget_spend_cap,
+        campaigns.lifetime_spend_cap,
+        campaigns.created_at,
+        campaigns.default_ad_group_budget_in_micro_currency,
+        campaigns.end_time,
+        campaigns.is_campaign_budget_optimization,
+        campaigns.is_flexible_daily_budgets,
+        campaigns.objective_type,
+        campaigns.start_time
+    from fields
+    left join campaigns
+        on fields.campaign_id = campaigns.campaign_id
+        and fields.source_relation = campaigns.source_relation
+    left join advertisers
+        on campaigns.advertiser_id = advertisers.advertiser_id
+        and campaigns.source_relation = advertisers.source_relation
 )
 
 select *
-from fields
+from final

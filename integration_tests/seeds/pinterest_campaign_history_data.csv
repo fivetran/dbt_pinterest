@@ -1,2 +1,2 @@
-﻿id,created_time,name,status,_fivetran_synced,advertiser_id,default_ad_group_budget_in_micro_currency,is_automated_campaign,is_campaign_budget_optimization,is_flexible_daily_budgets
-626746449918,2023-05-20 08:00:00.000 +0000,Summer Fashion Collection,ACTIVE,2023-06-30 14:11:01.000 +0000,549764253315,10000000,True,True,True
+﻿id,created_time,name,status,_fivetran_synced,advertiser_id,default_ad_group_budget_in_micro_currency,is_automated_campaign,is_campaign_budget_optimization,is_flexible_daily_budgets,start_time,end_time,budget_spend_cap,lifetime_spend_cap,objective_type
+626746449918,2023-05-20 08:00:00.000 +0000,Summer Fashion Collection,ACTIVE,2023-06-30 14:11:01.000 +0000,549764253315,10000000,True,True,True,2023-05-20 08:00:00.000 +0000,2023-08-31 23:59:59.000 +0000,75000000,300000000,VIDEO_VIEWS

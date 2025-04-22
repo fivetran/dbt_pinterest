@@ -365,6 +365,28 @@ models:
         description: The name of the related Campaign.
       - name: campaign_status
         description: Status of the campaign.
+      - name: advertiser_id
+        description: "{{ doc('advertiser_id') }}"
+      - name: advertiser_name
+        description: Name of the advertiser.
+      - name: created_at
+        description: Campaign creation time.
+      - name: start_time
+        description: Timestamp when the campaign became active or was scheduled to start.
+      - name: end_time
+        description: Timestamp when the campaign ended or is scheduled to end.
+      - name: budget_spend_cap
+        description: Maximum amount allowed to be spent over a specified budget period for the campaign.
+      - name: lifetime_spend_cap
+        description: Total maximum spend allowed across the entire lifespan of the campaign.
+      - name: objective_type
+        description: The primary goal of the campaign (e.g., brand awareness, conversions, video views).
+      - name: default_ad_group_budget_in_micro_currency
+        description: When transitioning from campaign budget optimization to non-campaign budget optimization, the default_ad_group_budget_in_micro_currency will propagate to each child ad groups daily budget. Unit is micro currency of the associated advertiser account.
+      - name: is_campaign_budget_optimization
+        description: Determines if a campaign automatically generate ad-group level budgets given a campaign budget to maximize campaign outcome. When transitioning from non-cbo to cbo, all previous child ad group budget will be cleared.
+      - name: is_flexible_daily_budgets
+        description: Determine if a campaign has flexible daily budgets setup.
       - name: impressions
         description: "{{ doc('impressions') }}"
       - name: clicks
@@ -409,6 +431,28 @@ models:
         description: The name of the related Campaign.
       - name: campaign_status
         description: Status of the campaign.
+      - name: advertiser_id
+        description: "{{ doc('advertiser_id') }}"
+      - name: advertiser_name
+        description: Name of the advertiser.
+      - name: created_at
+        description: Campaign creation time.
+      - name: start_time
+        description: Timestamp when the campaign became active or was scheduled to start.
+      - name: end_time
+        description: Timestamp when the campaign ended or is scheduled to end.
+      - name: budget_spend_cap
+        description: Maximum amount allowed to be spent over a specified budget period for the campaign.
+      - name: lifetime_spend_cap
+        description: Total maximum spend allowed across the entire lifespan of the campaign.
+      - name: objective_type
+        description: The primary goal of the campaign (e.g., brand awareness, conversions, video views).
+      - name: default_ad_group_budget_in_micro_currency
+        description: When transitioning from campaign budget optimization to non-campaign budget optimization, the default_ad_group_budget_in_micro_currency will propagate to each child ad groups daily budget. Unit is micro currency of the associated advertiser account.
+      - name: is_campaign_budget_optimization
+        description: Determines if a campaign automatically generate ad-group level budgets given a campaign budget to maximize campaign outcome. When transitioning from non-cbo to cbo, all previous child ad group budget will be cleared.
+      - name: is_flexible_daily_budgets
+        description: Determine if a campaign has flexible daily budgets setup.
       - name: impressions
         description: "{{ doc('impressions') }}"
       - name: clicks
