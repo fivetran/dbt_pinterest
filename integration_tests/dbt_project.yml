@@ -1,20 +1,23 @@
 name: 'pinterest_integration_tests'
-version: '0.11.0'
+version: '0.12.0'
 profile: 'integration_tests'
 config-version: 2
 
 vars:
   pinterest_schema: pinterest_integration_tests_7
   pinterest_ads_ad_group_history_identifier: "pinterest_ad_group_history_data"
-  pinterest_ads_campaign_history_identifier: "pinterest_campaign_history_data"
-  pinterest_ads_pin_promotion_history_identifier: "pinterest_pin_promotion_history_data"
-  pinterest_ads_pin_promotion_report_identifier: "pinterest_pin_promotion_report_data"
-  pinterest_ads_keyword_history_identifier: "pinterest_keyword_history_data"
-  pinterest_ads_keyword_report_identifier: "pinterest_keyword_report_data"
   pinterest_ads_ad_group_report_identifier: "pinterest_ad_group_report_data"
-  pinterest_ads_campaign_report_identifier: "pinterest_campaign_report_data"
   pinterest_ads_advertiser_history_identifier: "pinterest_advertiser_history_data"
   pinterest_ads_advertiser_report_identifier: "pinterest_advertiser_report_data"
+  pinterest_ads_campaign_history_identifier: "pinterest_campaign_history_data"
+  pinterest_ads_campaign_report_identifier: "pinterest_campaign_report_data"
+  pinterest_ads_keyword_history_identifier: "pinterest_keyword_history_data"
+  pinterest_ads_keyword_report_identifier: "pinterest_keyword_report_data"
+  pinterest_ads_pin_promotion_history_identifier: "pinterest_pin_promotion_history_data"
+  pinterest_ads_pin_promotion_report_identifier: "pinterest_pin_promotion_report_data"
+  pinterest_ads_pin_promotion_targeting_report_identifier: "pinterest_pin_promotion_targeting_report_data"
+  pinterest_ads_targeting_geo_identifier: "pinterest_targeting_geo_data"
+  pinterest_ads_targeting_geo_region_identifier: "pinterest_targeting_geo_region_data"
 
   pinterest__ad_group_report_passthrough_metrics: 
     - name: "total_conversions"

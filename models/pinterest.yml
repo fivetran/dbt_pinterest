@@ -336,3 +336,88 @@ models:
         description: "{{ doc('total_conversions_quantity') }}"
       - name: total_conversions_value
         description: "{{ doc('total_conversions_value') }}"
+
+  - name: pinterest_ads__campaign_country_report
+    description: Each record in this table represents the daily performance of ads at the country and campaign level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - campaign_id
+            - country_id
+            - date_day
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+        tests:
+          - not_null
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: country_name
+        description: Name of the targeted country.
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: The name of the related Campaign.
+      - name: campaign_status
+        description: Status of the campaign.
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: spend
+        description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value
+        description: "{{ doc('total_conversions_value') }}"
+
+  - name: pinterest_ads__campaign_region_report
+    description: Each record in this table represents the daily performance of ads at the country and campaign level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - campaign_id
+            - country_id
+            - region_id
+            - date_day
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+        tests:
+          - not_null
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: region_id
+        description: "{{ doc('region_id') }}"
+      - name: region_name
+        description: Name of the targeted region.
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: The name of the related Campaign.
+      - name: campaign_status
+        description: Status of the campaign.
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: spend
+        description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value
+        description: "{{ doc('total_conversions_value') }}"

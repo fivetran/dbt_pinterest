@@ -1,4 +1,6 @@
-<p align="center">
+# Pinterest Ads Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_pinterest/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_pinterest/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -10,7 +12,6 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# Pinterest Ads Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_pinterest/))
 ## What does this dbt package do?
 - Produces modeled tables that leverage Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/pinterest-ads#schemainformation) and builds off the output of our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
 - Enables you to better understand the performance of your ads across varying grains:
