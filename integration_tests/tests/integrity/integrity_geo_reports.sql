@@ -57,20 +57,20 @@ regions as (
 
 final as (
     select 
-        source.campaign_id,
+        source_countries.campaign_id
 
-        {% for cte in ['source_countries', 'countries', 'source_region', 'region'] %}
+        {% for cte in ['source_countries', 'countries', 'source_regions', 'regions'] %}
             {% for metric in metrics %}
-                {{ cte }}.{{ metric }} as {{ cte }}_{{ metric }}
+                , {{ cte }}.{{ metric }} as {{ cte }}_{{ metric }}
             {% endfor %}
         {% endfor %}
     from source_countries 
     full outer join countries
         on source_countries.campaign_id = countries.campaign_id
-    full outer join source_region
-        on source_countries.campaign_id = source_region.campaign_id
-    full outer join region
-        on source_countries.campaign_id = region.campaign_id
+    full outer join source_regions
+        on source_countries.campaign_id = source_regions.campaign_id
+    full outer join regions
+        on source_countries.campaign_id = regions.campaign_id
 )
 
 select * 

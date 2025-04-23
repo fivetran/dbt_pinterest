@@ -32,8 +32,6 @@ vars:
     - name: "total_conversions_value_in_micro_dollar"
   pinterest__keyword_report_passthrough_metrics:
     - name: "total_conversions_value_in_micro_dollar"
-  pinterest__pin_promotion_targeting_report_passthrough_metrics:
-    - name: "total_conversions_value_in_micro_dollar"
   pinterest__pin_promotion_report_passthrough_metrics:
     - name: "total_conversions_value_in_micro_dollar"
 
