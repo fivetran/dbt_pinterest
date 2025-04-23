@@ -5,7 +5,7 @@
 
 with prod as (
     select
-        keyword_id, -- since there's no url_id, picking the most granular dimension
+        advertiser_id, -- since there's no url_id, picking the most granular dimension
         sum(clicks) as clicks, 
         sum(impressions) as impressions,
         sum(spend) as spend,
@@ -18,7 +18,7 @@ with prod as (
 
 dev as (
     select
-        keyword_id,
+        advertiser_id,
         sum(clicks) as clicks, 
         sum(impressions) as impressions,
         sum(spend) as spend,
@@ -31,7 +31,7 @@ dev as (
 
 final as (
     select 
-        prod.keyword_id,
+        prod.advertiser_id,
         prod.clicks as prod_clicks,
         dev.clicks as dev_clicks,
         prod.impressions as prod_impressions,
@@ -46,7 +46,7 @@ final as (
         dev.total_conversions_value_in_micro_dollar as dev_total_conversions_value_in_micro_dollar
     from prod
     full outer join dev 
-        on dev.keyword_id = prod.keyword_id
+        on dev.advertiser_id = prod.advertiser_id
 )
 
 select *

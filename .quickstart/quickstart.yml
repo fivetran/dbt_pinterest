@@ -7,6 +7,12 @@ table_variables:
   pinterest__using_keywords:
     - keyword_history
     - keyword_report
+  pinterest_ads_pin_promotion_targeting_report_enabled:
+    - pin_promotion_targeting_report
+  pinterest_ads_targeting_geo_enabled:
+    - targeting_geo
+  pinterest_ads_targeting_geo_region_enabled:
+    - targeting_geo_region
 
 destination_configurations:
   databricks:

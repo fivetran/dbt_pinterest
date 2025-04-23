@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest_ads_pin_promotion_targeting_report_enabled', 'pinterest_ads_targeting_geo_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest_ads_pin_promotion_targeting_report_enabled', 'pinterest_ads_targeting_geo_region_enabled'])) }}
 
 with report as (
     select *

@@ -4,7 +4,7 @@ profile: 'integration_tests'
 config-version: 2
 
 vars:
-  pinterest_schema: zz_pinterest #pinterest_integration_tests_7
+  pinterest_schema: pinterest_integration_tests_7
   pinterest_ads_ad_group_history_identifier: "pinterest_ad_group_history_data"
   pinterest_ads_ad_group_report_identifier: "pinterest_ad_group_report_data"
   pinterest_ads_advertiser_history_identifier: "pinterest_advertiser_history_data"
@@ -25,6 +25,17 @@ vars:
       alias: "t_view_checkout"
     - name: "total_conversions_quantity"
       alias: "total_conversions_quantity_aliased"
+    - name: "total_conversions_value_in_micro_dollar"
+  pinterest__campaign_report_passthrough_metrics:
+    - name: "total_conversions_value_in_micro_dollar"
+  pinterest__advertiser_report_passthrough_metrics:
+    - name: "total_conversions_value_in_micro_dollar"
+  pinterest__keyword_report_passthrough_metrics:
+    - name: "total_conversions_value_in_micro_dollar"
+  pinterest__pin_promotion_targeting_report_passthrough_metrics:
+    - name: "total_conversions_value_in_micro_dollar"
+  pinterest__pin_promotion_report_passthrough_metrics:
+    - name: "total_conversions_value_in_micro_dollar"
 
 models:
   +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
