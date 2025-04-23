@@ -37,7 +37,7 @@ The following table provides a detailed list of all tables materialized within t
 | [pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and url level. |
 
 ### Materialized Models
-Each Quickstart transformation job run materializes 26 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
+Each Quickstart transformation job run materializes 34 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 <!--section-end-->
 
 ## How do I use the dbt package?
@@ -77,13 +77,21 @@ vars:
     pinterest_schema: your_schema_name 
 ```
 
-### Step 4: Disabling Keyword Models
+### Step 4: Enable/disable models and sources
 This package takes into consideration that not every Pinterest account tracks `keyword` performance, and allows you to disable the corresponding functionality by adding the following variable configuration:
 
 ```yml
-# dbt_project.yml
 vars:
     pinterest__using_keywords: False # Default = true
+```
+
+Additionally, your Pinterest Ads connection may not sync every table that this package expects. If you do not have the `PIN_PROMOTION_TARGETING_REPORT`, `TARGETING_GEO`, or `TARGETING_GEO_REGION` tables synced, add the following variable to your root `dbt_project.yml` file:
+
+```yml
+vars:
+    pinterest_ads_pin_promotion_targeting_report_enabled: false # Default is true
+    pinterest_ads_targeting_geo_enabled: false # Default is true, requires PIN_PROMOTION_TARGETING_REPORT to be enabled
+    pinterest_ads_targeting_geo_region_enabled: false # Default is true, requires PIN_PROMOTION_TARGETING_REPORT to be enabled
 ```
 
 ### (Optional) Step 5: Additional configurations

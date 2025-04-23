@@ -31,7 +31,11 @@
 | `lifetime_spend_cap` | New Column   |          |          |                                  |
 | `objective_type`     | New Column   |          |          |                                  |
 
+## Under the Hood
+- Added seed data for testing new sources
+
 ## Documentation
+- Updated dbt documentation to reflect new tables and column additions.
 - Added Quickstart model counts to README. ([#38](https://github.com/fivetran/dbt_pinterest/pull/38))
 - Corrected references to connectors and connections in the README. ([#38](https://github.com/fivetran/dbt_pinterest/pull/38))
 
