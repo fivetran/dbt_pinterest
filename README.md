@@ -117,9 +117,6 @@ By default, this package will select `clicks`, `impressions`, `spend` (converted
 
 ```yml
 vars:
-    pinterest__pin_promotion_report_passthrough_metrics: 
-      - name: "new_custom_field"
-        alias: "custom_field"
     pinterest__ad_group_report_passthrough_metrics:
       - name: "this_field"
     pinterest__advertiser_report_passthrough_metrics:
@@ -130,6 +127,11 @@ vars:
     pinterest__keyword_report_passthrough_metrics:
       - name: "other_id"
         alias: "another_id"
+    pinterest__pin_promotion_report_passthrough_metrics: 
+      - name: "new_custom_field"
+        alias: "custom_field"
+    pinterest__pin_promotion_targeting_report_passthrough_metrics:
+      - name: "new_field"
 ```
 
 #### Change the build schema
