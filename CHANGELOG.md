@@ -1,5 +1,35 @@
 # dbt_pinterest v0.12.0
-[PR #39](https://github.com/fivetran/dbt_pinterest/pull/39) includes the following **BREAKING CHANGE** updates:
+[PR #39](https://github.com/fivetran/dbt_pinterest/pull/39) includes the following updates:
+
+## Schema Updates
+
+### Models
+8 new models • 0 possible breaking changes
+
+| Model/Column                                                   | Change type | Old name | New name | Notes                                           |
+|----------------------------------------------------------------|-------------|----------|----------|-------------------------------------------------|
+| from dbt_pinterest: |
+| [`pinterest_ads__campaign_country_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report) | New Model   |          |          | Each record in this table represents the daily performance of ads at the country and campaign level. |
+| [`pinterest_ads__campaign_region_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report) | New Model   |          |          | Each record in this table represents the daily performance of ads at the region and campaign level. |
+| from dbt_pinterest_source: |
+| `stg_pinterest_ads__pin_promotion_targeting_report`            | New Model   |          |          | Uses `pin_promotion_targeting_report` source table |
+| `stg_pinterest_ads__targeting_geo_region`                      | New Model   |          |          | Uses `targeting_geo_region` source table       |
+| `stg_pinterest_ads__targeting_geo`                             | New Model   |          |          | Uses `targeting_geo` source table              |
+| `stg_pinterest_ads__pin_promotion_targeting_report_tmp`        | New Model   |          |          | Uses `pin_promotion_targeting_report` source table |
+| `stg_pinterest_ads__targeting_geo_region_tmp`                  | New Model   |          |          | Uses `targeting_geo_region` source table       |
+| `stg_pinterest_ads__targeting_geo_tmp`                         | New Model   |          |          | Uses `targeting_geo` source table              |
+
+### Columns
+5 new columns • 0 possible breaking changes
+
+| Model/Column                                 | Change type   | Old name | New name | Notes                            |
+|----------------------------------------------|---------------|----------|----------|----------------------------------|
+| `stg_pinterest_ads__campaign_history` |
+| `start_time`         | New Column   |          |          |                                  |
+| `end_time`           | New Column   |          |          |                                  |
+| `budget_spend_cap`   | New Column   |          |          |                                  |
+| `lifetime_spend_cap` | New Column   |          |          |                                  |
+| `objective_type`     | New Column   |          |          |                                  |
 
 ## Documentation
 - Added Quickstart model counts to README. ([#38](https://github.com/fivetran/dbt_pinterest/pull/38))

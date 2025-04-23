@@ -401,7 +401,7 @@ models:
         description: "{{ doc('total_conversions_value') }}"
 
   - name: pinterest_ads__campaign_region_report
-    description: Each record in this table represents the daily performance of ads at the country and campaign level.
+    description: Each record in this table represents the daily performance of ads at the region and campaign level.
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
