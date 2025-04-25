@@ -26,5 +26,7 @@ public_models: [
   "pinterest_ads__keyword_report",
   "pinterest_ads__advertiser_report",
   "pinterest_ads__pin_promotion_report",
-  "pinterest_ads__ad_group_report"
+  "pinterest_ads__ad_group_report",
+  "pinterest_ads__campaign_country_report",
+  "pinterest_ads__campaign_region_report"
 ]
