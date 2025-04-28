@@ -39,8 +39,8 @@ fields as (
         report.date_day,
         regions.region_name,
         regions.region_id,
-        regions.country_id,
         report.campaign_id,
+        regions.country_id,
         sum(report.spend) as spend,
         sum(report.clicks) as clicks,
         sum(report.impressions) as impressions,
@@ -51,7 +51,6 @@ fields as (
         {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_targeting_report_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0) }}
 
     from report
-
     left join regions
         on report.targeting_value = regions.region_id
         and report.source_relation = regions.source_relation
@@ -63,6 +62,7 @@ fields as (
 final as (
     select
         fields.*,
+        {{ 'countries.country_name,' if using_targeting_geo }}
         advertisers.advertiser_name,
         advertisers.advertiser_id,
         campaigns.campaign_name,
@@ -76,7 +76,6 @@ final as (
         campaigns.is_flexible_daily_budgets,
         campaigns.campaign_objective_type,
         campaigns.campaign_start_time
-        {{ ', countries.country_name' if using_targeting_geo }}
     from fields
     left join campaigns
         on fields.campaign_id = campaigns.campaign_id
