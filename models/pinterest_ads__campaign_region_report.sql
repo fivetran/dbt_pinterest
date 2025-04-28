@@ -69,13 +69,13 @@ final as (
         campaigns.campaign_status,
         campaigns.budget_spend_cap,
         campaigns.lifetime_spend_cap,
-        campaigns.campaign_created_at,
+        campaigns.created_at as campaign_created_at,
         campaigns.default_ad_group_budget_in_micro_currency,
-        campaigns.campaign_end_time,
+        campaigns.end_time as campaign_end_time,
         campaigns.is_campaign_budget_optimization,
         campaigns.is_flexible_daily_budgets,
-        campaigns.campaign_objective_type,
-        campaigns.campaign_start_time
+        campaigns.objective_type as campaign_objective_type,
+        campaigns.start_time as campaign_start_time
     from fields
     left join campaigns
         on fields.campaign_id = campaigns.campaign_id
