@@ -30,8 +30,8 @@ The following table provides a detailed list of all tables materialized within t
 | [pinterest_ads__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__ad_group_report)            | Each record in this table represents the daily performance of ads at the campaign, advertiser, and ad group level.|
 | [pinterest_ads__advertiser_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__advertiser_report)             | Each record in this table represents the daily performance at the advertiser level. |
 | [pinterest_ads__campaign_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_report)            | Each record in this table represents the daily performance of ads at the advertiser and campaign level. |
-| [pinterest_ads__campaign_country_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report)            | Each record in this table represents the daily performance of ads at the country and campaign level. |
-| [pinterest_ads__campaign_region_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report)            | Each record in this table represents the daily performance of ads at the region and campaign level. |
+| [pinterest_ads__campaign_country_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, and country level. |
+| [pinterest_ads__campaign_region_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, and region level. |
 | [pinterest_ads__keyword_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report)            | Each record in this table represents the daily performance of a keyword at the advertiser, campaign, ad group, and keyword level. |
 | [pinterest_ads__pin_promotion_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__pin_promotion_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and pin level. |
 | [pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and url level. |
@@ -89,9 +89,9 @@ Additionally, your Pinterest Ads connection may not sync every table that this p
 
 ```yml
 vars:
-    pinterest_ads_pin_promotion_targeting_report_enabled: false # Default is true
-    pinterest_ads_targeting_geo_enabled: false # Default is true, requires PIN_PROMOTION_TARGETING_REPORT to be enabled
-    pinterest_ads_targeting_geo_region_enabled: false # Default is true, requires PIN_PROMOTION_TARGETING_REPORT to be enabled
+    pinterest__using_pin_promotion_targeting_report: false # Default is true
+    pinterest__using_targeting_geo: false # Default is true, will be overridden if pinterest__using_pin_promotion_targeting_report is set to False
+    pinterest__using_targeting_geo_region: false # Default is true, will be overridden if pinterest__using_pin_promotion_targeting_report is set to False
 ```
 
 ### (Optional) Step 5: Additional configurations

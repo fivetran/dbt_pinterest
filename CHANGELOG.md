@@ -8,7 +8,7 @@
 
 | Model/Column                                                   | Change type | Old name | New name | Notes                                           |
 |----------------------------------------------------------------|-------------|----------|----------|-------------------------------------------------|
-| from dbt_pinterest: |
+| New Transform Models |
 | [`pinterest_ads__campaign_country_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report) | New Model   |          |          | Each record in this table represents the daily performance of ads at the country and campaign level. |
 | [`pinterest_ads__campaign_region_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report) | New Model   |          |          | Each record in this table represents the daily performance of ads at the region and campaign level. |
 | from dbt_pinterest_source: |
@@ -33,6 +33,7 @@
 
 ## Under the Hood
 - Added seed data for testing new sources
+- Updated the `consistency_url_report` test to be at the `advertiser_id` grain instead of `keyword_id`.
 
 ## Documentation
 - Updated dbt documentation to reflect new tables and column additions.

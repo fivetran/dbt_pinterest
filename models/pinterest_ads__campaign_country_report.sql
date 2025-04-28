@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest_ads_pin_promotion_targeting_report_enabled', 'pinterest_ads_targeting_geo_region_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest__using_pin_promotion_targeting_report', 'pinterest__using_targeting_geo'])) }}
 
 with report as (
     select *
@@ -58,13 +58,13 @@ final as (
         campaigns.campaign_status,
         campaigns.budget_spend_cap,
         campaigns.lifetime_spend_cap,
-        campaigns.created_at,
+        campaigns.campaign_created_at,
         campaigns.default_ad_group_budget_in_micro_currency,
-        campaigns.end_time,
+        campaigns.campaign_end_time,
         campaigns.is_campaign_budget_optimization,
         campaigns.is_flexible_daily_budgets,
-        campaigns.objective_type,
-        campaigns.start_time
+        campaigns.campaign_objective_type,
+        campaigns.campaign_start_time
     from fields
     left join campaigns
         on fields.campaign_id = campaigns.campaign_id

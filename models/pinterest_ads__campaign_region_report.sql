@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest_ads_pin_promotion_targeting_report_enabled', 'pinterest_ads_targeting_geo_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled','pinterest__using_pin_promotion_targeting_report', 'pinterest__using_targeting_geo_region'])) }}
 
 with report as (
     select *
@@ -23,6 +23,14 @@ advertisers as (
     from {{ var('advertiser_history') }}
     where is_most_recent_record = True
 ),
+
+{% set using_targeting_geo = var('pinterest__using_targeting_geo', true) %}
+{% if using_targeting_geo %}
+countries as (
+    select *
+    from {{ var('targeting_geo') }}
+),
+{% endif %}
 
 fields as (
 
@@ -61,13 +69,14 @@ final as (
         campaigns.campaign_status,
         campaigns.budget_spend_cap,
         campaigns.lifetime_spend_cap,
-        campaigns.created_at,
+        campaigns.campaign_created_at,
         campaigns.default_ad_group_budget_in_micro_currency,
-        campaigns.end_time,
+        campaigns.campaign_end_time,
         campaigns.is_campaign_budget_optimization,
         campaigns.is_flexible_daily_budgets,
-        campaigns.objective_type,
-        campaigns.start_time
+        campaigns.campaign_objective_type,
+        campaigns.campaign_start_time
+        {{ ', countries.country_name' if using_targeting_geo }}
     from fields
     left join campaigns
         on fields.campaign_id = campaigns.campaign_id
@@ -75,6 +84,12 @@ final as (
     left join advertisers
         on campaigns.advertiser_id = advertisers.advertiser_id
         and campaigns.source_relation = advertisers.source_relation
+
+    {% if using_targeting_geo %}
+    left join countries
+        on fields.country_id = countries.country_id
+        and fields.source_relation = countries.source_relation
+    {% endif %}
 )
 
 select *

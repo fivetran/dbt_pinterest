@@ -7,11 +7,11 @@ table_variables:
   pinterest__using_keywords:
     - keyword_history
     - keyword_report
-  pinterest_ads_pin_promotion_targeting_report_enabled:
+  pinterest__using_pin_promotion_targeting_report:
     - pin_promotion_targeting_report
-  pinterest_ads_targeting_geo_enabled:
+  pinterest__using_targeting_geo:
     - targeting_geo
-  pinterest_ads_targeting_geo_region_enabled:
+  pinterest__using_targeting_geo_region:
     - targeting_geo_region
 
 destination_configurations:
