@@ -89,9 +89,9 @@ Additionally, your Pinterest Ads connection may not sync every table that this p
 
 ```yml
 vars:
-    pinterest__using_pin_promotion_targeting_report: false # Default is true
-    pinterest__using_targeting_geo: false # Default is true, will be overridden if pinterest__using_pin_promotion_targeting_report is set to False
-    pinterest__using_targeting_geo_region: false # Default is true, will be overridden if pinterest__using_pin_promotion_targeting_report is set to False
+    pinterest__using_pin_promotion_targeting_report: false # Default is true. Will disable `pinterest_ads__campaign_country_report` and `pinterest_ads__campaign_region_report` if false
+    pinterest__using_targeting_geo: false # Default is true. Will disable `pinterest_ads__campaign_country_report` if false
+    pinterest__using_targeting_geo_region: false # Default is true. Will disable `pinterest_ads__campaign_region_report` if false
 ```
 
 ### (Optional) Step 5: Additional configurations
