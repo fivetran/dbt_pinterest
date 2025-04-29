@@ -4,32 +4,29 @@
 ## Schema Updates
 
 ### Models
-8 new models • 0 possible breaking changes
+9 total changes • 0 possible breaking changes
 
-| Model/Column                                                   | Change type | Old name | New name | Notes                                           |
-|----------------------------------------------------------------|-------------|----------|----------|-------------------------------------------------|
-| New Transform Models |
-| [`pinterest_ads__campaign_country_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report) | New Model   |          |          | Each record in this table represents the daily performance of ads at the country and campaign level. |
-| [`pinterest_ads__campaign_region_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report) | New Model   |          |          | Each record in this table represents the daily performance of ads at the region and campaign level. |
-| from dbt_pinterest_source: |
-| `stg_pinterest_ads__pin_promotion_targeting_report`            | New Model   |          |          | Uses `pin_promotion_targeting_report` source table |
-| `stg_pinterest_ads__targeting_geo_region`                      | New Model   |          |          | Uses `targeting_geo_region` source table       |
-| `stg_pinterest_ads__targeting_geo`                             | New Model   |          |          | Uses `targeting_geo` source table              |
-| `stg_pinterest_ads__pin_promotion_targeting_report_tmp`        | New Model   |          |          | Uses `pin_promotion_targeting_report` source table |
-| `stg_pinterest_ads__targeting_geo_region_tmp`                  | New Model   |          |          | Uses `targeting_geo_region` source table       |
-| `stg_pinterest_ads__targeting_geo_tmp`                         | New Model   |          |          | Uses `targeting_geo` source table              |
+| Data Model                                                  | Change type | Old name | New name | Notes                                           |
+|-------------------------------------------------------------|-------------|----------|----------|-------------------------------------------------|
+| [`pinterest_ads__campaign_country_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report) | New Transformation Model | | | New table that represents the daily performance of ads at the country and campaign level. |
+| [`pinterest_ads__campaign_region_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report) | New Transformation Model | | | New table that represents the daily performance of ads at the region and campaign level. |
+| [`stg_pinterest_ads__pin_promotion_targeting_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.stg_pinterest_ads__pin_promotion_targeting_report) | New Staging Model | | | Uses `pin_promotion_targeting_report` source table |
+| [`stg_pinterest_ads__targeting_geo_region`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.stg_pinterest_ads__targeting_geo_region) | New Staging Model | | | Uses `targeting_geo_region` source table       |
+| [`stg_pinterest_ads__targeting_geo`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.stg_pinterest_ads__targeting_geo) | New Staging Model | | | Uses `targeting_geo` source table              |
+| [`stg_pinterest_ads__pin_promotion_targeting_report_tmp`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.stg_pinterest_ads__pin_promotion_targeting_report_tmp) | New Temp Model | | | Uses `pin_promotion_targeting_report` source table |
+| [`stg_pinterest_ads__targeting_geo_region_tmp`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.stg_pinterest_ads__targeting_geo_region_tmp) | New Temp Model | | | Uses `targeting_geo_region` source table       |
+| [`stg_pinterest_ads__targeting_geo_tmp`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.stg_pinterest_ads__targeting_geo_tmp) | New Temp Model | | | Uses `targeting_geo` source table              |
+| [`stg_pinterest_ads__campaign_history`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.stg_pinterest_ads__campaign_history) | New Columns | | `start_time`, `end_time`, `budget_spend_cap`, `lifetime_spend_cap`, `objective_type` | |
 
-### Columns
-5 new columns • 0 possible breaking changes
 
-| Model/Column                                 | Change type   | Old name | New name | Notes                            |
-|----------------------------------------------|---------------|----------|----------|----------------------------------|
-| `stg_pinterest_ads__campaign_history` |
-| `start_time`         | New Column   |          |          |                                  |
-| `end_time`           | New Column   |          |          |                                  |
-| `budget_spend_cap`   | New Column   |          |          |                                  |
-| `lifetime_spend_cap` | New Column   |          |          |                                  |
-| `objective_type`     | New Column   |          |          |                                  |
+## Features
+- Added the following vars to enable/disable the new sources. See the [README](https://github.com/fivetran/dbt_pinterest_ads_source/blob/main/README.md#Step-4-Enable-disable-models-and-sources) for more details.
+  - `pinterest__using_pin_promotion_targeting_report`
+    - Default is true. Will disable `pinterest_ads__campaign_country_report` and `pinterest_ads__campaign_region_report` if false.
+  - `pinterest__using_targeting_geo`
+    - Default is true. Will disable `pinterest_ads__campaign_country_report` if false.
+  - `pinterest__using_targeting_geo_region`
+    - Default is true. Will disable `pinterest_ads__campaign_region_report` if false.
 
 ## Under the Hood
 - Added seed data for testing new sources
