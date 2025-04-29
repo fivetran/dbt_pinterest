@@ -19,6 +19,7 @@ vars:
   pinterest_ads_targeting_geo_identifier: "pinterest_targeting_geo_data"
   pinterest_ads_targeting_geo_region_identifier: "pinterest_targeting_geo_region_data"
 
+  ## Comment out when generating docs
   pinterest__ad_group_report_passthrough_metrics: 
     - name: "total_conversions"
     - name: "total_view_checkout"
