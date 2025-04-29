@@ -1,9 +1,7 @@
 # dbt_pinterest v0.12.0
 [PR #39](https://github.com/fivetran/dbt_pinterest/pull/39) includes the following updates:
 
-## Schema Updates
-
-### Models
+## Schema Changes
 9 total changes • 0 possible breaking changes
 
 | Data Model                                                  | Change type | Old name | New name | Notes                                           |
