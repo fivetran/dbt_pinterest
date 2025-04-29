@@ -25,6 +25,7 @@
     - Default is true. Will disable `pinterest_ads__campaign_country_report` if false.
   - `pinterest__using_targeting_geo_region`
     - Default is true. Will disable `pinterest_ads__campaign_region_report` if false.
+- Added the var `pinterest__pin_promotion_targeting_report_passthrough_metrics` to allow bringing additional metrics through to the `pinterest_ads__campaign_country_report` and `pinterest_ads__campaign_region_report` models. Refer to the [README](https://github.com/fivetran/dbt_pinterest_ads/blob/main/README.md#passing-through-additional-metrics) for more details.
 
 ## Under the Hood
 - Added seed data for testing new sources
