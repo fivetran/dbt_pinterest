@@ -336,3 +336,136 @@ models:
         description: "{{ doc('total_conversions_quantity') }}"
       - name: total_conversions_value
         description: "{{ doc('total_conversions_value') }}"
+
+  - name: pinterest_ads__campaign_country_report
+    description: Each record in this table represents the daily performance of ads at the country and campaign level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - advertiser_id
+            - campaign_id
+            - country_id
+            - date_day
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+        tests:
+          - not_null
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: country_name
+        description: Name of the targeted country.
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: The name of the related Campaign.
+      - name: campaign_status
+        description: Status of the campaign.
+      - name: advertiser_id
+        description: "{{ doc('advertiser_id') }}"
+      - name: advertiser_name
+        description: Name of the advertiser.
+      - name: campaign_created_at
+        description: Campaign creation time.
+      - name: campaign_start_time
+        description: Timestamp when the campaign became active or was scheduled to start.
+      - name: campaign_end_time
+        description: Timestamp when the campaign ended or is scheduled to end.
+      - name: budget_spend_cap
+        description: Maximum amount allowed to be spent over a specified budget period for the campaign.
+      - name: lifetime_spend_cap
+        description: Total maximum spend allowed across the entire lifespan of the campaign.
+      - name: campaign_objective_type
+        description: The primary goal of the campaign (e.g., brand awareness, conversions, video views).
+      - name: default_ad_group_budget_in_micro_currency
+        description: When transitioning from campaign budget optimization to non-campaign budget optimization, the default_ad_group_budget_in_micro_currency will propagate to each child ad groups daily budget. Unit is micro currency of the associated advertiser account.
+      - name: is_campaign_budget_optimization
+        description: Determines if a campaign automatically generate ad-group level budgets given a campaign budget to maximize campaign outcome. When transitioning from non-cbo to cbo, all previous child ad group budget will be cleared.
+      - name: is_flexible_daily_budgets
+        description: Determine if a campaign has flexible daily budgets setup.
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: spend
+        description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value
+        description: "{{ doc('total_conversions_value') }}"
+
+  - name: pinterest_ads__campaign_region_report
+    description: Each record in this table represents the daily performance of ads at the region and campaign level.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - advertiser_id
+            - campaign_id
+            - country_id
+            - region_id
+            - date_day
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+        tests:
+          - not_null
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: country_name
+        description: Name of the targeted country.
+      - name: region_id
+        description: "{{ doc('region_id') }}"
+      - name: region_name
+        description: Name of the targeted region.
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: The name of the related Campaign.
+      - name: campaign_status
+        description: Status of the campaign.
+      - name: advertiser_id
+        description: "{{ doc('advertiser_id') }}"
+      - name: advertiser_name
+        description: Name of the advertiser.
+      - name: campaign_created_at
+        description: Campaign creation time.
+      - name: campaign_start_time
+        description: Timestamp when the campaign became active or was scheduled to start.
+      - name: campaign_end_time
+        description: Timestamp when the campaign ended or is scheduled to end.
+      - name: budget_spend_cap
+        description: Maximum amount allowed to be spent over a specified budget period for the campaign.
+      - name: lifetime_spend_cap
+        description: Total maximum spend allowed across the entire lifespan of the campaign.
+      - name: campaign_objective_type
+        description: The primary goal of the campaign (e.g., brand awareness, conversions, video views).
+      - name: default_ad_group_budget_in_micro_currency
+        description: When transitioning from campaign budget optimization to non-campaign budget optimization, the default_ad_group_budget_in_micro_currency will propagate to each child ad groups daily budget. Unit is micro currency of the associated advertiser account.
+      - name: is_campaign_budget_optimization
+        description: Determines if a campaign automatically generate ad-group level budgets given a campaign budget to maximize campaign outcome. When transitioning from non-cbo to cbo, all previous child ad group budget will be cleared.
+      - name: is_flexible_daily_budgets
+        description: Determine if a campaign has flexible daily budgets setup.
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: spend
+        description: "{{ doc('spend') }}"
+      - name: total_conversions
+        description: "{{ doc('total_conversions') }}"
+      - name: total_conversions_quantity
+        description: "{{ doc('total_conversions_quantity') }}"
+      - name: total_conversions_value
+        description: "{{ doc('total_conversions_value') }}"

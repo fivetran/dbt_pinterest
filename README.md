@@ -1,4 +1,6 @@
-<p align="center">
+# Pinterest Ads Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_pinterest/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_pinterest/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -10,7 +12,6 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# Pinterest Ads Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_pinterest/))
 ## What does this dbt package do?
 - Produces modeled tables that leverage Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/pinterest-ads#schemainformation) and builds off the output of our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
 - Enables you to better understand the performance of your ads across varying grains:
@@ -26,15 +27,17 @@ The following table provides a detailed list of all tables materialized within t
 
 | **Table**                | **Description**                                                                                                                                |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| [pinterest_ads__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__ad_group_report)            | Each record in this table represents the daily performance of ads at the campaign, advertiser, and ad group level.|
 | [pinterest_ads__advertiser_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__advertiser_report)             | Each record in this table represents the daily performance at the advertiser level. |
 | [pinterest_ads__campaign_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_report)            | Each record in this table represents the daily performance of ads at the advertiser and campaign level. |
-| [pinterest_ads__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__ad_group_report)            | Each record in this table represents the daily performance of ads at the campaign, advertiser, and ad group level.|
+| [pinterest_ads__campaign_country_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, and country level. |
+| [pinterest_ads__campaign_region_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, and region level. |
 | [pinterest_ads__keyword_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report)            | Each record in this table represents the daily performance of a keyword at the advertiser, campaign, ad group, and keyword level. |
 | [pinterest_ads__pin_promotion_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__pin_promotion_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and pin level. |
 | [pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)            | Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and url level. |
 
 ### Materialized Models
-Each Quickstart transformation job run materializes 26 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
+Each Quickstart transformation job run materializes 34 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 <!--section-end-->
 
 ## How do I use the dbt package?
@@ -60,7 +63,7 @@ Include the following pinterest_ads package version in your `packages.yml` file 
 ```yml
 packages:
   - package: fivetran/pinterest
-    version: [">=0.11.0", "<0.12.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.12.0", "<0.13.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 Do NOT include the `pinterest_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
@@ -74,13 +77,21 @@ vars:
     pinterest_schema: your_schema_name 
 ```
 
-### Step 4: Disabling Keyword Models
+### Step 4: Enable/disable models and sources
 This package takes into consideration that not every Pinterest account tracks `keyword` performance, and allows you to disable the corresponding functionality by adding the following variable configuration:
 
 ```yml
-# dbt_project.yml
 vars:
     pinterest__using_keywords: False # Default = true
+```
+
+Additionally, your Pinterest Ads connection may not sync every table that this package expects. If you do not have the `PIN_PROMOTION_TARGETING_REPORT`, `TARGETING_GEO`, or `TARGETING_GEO_REGION` tables synced, add the following variable to your root `dbt_project.yml` file:
+
+```yml
+vars:
+    pinterest__using_pin_promotion_targeting_report: false # Default is true. Will disable `pinterest_ads__campaign_country_report` and `pinterest_ads__campaign_region_report` if false
+    pinterest__using_targeting_geo: false # Default is true. Will disable `pinterest_ads__campaign_country_report` if false
+    pinterest__using_targeting_geo_region: false # Default is true. Will disable `pinterest_ads__campaign_region_report` if false
 ```
 
 ### (Optional) Step 5: Additional configurations
@@ -106,9 +117,6 @@ By default, this package will select `clicks`, `impressions`, `spend` (converted
 
 ```yml
 vars:
-    pinterest__pin_promotion_report_passthrough_metrics: 
-      - name: "new_custom_field"
-        alias: "custom_field"
     pinterest__ad_group_report_passthrough_metrics:
       - name: "this_field"
     pinterest__advertiser_report_passthrough_metrics:
@@ -119,6 +127,11 @@ vars:
     pinterest__keyword_report_passthrough_metrics:
       - name: "other_id"
         alias: "another_id"
+    pinterest__pin_promotion_report_passthrough_metrics: 
+      - name: "new_custom_field"
+        alias: "custom_field"
+    pinterest__pin_promotion_targeting_report_passthrough_metrics:
+      - name: "new_field"
 ```
 
 #### Change the build schema
@@ -159,7 +172,7 @@ This dbt package is dependent on the following dbt packages. These dependencies 
 ```yml
 packages:
     - package: fivetran/pinterest_source
-      version: [">=0.11.0", "<0.12.0"]
+      version: [">=0.12.0", "<0.13.0"]
 
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
