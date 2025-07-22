@@ -10,6 +10,9 @@
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
+    <a alt="Fivetran Quickstart Compatible"
+        href="https://fivetran.com/docs/transformations/dbt/quickstart">
+        <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
 ## What does this dbt package do?
@@ -18,7 +21,6 @@
   - Providing an advertiser, campaign, ad group, keyword, pin, and utm level reports.
 - Materializes output models designed to work simultaneously with our [multi-platform Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting).
 - Generates a comprehensive data dictionary of your source and modeled Pinterest Ads data through the [dbt docs site](https://fivetran.github.io/dbt_pinterest/).
-
 
 <!--section=“pinterest_transformation_model"-->
 
@@ -183,7 +185,7 @@ packages:
     - package: dbt-labs/spark_utils
       version: [">=0.3.0", "<0.4.0"]
 ```
-        
+
 ## How is this package maintained and can I contribute?
 ### Package Maintenance
 
