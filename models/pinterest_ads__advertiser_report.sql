@@ -3,13 +3,13 @@
 with report as (
 
     select *
-    from {{ var('advertiser_report') }}
+    from {{ ref('stg_pinterest_ads__advertiser_report') }}
 ), 
 
 advertisers as (
 
     select *
-    from {{ var('advertiser_history') }}
+    from {{ ref('stg_pinterest_ads__advertiser_history') }}
     where is_most_recent_record = True
 ), 
 

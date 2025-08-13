@@ -2,25 +2,25 @@
 
 with report as (
     select *
-    from {{ var('pin_promotion_targeting_report') }}
+    from {{ ref('stg_pinterest_ads__pin_promotion_targeting_report') }}
     where lower(targeting_type) = 'country'
 ),
 
 countries as (
     select *
-    from {{ var('targeting_geo') }}
+    from {{ ref('stg_pinterest_ads__targeting_geo') }}
 ),
 
 campaigns as (
 
     select *
-    from {{ var('campaign_history') }}
+    from {{ ref('stg_pinterest_ads__campaign_history') }}
     where is_most_recent_record = True
 ),
 
 advertisers as (
     select *
-    from {{ var('advertiser_history') }}
+    from {{ ref('stg_pinterest_ads__advertiser_history') }}
     where is_most_recent_record = True
 ),
 
