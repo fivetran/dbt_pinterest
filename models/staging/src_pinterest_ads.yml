@@ -1,0 +1,398 @@
+version: 2
+
+sources:
+  - name: pinterest_ads # This source will only be used if you are using a single pinterest source connector. If multiple sources are being unioned, their tables will be directly referenced via adapter.get_relation.
+    schema: "{{ var('pinterest_schema', 'pinterest_ads') }}"
+    database: "{% if target.type != 'spark'%}{{ var('pinterest_database', target.database) }}{% endif %}"
+
+    loader: Fivetran
+
+    config:
+      loaded_at_field: _fivetran_synced
+      enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) }}"
+      freshness: 
+        warn_after: {count: 48, period: hour}
+        error_after: {count: 168, period: hour}
+
+    tables:
+      - name: pin_promotion_report
+        description: Each record represents the daily performance of a Pinterest Pin promotion.
+        identifier: "{{ var('pinterest_ads_pin_promotion_report_identifier', 'pin_promotion_report') }}"
+        columns:
+          - name: date
+            description: "{{ doc('date_day') }}"
+          - name: pin_promotion_id
+            description: "{{ doc('pin_promotion_id') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: impression_1
+            description: "{{ doc('impression_1') }}"
+          - name: impression_2
+            description: "{{ doc('impression_2') }}"
+          - name: clickthrough_1
+            description: "{{ doc('clickthrough_1') }}"
+          - name: clickthrough_2
+            description: "{{ doc('clickthrough_2') }}"
+          - name: spend_in_micro_dollar
+            description: "{{ doc('spend_in_micro_dollar') }}"
+          - name: total_conversions
+            description: "{{ doc('total_conversions') }}"
+          - name: total_conversions_quantity
+            description: "{{ doc('total_conversions_quantity') }}"
+          - name: total_conversions_value_in_micro_dollar
+            description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
+            
+      
+      - name: pin_promotion_history
+        description: Each record represents a version of a Pinterest Pin promotion.
+        identifier: "{{ var('pinterest_ads_pin_promotion_history_identifier', 'pin_promotion_history') }}"
+        columns:
+          - name: id
+            description: "{{ doc('pin_promotion_id') }}"
+          - name: ad_account_id
+            description: "{{ doc('ad_account_id') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: created_time
+            description: Pin creation time.
+          - name: destination_url
+            description: Pin destination URL.
+          - name: name
+            description: Pin promotion name.
+          - name: pin_id
+            description: Original pin ID.
+          - name: status
+            description: The status of the Pin promotion. One of "ACTIVE", "ARCHIVED", "PAUSED"
+          - name: creative_type
+            description: |
+              The creative type. 
+              One of "APP", "APP_VIDEO", "BOARD", "CAROUSEL", "CINEMATIC", "COMMERCE", "MAX_VIDEO", "NATIVE_VIDEO", "REGULAR", 
+              "SEARCH_PROMINENCE", "SEARCH_PROMINENCE_CAROUSEL", "SHOPPING", "SHOP_THE_PIN", "THIRD_PARTY", or "VIDEO".
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+
+      - name: campaign_history
+        description: Each record represents a version of a Pinterest Campaign.
+        identifier: "{{ var('pinterest_ads_campaign_history_identifier', 'campaign_history') }}"
+        columns:
+          - name: id
+            description: "{{ doc('campaign_id') }}"
+          - name: created_time
+            description: Campaign creation time.
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: name
+            description: Campaign name.
+          - name: status
+            description: The status of the Campaign. One of "ACTIVE", "ARCHIVED", "PAUSED"
+          - name: default_ad_group_budget_in_micro_currency
+            description: When transitioning from campaign budget optimization to non-campaign budget optimization, the default_ad_group_budget_in_micro_currency will propagate to each child ad groups daily budget. Unit is micro currency of the associated advertiser account.
+          - name: is_automated_campaign
+            description: Specifies whether the campaign was created in the automated campaign flow
+          - name: is_campaign_budget_optimization
+            description: Determines if a campaign automatically generate ad-group level budgets given a campaign budget to maximize campaign outcome. When transitioning from non-cbo to cbo, all previous child ad group budget will be cleared.
+          - name: is_flexible_daily_budgets
+            description: Determine if a campaign has flexible daily budgets setup.
+          - name: start_time
+            description: Timestamp when the campaign became active or was scheduled to start.
+          - name: end_time
+            description: Timestamp when the campaign ended or is scheduled to end.
+          - name: budget_spend_cap
+            description: Maximum amount allowed to be spent over a specified budget period for the campaign.
+          - name: lifetime_spend_cap
+            description: Total maximum spend allowed across the entire lifespan of the campaign.
+          - name: objective_type
+            description: The primary goal of the campaign (e.g., brand awareness, conversions, video views).
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+
+      - name: ad_group_history
+        description: Each record represents a version of a Pinterest Ad Group.
+        identifier: "{{ var('pinterest_ads_ad_group_history_identifier', 'ad_group_history') }}"
+        columns:
+          - name: id
+            description: "{{ doc('ad_group_id') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: ad_account_id
+            description: "{{ doc('ad_account_id') }}"
+          - name: created_time
+            description: Ad group creation time.
+          - name: name
+            description: Ad group name.
+          - name: status
+            description: The status of the Ad group. One of "ACTIVE", "ARCHIVED", "PAUSED"
+          - name: start_time
+            description: Ad group start time. 
+          - name: end_time
+            description: Ad group end time. 
+          - name: pacing_delivery_type
+            description: Ad group pacing delivery type. With ACCELERATED, an ad group budget is spent as fast as possible. With STANDARD, an ad group budget is spent smoothly over a day. When using CBO, only the STANDARD pacing delivery type is allowed.
+          - name: placement_group
+            description: The placement group. "ALL", "SEARCH", "BROWSE", or "OTHER"
+          - name: summary_status
+            description: Summary status. "RUNNING", "PAUSED", "NOT_STARTED", "COMPLETED", "ADVERTISER_DISABLED", "ARCHIVED"
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+
+      - name: ad_group_report
+        description: Each record represents the daily performance of a Pinterest ad group.
+        identifier: "{{ var('pinterest_ads_ad_group_report_identifier', 'ad_group_report') }}"
+        columns:
+          - name: date
+            description: "{{ doc('date_day') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: ad_group_name
+            description: Name of the ad group.
+          - name: ad_group_status
+            description: Status of the ad group.
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: impression_1
+            description: "{{ doc('impression_1') }}"
+          - name: impression_2
+            description: "{{ doc('impression_2') }}"
+          - name: clickthrough_1
+            description: "{{ doc('clickthrough_1') }}"
+          - name: clickthrough_2
+            description: "{{ doc('clickthrough_2') }}"
+          - name: spend_in_micro_dollar
+            description: "{{ doc('spend_in_micro_dollar') }}"
+          - name: total_conversions
+            description: "{{ doc('total_conversions') }}"
+          - name: total_conversions_quantity
+            description: "{{ doc('total_conversions_quantity') }}"
+          - name: total_conversions_value_in_micro_dollar
+            description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
+
+
+      - name: advertiser_history
+        description: Each record represents a version of a Pinterest advertiser.
+        identifier: "{{ var('pinterest_ads_advertiser_history_identifier', 'advertiser_history') }}"
+        columns:
+          - name: id
+            description: "{{ doc('advertiser_id') }}"
+          - name: name
+            description: Name of the advertiser.
+          - name: country
+            description: The country code where the advertiser is located.
+          - name: created_time
+            description: "{{ doc('created_at') }}"
+          - name: currency
+            description: The currency code which the a
+          - name: updated_time
+            description: "{{ doc('updated_at') }}"  
+          - name: owner_username
+            description: Advertiser's username.
+          - name: owner_user_id
+            description: Unique identifier of the owner user.
+          - name: permissions
+            description: The permissions associated with this account.
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+
+      - name: advertiser_report
+        description: Each record represents the daily performance of a Pinterest advertiser.
+        identifier: "{{ var('pinterest_ads_advertiser_report_identifier', 'advertiser_report') }}"
+        columns:
+          - name: date
+            description: "{{ doc('date_day') }}"
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: impression_1
+            description: "{{ doc('impression_1') }}"
+          - name: impression_2
+            description: "{{ doc('impression_2') }}"
+          - name: clickthrough_1
+            description: "{{ doc('clickthrough_1') }}"
+          - name: clickthrough_2
+            description: "{{ doc('clickthrough_2') }}"
+          - name: spend_in_micro_dollar
+            description: "{{ doc('spend_in_micro_dollar') }}"
+          - name: total_conversions
+            description: "{{ doc('total_conversions') }}"
+          - name: total_conversions_quantity
+            description: "{{ doc('total_conversions_quantity') }}"
+          - name: total_conversions_value_in_micro_dollar
+            description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
+
+
+      - name: campaign_report
+        description: Each record represents the daily performance of a Pinterest campaign.
+        identifier: "{{ var('pinterest_ads_campaign_report_identifier', 'campaign_report') }}"
+        columns:
+          - name: date
+            description: "{{ doc('date_day') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: campaign_name
+            description: Name of the campaign.
+          - name: campaign_status
+            description: Status of the campaign.
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: impression_1
+            description: "{{ doc('impression_1') }}"
+          - name: impression_2
+            description: "{{ doc('impression_2') }}"
+          - name: clickthrough_1
+            description: "{{ doc('clickthrough_1') }}"
+          - name: clickthrough_2
+            description: "{{ doc('clickthrough_2') }}"
+          - name: spend_in_micro_dollar
+            description: "{{ doc('spend_in_micro_dollar') }}"
+          - name: total_conversions
+            description: "{{ doc('total_conversions') }}"
+          - name: total_conversions_quantity
+            description: "{{ doc('total_conversions_quantity') }}"
+          - name: total_conversions_value_in_micro_dollar
+            description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
+
+
+      - name: keyword_history
+        description: Each record represents a version of a Pinterest keyword.
+        identifier: "{{ var('pinterest_ads_keyword_history_identifier', 'keyword_history') }}"
+        columns:
+          - name: id
+            description: Unique identifier of the keyword.
+          - name: value
+            description: The text value that makes upd the keyword.
+          - name: _fivetran_id
+            description: The unique identifier of the record within the Fivetran synced table.
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: archived
+            description: Boolean indicating if the keyword is archived.
+          - name: bid
+            description: Bid amount set for the keyword.
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: match_type
+            description: Type of match the keyword is tied to. Either Exact or Broad.
+          - name: parent_type
+            description: Identifier of what grain the parent type is. Ad group or campaign.
+
+      - name: keyword_report
+        description: Each record represents the daily performance of a Pinterest key word.
+        identifier: "{{ var('pinterest_ads_keyword_report_identifier', 'keyword_report') }}"
+        columns:
+          - name: date
+            description: "{{ doc('date_day') }}"
+          - name: keyword_id
+            description: Unique identifier of the keyword.
+          - name: pin_promotion_id
+            description: "{{ doc('pin_promotion_id') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: ad_group_name
+            description: Name of the ad group.
+          - name: ad_group_status
+            description: Status of the ad group.
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: impression_1
+            description: "{{ doc('impression_1') }}"
+          - name: impression_2
+            description: "{{ doc('impression_2') }}"
+          - name: clickthrough_1
+            description: "{{ doc('clickthrough_1') }}"
+          - name: clickthrough_2
+            description: "{{ doc('clickthrough_2') }}"
+          - name: spend_in_micro_dollar
+            description: "{{ doc('spend_in_micro_dollar') }}"
+          - name: total_conversions
+            description: "{{ doc('total_conversions') }}"
+          - name: total_conversions_quantity
+            description: "{{ doc('total_conversions_quantity') }}"
+          - name: total_conversions_value_in_micro_dollar
+            description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
+
+      - name: pin_promotion_targeting_report
+        identifier: "{{ var('pinterest_ads_pin_promotion_targeting_report_identifier', 'pin_promotion_targeting_report') }}"
+        description: Contains performance metrics for promoted Pins segmented by applied targeting criteria, including targeting type, value, and related campaign metadata.
+        config:
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_pin_promotion_targeting_report', true) }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: date
+            description: "{{ doc('date_day') }}"
+          - name: targeting_type
+            description: Reporting targeting type for ads. Possible values 'KEYWORD', 'APPTYPE', 'GENDER', 'LOCATION', 'PLACEMENT', 'COUNTRY', 'TARGETED_INTEREST', 'PINNER_INTEREST', 'AUDIENCE_INCLUDE', 'GEO', 'AGE_BUCKET', 'REGION', 'QUIZ_RESULT', 'AGE_BUCKET_AND_GENDER'
+          - name: targeting_value
+            description: The specific value applied within the targeting type (e.g., 'Fashion' for interest, 'New York' for location).
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: advertiser_id
+            description: "{{ doc('advertiser_id') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: pin_promotion_id
+            description: "{{ doc('pin_promotion_id') }}"
+          - name: clickthrough_1
+            description: "{{ doc('clickthrough_1') }}"
+          - name: clickthrough_2
+            description: "{{ doc('clickthrough_2') }}"
+          - name: impression_1
+            description: "{{ doc('impression_1') }}"
+          - name: impression_2
+            description: "{{ doc('impression_2') }}"
+          - name: spend_in_micro_dollar
+            description: "{{ doc('spend_in_micro_dollar') }}"
+          - name: total_conversions
+            description: "{{ doc('total_conversions') }}"
+          - name: total_conversions_quantity
+            description: "{{ doc('total_conversions_quantity') }}"
+          - name: total_conversions_value_in_micro_dollar
+            description: "{{ doc('total_conversions_value_in_micro_dollar') }}"
+
+      - name: targeting_geo
+        identifier: "{{ var('pinterest_ads_targeting_geo_identifier', 'targeting_geo') }}"
+        description: Maps country targeting values used in campaigns, including standardized names and associated location codes.
+        config:
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_targeting_geo', true) }}"
+        columns:
+          - name: country_id
+            description: "{{ doc('country_id') }}"
+          - name: country_name
+            description: The name of the targeted country.
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+
+      - name: targeting_geo_region
+        identifier: "{{ var('pinterest_ads_targeting_geo_region_identifier', 'targeting_geo_region') }}"
+        description: Maps region targeting values used in campaigns, including standardized names and associated location codes.
+        config:
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_targeting_geo_region', true) }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: country_id
+            description: "{{ doc('country_id') }}"
+          - name: region_id
+            description: "{{ doc('region_id') }}"
+          - name: region_name
+            description: The ID of the targeted region."

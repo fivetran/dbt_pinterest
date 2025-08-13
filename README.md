@@ -10,15 +10,17 @@
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
+    <a alt="Fivetran Quickstart Compatible"
+        href="https://fivetran.com/docs/transformations/dbt/quickstart">
+        <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
 ## What does this dbt package do?
-- Produces modeled tables that leverage Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/pinterest-ads#schemainformation) and builds off the output of our [Pinterest Ads source package](https://github.com/fivetran/dbt_pinterest_source).
+- Produces modeled tables that leverage Pinterest Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/pinterest-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/pinterest-ads#schemainformation).
 - Enables you to better understand the performance of your ads across varying grains:
   - Providing an advertiser, campaign, ad group, keyword, pin, and utm level reports.
 - Materializes output models designed to work simultaneously with our [multi-platform Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting).
 - Generates a comprehensive data dictionary of your source and modeled Pinterest Ads data through the [dbt docs site](https://fivetran.github.io/dbt_pinterest/).
-
 
 <!--section=“pinterest_transformation_model"-->
 
@@ -66,7 +68,7 @@ packages:
     version: [">=0.13.0", "<0.14.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
-Do NOT include the `pinterest_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
+> All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/pinterest_ads_source` in your `packages.yml` since this package has been deprecated.
 
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `pinterest` schema. If this is not where your Pinterest Ads data is (for example, if your Pinterest Ads schema is named `pinterest_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -106,7 +108,7 @@ vars:
     pinterest_ads_union_schemas: ['pinterest_usa','pinterest_canada'] # use this if the data is in different schemas/datasets of the same database/project
     pinterest_ads_union_databases: ['pinterest_usa','pinterest_canada'] # use this if the data is in different databases/projects but uses the same schema name
 ```
-> NOTE: The native `source.yml` connection set up in the package will not function when the union schema/database feature is utilized. Although the data will be correctly combined, you will not observe the sources linked to the package models in the Directed Acyclic Graph (DAG). This happens because the package includes only one defined `source.yml`.
+> NOTE: The native `src_pinterest_ads.yml` connection set up in the package will not function when the union schema/database feature is utilized. Although the data will be correctly combined, you will not observe the sources linked to the package models in the Directed Acyclic Graph (DAG). This happens because the package includes only one defined `src_pinterest_ads.yml`.
 
 To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
@@ -139,10 +141,10 @@ By default, this package builds the Pinterest Ads staging models (10 views, 10 m
 
 ```yml
 models:
-    pinterest_source:
-      +schema: my_new_schema_name # leave blank for just the target_schema
     pinterest:
-      +schema: my_new_schema_name # leave blank for just the target_schema
+      +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
+      staging:
+        +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
 ```
 
 #### Change the source table references
@@ -171,9 +173,6 @@ This dbt package is dependent on the following dbt packages. These dependencies 
 
 ```yml
 packages:
-    - package: fivetran/pinterest_source
-      version: [">=0.13.0", "<0.14.0"]
-
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
 
@@ -183,7 +182,7 @@ packages:
     - package: dbt-labs/spark_utils
       version: [">=0.3.0", "<0.4.0"]
 ```
-        
+
 ## How is this package maintained and can I contribute?
 ### Package Maintenance
 

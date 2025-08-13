@@ -3,27 +3,27 @@
 with report as (
 
     select *
-    from {{ var('ad_group_report') }}
+    from {{ ref('stg_pinterest_ads__ad_group_report') }}
 ), 
 
 advertisers as (
 
     select *
-    from {{ var('advertiser_history') }}
+    from {{ ref('stg_pinterest_ads__advertiser_history') }}
     where is_most_recent_record = True
 ), 
 
 campaigns as (
 
     select *
-    from {{ var('campaign_history') }}
+    from {{ ref('stg_pinterest_ads__campaign_history') }}
     where is_most_recent_record = True
 ),
 
 ad_groups as (
 
     select *
-    from {{ var('ad_group_history') }}
+    from {{ ref('stg_pinterest_ads__ad_group_history') }}
     where is_most_recent_record = True
 ), 
 
