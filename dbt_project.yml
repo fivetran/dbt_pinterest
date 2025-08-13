@@ -7,8 +7,10 @@ models:
     +schema: pinterest
     +materialized: table
     staging:
-      +schema: pinterest_ads_source
-      +materialized: view
+      +schema: pinterest_source
+      +materialized: table
+      tmp:
+        +materialized: view
 vars:
   pinterest:
     ad_group_history: "{{ source('pinterest_ads', 'ad_group_history') }}"
