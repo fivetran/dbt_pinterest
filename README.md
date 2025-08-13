@@ -108,7 +108,7 @@ vars:
     pinterest_ads_union_schemas: ['pinterest_usa','pinterest_canada'] # use this if the data is in different schemas/datasets of the same database/project
     pinterest_ads_union_databases: ['pinterest_usa','pinterest_canada'] # use this if the data is in different databases/projects but uses the same schema name
 ```
-> NOTE: The native `source.yml` connection set up in the package will not function when the union schema/database feature is utilized. Although the data will be correctly combined, you will not observe the sources linked to the package models in the Directed Acyclic Graph (DAG). This happens because the package includes only one defined `source.yml`.
+> NOTE: The native `src_pinterest_ads.yml` connection set up in the package will not function when the union schema/database feature is utilized. Although the data will be correctly combined, you will not observe the sources linked to the package models in the Directed Acyclic Graph (DAG). This happens because the package includes only one defined `src_pinterest_ads.yml`.
 
 To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
@@ -141,7 +141,7 @@ By default, this package builds the Pinterest Ads staging models (10 views, 10 m
 
 ```yml
 models:
-    pinterest_ads:
+    pinterest:
       +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
       staging:
         +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
@@ -173,9 +173,6 @@ This dbt package is dependent on the following dbt packages. These dependencies 
 
 ```yml
 packages:
-    - package: fivetran/pinterest_source
-      version: [">=0.13.0", "<0.14.0"]
-
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
 
