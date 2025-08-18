@@ -40,7 +40,12 @@ fields as (
         sum(report.impressions) as impressions,
         sum(report.total_conversions) as total_conversions,
         sum(report.total_conversions_quantity) as total_conversions_quantity,
-        sum(report.total_conversions_value) as total_conversions_value
+        sum(report.total_conversions_value) as total_conversions_value,
+        SUM(COALESCE(report.video_paid_25_p, 0) + COALESCE(report.video_earned_25_p, 0)) AS video_total_25_p,
+        SUM(COALESCE(report.video_paid_50_p, 0) + COALESCE(report.video_earned_50_p, 0)) AS video_total_50_p,
+        SUM(COALESCE(report.video_paid_75_p, 0) + COALESCE(report.video_earned_75_p, 0)) AS video_total_75_p,
+        SUM(COALESCE(report.video_paid_95_p, 0) + COALESCE(report.video_earned_95_p, 0)) AS video_total_95_p,
+        SUM(COALESCE(report.video_paid_100_p, 0) + COALESCE(report.video_earned_100_p, 0)) AS video_total_100_p
 
         {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__campaign_report_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0, exclude_fields=['total_conversions','total_conversions_quantity','total_conversions_value']) }}
 
