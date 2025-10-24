@@ -294,6 +294,8 @@ sources:
       - name: keyword_report
         description: Each record represents the daily performance of a Pinterest key word.
         identifier: "{{ var('pinterest_ads_keyword_report_identifier', 'keyword_report') }}"
+        config:
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_keywords', true) }}"
         columns:
           - name: date
             description: "{{ doc('date_day') }}"
