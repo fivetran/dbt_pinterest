@@ -267,6 +267,8 @@ sources:
       - name: keyword_history
         description: Each record represents a version of a Pinterest keyword.
         identifier: "{{ var('pinterest_ads_keyword_history_identifier', 'keyword_history') }}"
+        config:
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_keywords', true) }}"
         columns:
           - name: id
             description: Unique identifier of the keyword.
