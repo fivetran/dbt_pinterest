@@ -3,7 +3,7 @@
 [PR #49](https://github.com/fivetran/dbt_pinterest/pull/49) includes the following updates:
 
 ## Bugfix
-- Added configuration option to conditionally enable the `keyword_report` source based on the `ad_reporting__pinterest_ads_enabled` and `pinterest__using_keywords` variables. This allows for better control when the keyword report source is disabled in your project.
+- Added configuration option to conditionally enable the `keyword_report` and `keyword_history` sources based on the `ad_reporting__pinterest_ads_enabled` and `pinterest__using_keywords` variables. This allows for better control when the keyword report and keyword history sources are disabled in your project.
 
 ## Contributors
 - [@valbelova](https://github.com/valbelova) [#49](https://github.com/fivetran/dbt_pinterest/pull/49)
