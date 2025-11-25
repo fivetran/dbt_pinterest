@@ -1,3 +1,10 @@
+# dbt_pinterest v1.1.0
+
+[PR #50](https://github.com/fivetran/dbt_pinterest/pull/50) includes the following updates:
+
+## Features
+  - Increases the required dbt version upper limit to v3.0.0
+
 # dbt_pinterest v1.0.1
 
 [PR #49](https://github.com/fivetran/dbt_pinterest/pull/49) includes the following updates:
