@@ -1,3 +1,15 @@
+# dbt_pinterest v1.2.0
+
+[PR #51](https://github.com/fivetran/dbt_pinterest/pull/51) includes the following updates:
+
+## Documentation
+- Updates README with standardized Fivetran formatting
+
+## Under the Hood
+- In the `.quickstart.yml` file:
+  - Adds `table_variables` for relevant sources to prevent missing sources from blocking downstream Quickstart models.
+  - Adds `supported_vars` for Quickstart UI customization,
+
 # dbt_pinterest v1.1.0
 
 [PR #50](https://github.com/fivetran/dbt_pinterest/pull/50) includes the following updates:

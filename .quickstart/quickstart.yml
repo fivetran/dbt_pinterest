@@ -30,3 +30,35 @@ public_models: [
   "pinterest_ads__campaign_country_report",
   "pinterest_ads__campaign_region_report"
 ]
+
+supported_vars:
+  pinterest__pin_promotion_report_passthrough_metrics:
+    type: dictionary
+    description: "Addtional `PIN_PROMOTION_REPORT` columns to include in `pinterest_ads__advertiser_report` and `pinterest_ads__url_report`"
+    display_name: "Additional Pin Promotion Report Metrics"
+
+  pinterest__ad_group_report_passthrough_metrics:
+    type: dictionary
+    description: "Addtional `AD_GROUP_REPORT` columns to include in `pinterest_ads__ad_group_report`"
+    display_name: "Additional Ad Group Report Metrics"
+
+  pinterest__advertiser_report_passthrough_metrics:
+    type: dictionary
+    description: "Addtional `ADVERTISER_REPORT` columns to include in `pinterest_ads__advertiser_report`"
+    display_name: "Additional Advertiser Report Metrics"
+
+  pinterest__campaign_report_passthrough_metrics:
+    type: dictionary
+    description: "Addtional `CAMPAIGN_REPORT` columns to include in `pinterest_ads__advertiser_report`"
+    display_name: "Additional Campaign Report Metrics"
+
+  pinterest__keyword_report_passthrough_metrics:
+    type: dictionary
+    description: "Addtional `KEYWORD_REPORT` columns to include in `pinterest_ads__advertiser_report`\"
+    display_name: "Additional Keyword Report Metrics"
+
+  pinterest__pin_promotion_targeting_report_passthrough_metrics:
+    type: dictionary
+    description: "Addtional `PIN_PROMOTION_TARGETING_REPORT` columns to include in `pinterest_ads__campaign_country_report` and `pinterest_ads__campaign_region_report`"
+    display_name: "Additional Geographic Report Metrics"
+
