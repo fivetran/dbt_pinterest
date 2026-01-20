@@ -54,7 +54,7 @@ supported_vars:
 
   pinterest__keyword_report_passthrough_metrics:
     type: dictionary
-    description: "Additional `KEYWORD_REPORT` columns to include in `pinterest_ads__advertiser_report`\"
+    description: "Additional `KEYWORD_REPORT` columns to include in `pinterest_ads__advertiser_report`"
     display_name: "Additional Keyword Report Metrics"
 
   pinterest__pin_promotion_targeting_report_passthrough_metrics:
