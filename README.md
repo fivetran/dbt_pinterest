@@ -1,5 +1,5 @@
 <!--section="pinterest_transformation_model"-->
-# Pinterest dbt Package
+# Pinterest Ads dbt Package
 
 <p align="left">
     <a alt="License"
@@ -16,14 +16,14 @@
         <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
-This dbt package transforms data from Fivetran's Pinterest connector into analytics-ready tables.
+This dbt package transforms data from Fivetran's Pinterest Ads connector into analytics-ready tables.
 
 ## Resources
 
 - Number of materialized models¹: 34
 - Connector documentation
-  - [Pinterest connector documentation](https://fivetran.com/docs/connectors/applications/pinterest)
-  - [Pinterest ERD](https://fivetran.com/docs/connectors/applications/pinterest#schemainformation)
+  - [Pinterest Ads connector documentation](https://fivetran.com/docs/connectors/applications/pinterest-ads#pinterestads)
+  - [Pinterest Ads ERD](https://fivetran.com/docs/connectors/applications/pinterest-ads#schemainformation)
 - dbt package documentation
   - [GitHub repository](https://github.com/fivetran/dbt_pinterest)
   - [dbt Docs](https://fivetran.github.io/dbt_pinterest/#!/overview)
@@ -56,10 +56,11 @@ By default, this package materializes the following final tables:
 | [`pinterest_ads__url_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report) | Represents daily performance at the individual URL level, including `spend`, `clicks`, `impressions`, and `conversions`, enriched with pin promotion context.<br><br>**Example Analytics Questions:**<ul><li>Which landing pages are driving the highest conversion rates?</li><li>Are certain URLs performing better with specific pin promotion combinations?</li></ul> |
 
 ¹ Each Quickstart transformation job run materializes these models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
+
 ---
 
 ## Visualizations
-Many of the above reports are now configurable for [visualization via Streamlit](https://github.com/fivetran/streamlit_pinterest). Check out some [sample reports here](https://fivetran-pinterest.streamlit.app/).
+Many of the above reports are now configurable for [visualization via Streamlit](https://github.com/fivetran/streamlit_ad_reporting). Check out some [sample reports here](https://fivetran-ad-reporting.streamlit.app/ad_performance).
 
 <p align="center">
   <a href="https://fivetran-ad-reporting.streamlit.app/ad_performance">
@@ -70,7 +71,7 @@ Many of the above reports are now configurable for [visualization via Streamlit]
 ## Prerequisites
 To use this dbt package, you must have the following:
 
-- At least one Fivetran Pinterest connection syncing data into your destination.
+- At least one Fivetran Pinterest Ads connection syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
 ## How do I use the dbt package?
