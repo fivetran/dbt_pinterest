@@ -37,6 +37,9 @@ vars:
     - name: "total_conversions_value_in_micro_dollar" # @docs-ignore
 
 models:
+  +persist_docs:
+    relation: true
+    columns: true
   +schema: "pinterest_ads_{{ var('directed_schema','dev') }}"
 
 seeds:
