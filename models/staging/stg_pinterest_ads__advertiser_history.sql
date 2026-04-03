@@ -37,7 +37,7 @@ final as (
         owner_username,
         advertiser_permissions, -- permissions was renamed in macro
         updated_time as updated_at,
-        row_number() over (partition by source_relation, id order by updated_time desc) = 1 as is_most_recent_record
+        row_number() over (partition by id{{ pinterest.partition_by_source_relation() }} order by updated_time desc) = 1 as is_most_recent_record
     from fields
 )
 
