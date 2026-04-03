@@ -1,3 +1,16 @@
+# dbt_pinterest v1.2.1
+
+[PR #54](https://github.com/fivetran/dbt_pinterest/pull/54) includes the following updates:
+
+## Under the Hood
+- Introduces the `partition_by_source_relation` macro to conditionally include `source_relation` in window function `PARTITION BY` clauses only when multiple sources are configured via the `pinterest_ads_union_schemas` and `pinterest_ads_union_databases` variables. [See the README on how to leverage these variables](https://github.com/fivetran/dbt_pinterest?tab=readme-ov-file#unioning-multiple-pinterest-ads-connections).
+- Replaces hardcoded `source_relation` partitioning in the following models:
+  - `stg_pinterest_ads__ad_group_history`
+  - `stg_pinterest_ads__advertiser_history`
+  - `stg_pinterest_ads__campaign_history`
+  - `stg_pinterest_ads__keyword_history`
+  - `stg_pinterest_ads__pin_promotion_history`
+
 # dbt_pinterest v1.2.0
 
 [PR #51](https://github.com/fivetran/dbt_pinterest/pull/51) includes the following updates:
