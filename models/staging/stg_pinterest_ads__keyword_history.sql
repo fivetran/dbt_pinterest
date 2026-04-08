@@ -39,7 +39,7 @@ final as (
         cast(campaign_id as {{ dbt.type_string() }}) as campaign_id,
         match_type,
         parent_type,
-        row_number() over (partition by source_relation, id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        row_number() over (partition by id {{ pinterest.partition_by_source_relation() }} order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
 )
 
