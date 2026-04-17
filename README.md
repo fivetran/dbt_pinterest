@@ -155,6 +155,14 @@ vars:
       - name: "new_field"
 ```
 
+#### Disable the URL null filter
+By default, the `pinterest_ads__url_report` model will filter out records where the URL field is null. However, you may wish to include these null records in your final model. To disable this filter, set the following variable to `false`:
+
+```yml
+vars:
+    ad_reporting__url_report__using_null_filter: false # Default = true
+```
+
 #### Change the build schema
 By default, this package builds the Pinterest Ads staging models (10 views, 10 models) within a schema titled (`<target_schema>` + `_pinterest_source`) and your Pinterest Ads modeling models (6 tables) within a schema titled (`<target_schema>` + `_pinterest`) in your destination. If this is not where you would like your Pinterest Ads data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
