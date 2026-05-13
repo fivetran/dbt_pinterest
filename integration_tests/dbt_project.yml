@@ -4,7 +4,7 @@ profile: 'integration_tests'
 config-version: 2
 
 vars:
-  pinterest_schema: pinterest_integration_tests_7
+  pinterest_schema: pinterest_integration_tests
   pinterest_ads_ad_group_history_identifier: "pinterest_ad_group_history_data"
   pinterest_ads_ad_group_report_identifier: "pinterest_ad_group_report_data"
   pinterest_ads_advertiser_history_identifier: "pinterest_advertiser_history_data"
@@ -47,15 +47,71 @@ seeds:
     show: false
   +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
   pinterest_integration_tests:
-    +column_types:
+    pinterest_ad_group_history_data:
+      +column_types:
         id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        ad_account_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+    pinterest_ad_group_report_data:
+      +column_types:
+        ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+        total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+    pinterest_advertiser_history_data:
+      +column_types:
+        id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+    pinterest_advertiser_report_data:
+      +column_types:
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+        total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+    pinterest_campaign_history_data:
+      +column_types:
+        id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+    pinterest_campaign_report_data:
+      +column_types:
+        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+        total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+    pinterest_keyword_history_data:
+      +column_types:
+        ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+    pinterest_keyword_report_data:
+      +column_types:
+        keyword_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        pin_promotion_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+        total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+    pinterest_pin_promotion_history_data:
+      +column_types:
+        id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         pin_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         ad_account_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
-        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+    pinterest_pin_promotion_report_data:
+      +column_types:
         pin_promotion_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
-        keyword_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+        total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+    pinterest_pin_promotion_targeting_report_data:
+      +column_types:
+        ad_group_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        advertiser_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        campaign_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
+        pin_promotion_id: "{{ 'varchar(500)' if target.type in ('redshift','postgres') else 'string'}}"
         spend_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
         total_conversions_value_in_micro_dollar: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
 
