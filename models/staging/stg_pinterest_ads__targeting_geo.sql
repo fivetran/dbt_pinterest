@@ -13,10 +13,7 @@ with base as (
             staging_columns=get_targeting_geo_columns()
         ) }}
 
-        {{ fivetran_utils.source_relation(
-            union_schema_variable='pinterest_ads_union_schemas', 
-            union_database_variable='pinterest_ads_union_databases'
-        ) }}
+        {{ fivetran_utils.apply_source_relation(package_name='pinterest') }}
     
     from base
 

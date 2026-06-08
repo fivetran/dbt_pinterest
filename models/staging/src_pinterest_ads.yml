@@ -9,7 +9,7 @@ sources:
 
     config:
       loaded_at_field: _fivetran_synced
-      enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) }}"
+      enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest_ads_sources', []) == [] }}"
       freshness: 
         warn_after: {count: 48, period: hour}
         error_after: {count: 168, period: hour}
@@ -268,7 +268,7 @@ sources:
         description: Each record represents a version of a Pinterest keyword.
         identifier: "{{ var('pinterest_ads_keyword_history_identifier', 'keyword_history') }}"
         config:
-          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_keywords', true) }}"
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_keywords', true) and var('pinterest_ads_sources', []) == [] }}"
         columns:
           - name: id
             description: Unique identifier of the keyword.
@@ -297,7 +297,7 @@ sources:
         description: Each record represents the daily performance of a Pinterest key word.
         identifier: "{{ var('pinterest_ads_keyword_report_identifier', 'keyword_report') }}"
         config:
-          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_keywords', true) }}"
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_keywords', true) and var('pinterest_ads_sources', []) == [] }}"
         columns:
           - name: date
             description: "{{ doc('date_day') }}"
@@ -338,7 +338,7 @@ sources:
         identifier: "{{ var('pinterest_ads_pin_promotion_targeting_report_identifier', 'pin_promotion_targeting_report') }}"
         description: Contains performance metrics for promoted Pins segmented by applied targeting criteria, including targeting type, value, and related campaign metadata.
         config:
-          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_pin_promotion_targeting_report', true) }}"
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_pin_promotion_targeting_report', true) and var('pinterest_ads_sources', []) == [] }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -377,7 +377,7 @@ sources:
         identifier: "{{ var('pinterest_ads_targeting_geo_identifier', 'targeting_geo') }}"
         description: Maps country targeting values used in campaigns, including standardized names and associated location codes.
         config:
-          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_targeting_geo', true) }}"
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_targeting_geo', true) and var('pinterest_ads_sources', []) == [] }}"
         columns:
           - name: country_id
             description: "{{ doc('country_id') }}"
@@ -390,7 +390,7 @@ sources:
         identifier: "{{ var('pinterest_ads_targeting_geo_region_identifier', 'targeting_geo_region') }}"
         description: Maps region targeting values used in campaigns, including standardized names and associated location codes.
         config:
-          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_targeting_geo_region', true) }}"
+          enabled: "{{ var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_targeting_geo_region', true) and var('pinterest_ads_sources', []) == [] }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
