@@ -95,21 +95,21 @@ By default, this package runs using your destination and the `pinterest` schema.
 
 ```yml
 vars:
-    pinterest_database: your_destination_name
-    pinterest_schema: your_schema_name
+    pinterest_ads_database: your_destination_name
+    pinterest_ads_schema: your_schema_name
 ```
 
 #### Option B: Union multiple connections
 If you have multiple Pinterest Ads connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. For each source table, the package will union all of the data together and pass the unioned table into the transformations. The `source_relation` column in each model indicates the origin of each record.
 
-To use this functionality, you will need to set the `pinterest_sources` variable in your root `dbt_project.yml` file:
+To use this functionality, you will need to set the `pinterest_ads_sources` variable in your root `dbt_project.yml` file:
 
 ```yml
 # dbt_project.yml
 
 vars:
   pinterest:
-    pinterest_sources:
+    pinterest_ads_sources:
       - database: connection_1_destination_name # Required
         schema: connection_1_schema_name # Required
         name: connection_1_source_name # Required only if following the step in the following subsection
@@ -119,7 +119,7 @@ vars:
         name: connection_2_source_name
 ```
 
-> Previous versions of this package employed two separate, mutually exclusive variables for unioning: `pinterest_union_schemas` and `pinterest_union_databases`. While these variables are still supported, `pinterest_sources` is the recommended variable to configure.
+> Previous versions of this package employed two separate, mutually exclusive variables for unioning: `pinterest_ads_union_schemas` and `pinterest_ads_union_databases`. While these variables are still supported, `pinterest_ads_sources` is the recommended variable to configure.
 
 #### Optional: Incorporate unioned sources into DAG
 

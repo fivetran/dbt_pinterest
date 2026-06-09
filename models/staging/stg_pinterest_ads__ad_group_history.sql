@@ -16,7 +16,7 @@ fields as (
             )
         }}
     
-        {{ fivetran_utils.apply_source_relation(package_name='pinterest') }}
+        {{ fivetran_utils.apply_source_relation(package_name='pinterest_ads') }}
 
     from base
 ),
@@ -37,7 +37,7 @@ final as (
         placement_group,
         start_time,
         summary_status,
-        row_number() over (partition by id {{ fivetran_utils.partition_by_source_relation(package_name='pinterest') }} order by _fivetran_synced desc) = 1 as is_most_recent_record
+        row_number() over (partition by id {{ fivetran_utils.partition_by_source_relation(package_name='pinterest_ads') }} order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
 )
 

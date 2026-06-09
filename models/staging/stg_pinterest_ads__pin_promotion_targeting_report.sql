@@ -13,7 +13,7 @@ with base as (
             staging_columns=get_pin_promotion_targeting_report_columns()
         ) }}
 
-        {{ fivetran_utils.apply_source_relation(package_name='pinterest') }}
+        {{ fivetran_utils.apply_source_relation(package_name='pinterest_ads') }}
     
     from base
 
