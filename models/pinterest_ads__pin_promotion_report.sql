@@ -70,10 +70,7 @@ joined as (
         SUM(COALESCE(report.video_paid_50_p, 0) + COALESCE(report.video_earned_50_p, 0)) AS video_total_50_p,
         SUM(COALESCE(report.video_paid_75_p, 0) + COALESCE(report.video_earned_75_p, 0)) AS video_total_75_p,
         SUM(COALESCE(report.video_paid_95_p, 0) + COALESCE(report.video_earned_95_p, 0)) AS video_total_95_p,
-        SUM(COALESCE(report.video_paid_100_p, 0) + COALESCE(report.video_earned_100_p, 0)) AS video_total_100_p,
-        sum(coalesce(report.video_p_0_combined_2, 0)) as video_plays,
-        sum(coalesce(report.video_p_0_combined_2, 0)) as video_views,
-        -- sum(coalesce(report.total_video_3_sec_views, 0)) as video_views,
+        SUM(COALESCE(report.video_paid_100_p, 0) + COALESCE(report.video_earned_100_p, 0)) AS video_total_100_p
 
         {{ pinterest_ads_persist_pass_through_columns(pass_through_variable='pinterest__pin_promotion_report_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0, exclude_fields=['total_conversions','total_conversions_quantity','total_conversions_value']) }}
 
