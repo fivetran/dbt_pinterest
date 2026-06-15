@@ -5,10 +5,10 @@
 {{
     fivetran_utils.union_data(
         table_identifier='advertiser_history',
-        database_variable='pinterest_ads_database',
-        schema_variable='pinterest_ads_schema',
+        database_variable='pinterest_database',
+        schema_variable='pinterest_schema',
         default_database=target.database,
-        default_schema='pinterest',
+        default_schema='pinterest_ads',
         default_variable='advertiser_history',
         union_schema_variable='pinterest_ads_union_schemas',
         union_database_variable='pinterest_ads_union_databases'
