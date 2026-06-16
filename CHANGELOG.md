@@ -10,6 +10,7 @@
 | All models | `source_relation` column (when using a single Pinterest schema) | Empty string (`''`) | `<database>.<schema>` |  |
 
 ## Feature Updates
+- Introduces the new (recommended) `pinterest_ads_schema` and `pinterest_ads_database` variables for defining the source schema and database respectively. The previous `pinterest_schema` and `pinterest_database` variables are still supported for backwards compatibility. This feature was applied to ensure consistent variable naming standards across Fivetran dbt packages.
 - Introduces the new (recommended) `pinterest_ads_sources` variable for more robust union data configuration. The old `pinterest_ads_union_schemas` and `pinterest_ads_union_databases` variables will still be supported. See the [README](https://github.com/fivetran/dbt_pinterest/tree/main#define-database-and-schema-variables) for specific details.
 
 ## Under the Hood
