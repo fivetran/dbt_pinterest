@@ -1,5 +1,5 @@
 name: 'pinterest_integration_tests'
-version: '1.2.1'
+version: '1.3.0'
 profile: 'integration_tests'
 config-version: 2
 
@@ -45,7 +45,7 @@ models:
 seeds:
   +docs:
     show: false
-  +quote_columns: "{{ true if target.type in ('redshift','postgres') else false }}"
+  +quote_columns: "{{ target.type in ('redshift', 'postgres') or var('fivetran_using_source_casing', false) }}"
   pinterest_integration_tests:
     pinterest_ad_group_history_data:
       +column_types:
