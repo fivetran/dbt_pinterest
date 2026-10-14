@@ -1,6 +1,6 @@
 # dbt_pinterest v1.4.0
 
-[PR #XX](https://github.com/fivetran/dbt_pinterest/pull/XX) includes the following updates:
+[PR #61](https://github.com/fivetran/dbt_pinterest/pull/61) includes the following updates:
 
 ## Schema/Data Change
 **1 total change • 0 possible breaking changes**
