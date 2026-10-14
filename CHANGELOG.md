@@ -1,3 +1,18 @@
+# dbt_pinterest v1.4.0
+
+[PR #XX](https://github.com/fivetran/dbt_pinterest/pull/XX) includes the following updates:
+
+## Schema/Data Change
+**1 total change • 0 possible breaking changes**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | --- | --- | ----- |
+| [`pinterest_ads__keyword_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report) | Changed field | `advertiser_id`, `advertiser_name`, `campaign_id`, `campaign_name`, `ad_group_id`, and `ad_group_name` were `null` when a keyword was missing from `keyword_history`, for example a keyword deleted in Pinterest. | These fields populate from the IDs on the keyword report row, so they no longer depend on the keyword record. | Spend and other metrics are unchanged. `match_type`, `parent_type`, and `keyword_value` remain `null` for keywords missing from `keyword_history`. This also fills `account_id`, `account_name`, `campaign_id`, and `ad_group_id` for these rows in `ad_reporting__keyword_report` in the [Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting). |
+
+## Under the Hood
+- Adds a keyword report seed row with a `keyword_id` that is missing from `pinterest_keyword_history_data` to validate the fix.
+
+
 # dbt_pinterest v1.3.1
 
 [PR #60](https://github.com/fivetran/dbt_pinterest/pull/60) includes the following updates:
