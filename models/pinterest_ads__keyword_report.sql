@@ -40,11 +40,11 @@ fields as (
         report.source_relation,
         report.date_day,
         advertisers.advertiser_name,
-        advertisers.advertiser_id,
+        report.advertiser_id,
         campaigns.campaign_name,
-        campaigns.campaign_id,
+        report.campaign_id,
         ad_groups.ad_group_name,
-        ad_groups.ad_group_id,
+        report.ad_group_id,
         report.keyword_id,
         keywords.match_type,
         keywords.parent_type,
@@ -63,14 +63,14 @@ fields as (
         on report.keyword_id = keywords.keyword_id
         and report.source_relation = keywords.source_relation
     left join ad_groups
-        on keywords.ad_group_id = ad_groups.ad_group_id
-        and keywords.source_relation = ad_groups.source_relation
+        on report.ad_group_id = ad_groups.ad_group_id
+        and report.source_relation = ad_groups.source_relation
     left join campaigns
-        on ad_groups.campaign_id = campaigns.campaign_id
-        and ad_groups.source_relation = campaigns.source_relation
+        on report.campaign_id = campaigns.campaign_id
+        and report.source_relation = campaigns.source_relation
     left join advertisers
-        on campaigns.advertiser_id = advertisers.advertiser_id
-        and campaigns.source_relation = advertisers.source_relation
+        on report.advertiser_id = advertisers.advertiser_id
+        and report.source_relation = advertisers.source_relation
     {{ dbt_utils.group_by(12) }}
 )
 

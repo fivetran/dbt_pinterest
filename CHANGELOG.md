@@ -1,3 +1,10 @@
+# dbt_pinterest v1.3.2
+
+[PR #61](https://github.com/fivetran/dbt_pinterest/pull/61) includes the following updates:
+
+## Bug Fix
+- Fixes `pinterest_ads__keyword_report` returning `null` account, campaign, and ad group IDs and names for keywords missing from `keyword_history`, for example keywords deleted in Pinterest. The model now takes the IDs from the keyword report row and looks up the names from them. 
+
 # dbt_pinterest v1.3.1
 
 [PR #60](https://github.com/fivetran/dbt_pinterest/pull/60) includes the following updates:
