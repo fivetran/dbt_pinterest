@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__pinterest_ads_enabled', 'pinterest__using_targeting_geo'])) }}
+{{ config(enabled=(var('ad_reporting__pinterest_ads_enabled', true) and var('pinterest__using_targeting_geo', true))) }}
 
 with base as (
 
