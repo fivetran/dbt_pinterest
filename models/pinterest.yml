@@ -3,6 +3,19 @@ version: 2
 models:
   - name: pinterest_ads__url_report
     description: Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and url level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
+              - pin_promotion_id
+          config:
+            # Don't run this test if you allow URLs to have null entries
+            enabled: "{{ var('ad_reporting__url_report__using_null_filter', true) }}"
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -77,6 +90,15 @@ models:
 
   - name: pinterest_ads__ad_group_report
     description: Each record in this table represents the daily performance of ads at the campaign, advertiser, and ad group level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -123,6 +145,14 @@ models:
 
   - name: pinterest_ads__campaign_report
     description: Each record in this table represents the daily performance of ads at the advertiser and campaign level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -157,6 +187,13 @@ models:
 
   - name: pinterest_ads__advertiser_report
     description: Each record in this table represents the daily performance of an advertiser on the Pinterest Ads platform.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -189,6 +226,16 @@ models:
 
   - name: pinterest_ads__keyword_report
     description: Each record in this table represents the daily performance of a keyword at the advertiser, campaign, ad group, and keyword level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
+              - keyword_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -233,6 +280,16 @@ models:
 
   - name: pinterest_ads__pin_promotion_report
     description: Each record in this table represents the daily performance of ads at the advertiser, campaign, ad group, and pin level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
+              - pin_promotion_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -288,6 +345,15 @@ models:
 
   - name: pinterest_ads__campaign_country_report
     description: Each record in this table represents the daily performance of ads at the country and campaign level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - country_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -344,6 +410,16 @@ models:
 
   - name: pinterest_ads__campaign_region_report
     description: Each record in this table represents the daily performance of ads at the region and campaign level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - country_id
+              - region_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
