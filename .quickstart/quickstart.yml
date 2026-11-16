@@ -28,7 +28,9 @@ public_models: [
   "pinterest_ads__pin_promotion_report",
   "pinterest_ads__ad_group_report",
   "pinterest_ads__campaign_country_report",
-  "pinterest_ads__campaign_region_report"
+  "pinterest_ads__campaign_region_report",
+  "pinterest_ads__campaign_age_report",
+  "pinterest_ads__campaign_gender_report"
 ]
 
 supported_vars:
@@ -59,6 +61,6 @@ supported_vars:
 
   pinterest__pin_promotion_targeting_report_passthrough_metrics:
     type: dictionary
-    description: "Additional `PIN_PROMOTION_TARGETING_REPORT` columns to include in `pinterest_ads__campaign_country_report` and `pinterest_ads__campaign_region_report`"
-    display_name: "Additional Geographic Report Metrics"
+    description: "Additional `PIN_PROMOTION_TARGETING_REPORT` columns to include in `pinterest_ads__campaign_country_report`, `pinterest_ads__campaign_region_report`, `pinterest_ads__campaign_age_report`, and `pinterest_ads__campaign_gender_report`"
+    display_name: "Additional Geographic and Demographic Report Metrics"
 

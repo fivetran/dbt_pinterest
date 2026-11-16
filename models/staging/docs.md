@@ -55,3 +55,11 @@ Total conversions order value. The total value of the conversions, calculated by
 {% docs total_conversions_value %}
 Total conversions order value. The total value of the conversions, calculated by summing up the revenue or order values attributed to conversions. Converted from the source `total_conversions_value_in_micro_dollar` field.
 {% enddocs %}
+
+{% docs age %} The targeted audience age range, as reported by Pinterest. For example, `18-24`. {% enddocs %}
+
+{% docs min_age %} The lower bound of the age range. For an open-ended range, such as `65+`, this is the number before the `+`. Null when the age value isn't a range. {% enddocs %}
+
+{% docs max_age %} The upper bound of the age range. For an open-ended range, such as `65+`, this is `100`. Null when the age value isn't a range. {% enddocs %}
+
+{% docs gender %} The targeted audience gender, such as `female`, `male`, or `unknown`. {% enddocs %}

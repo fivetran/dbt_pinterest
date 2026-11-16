@@ -1,0 +1,25 @@
+version: 1.4.0
+schema_data_changes:
+  entries:
+  - models:
+    - '[pinterest_ads__campaign_age_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_age_report)'
+    change_type: New model
+    is_breaking: false
+    notes: Daily campaign performance and conversions by audience age range. Built from
+      `PIN_PROMOTION_TARGETING_REPORT` records where `targeting_type` is `AGE_BUCKET`.
+      Splits each age range into `min_age` and `max_age` columns. Enabled with the
+      `pinterest__using_pin_promotion_targeting_report` variable, which is `true` by default.
+  - models:
+    - '[pinterest_ads__campaign_gender_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_gender_report)'
+    change_type: New model
+    is_breaking: false
+    notes: Daily campaign performance and conversions by audience gender. Built from
+      `PIN_PROMOTION_TARGETING_REPORT` records where `targeting_type` is `GENDER`.
+      Enabled with the `pinterest__using_pin_promotion_targeting_report` variable,
+      which is `true` by default.
+new_features:
+- title: Age and gender passthrough metrics
+  description: The `pinterest__pin_promotion_targeting_report_passthrough_metrics`
+    variable now also passes additional `PIN_PROMOTION_TARGETING_REPORT` metrics through
+    to `pinterest_ads__campaign_age_report` and `pinterest_ads__campaign_gender_report`.
+date: '2026-11-16'
