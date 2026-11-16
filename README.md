@@ -5,7 +5,7 @@ This dbt package transforms data from Fivetran's Pinterest Ads connector into an
 
 ## Resources
 
-- Number of materialized models¹: 34
+- Number of materialized models¹: 36
 - Connector documentation
   - [Pinterest Ads connector documentation](https://fivetran.com/docs/connectors/applications/pinterest-ads#pinterestads)
   - [Pinterest Ads ERD](https://fivetran.com/docs/connectors/applications/pinterest-ads#schemainformation)
@@ -38,6 +38,8 @@ By default, this package materializes the following final tables:
 | [`pinterest_ads__campaign_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_report) | Represents daily performance aggregated at the campaign level, including `spend`, `clicks`, `impressions`, and `conversions`.<br><br>**Example Analytics Questions:**<ul><li>Which campaigns are most efficient in terms of cost per conversion?</li><li>Are paused or limited-status campaigns still accruing impressions?</li><li>Which campaigns contribute most to overall spend or conversions?</li></ul> |
 | [`pinterest_ads__campaign_country_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report) | Represents daily performance aggregated at the campaign level by country, including `spend`, `clicks`, `impressions`, and `conversions`, enriched with geographic context.<br><br>**Example Analytics Questions:**<ul><li>Which countries are delivering the highest return on ad spend for each campaign?</li><li>Are there seasonal performance variations by geographic region?</li></ul> |
 | [`pinterest_ads__campaign_region_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report) | Represents daily performance aggregated at the campaign level by region, including `spend`, `clicks`, `impressions`, and `conversions`, enriched with geographic context.<br><br>**Example Analytics Questions:**<ul><li>Which regions are driving the most efficient campaign performance?</li><li>How do regional performance trends correlate with local market conditions?</li></ul> |
+| [`pinterest_ads__campaign_age_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_age_report) | Represents daily performance aggregated at the campaign level by audience age range, including `spend`, `clicks`, `impressions`, and `conversions`. The model splits each age range into `min_age` and `max_age`.<br><br>**Example Analytics Questions:**<ul><li>Which age ranges convert at the lowest cost for each campaign?</li><li>Is spend shifting toward younger or older audiences over time?</li></ul> |
+| [`pinterest_ads__campaign_gender_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_gender_report) | Represents daily performance aggregated at the campaign level by audience gender, including `spend`, `clicks`, `impressions`, and `conversions`.<br><br>**Example Analytics Questions:**<ul><li>How does cost per conversion differ by gender for each campaign?</li><li>Which campaigns reach a balanced gender mix?</li></ul> |
 | [`pinterest_ads__keyword_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report) | Represents daily performance at the individual keyword level, including `spend`, `clicks`, `impressions`, and `conversions`.<br><br>**Example Analytics Questions:**<ul><li>Which keywords are driving the highest quality traffic at the lowest cost?</li><li>Are branded vs. non-branded keywords performing differently?</li><li>Should underperforming keywords be reallocated to different match types?</li></ul> |
 | [`pinterest_ads__pin_promotion_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__pin_promotion_report) | Represents daily performance at the individual pin promotion level (equivalent to ads in other platforms), including `spend`, `clicks`, `impressions`, and `conversions`.<br><br>**Example Analytics Questions:**<ul><li>Which pin creatives are driving the lowest cost per click?</li><li>Do video pins perform better than static image pins?</li><li>How do performance trends change after refreshing pin content?</li></ul> |
 | [`pinterest_ads__url_report`](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report) | Represents daily performance at the individual URL level, including `spend`, `clicks`, `impressions`, and `conversions`, enriched with pin promotion context.<br><br>**Example Analytics Questions:**<ul><li>Which landing pages are driving the highest conversion rates?</li><li>Are certain URLs performing better with specific pin promotion combinations?</li></ul> |
@@ -75,7 +77,7 @@ Include the following pinterest_ads package version in your `packages.yml` file 
 ```yml
 packages:
   - package: fivetran/pinterest
-    version: [">=1.3.0", "<1.4.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=1.4.0", "<1.5.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 > All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/pinterest_ads_source` in your `packages.yml` since this package has been deprecated.
@@ -137,7 +139,7 @@ Additionally, your Pinterest Ads connection may not sync every table that this p
 
 ```yml
 vars:
-    pinterest__using_pin_promotion_targeting_report: false # Default is true. Will disable `pinterest_ads__campaign_country_report` and `pinterest_ads__campaign_region_report` if false
+    pinterest__using_pin_promotion_targeting_report: false # Default is true. Will disable `pinterest_ads__campaign_country_report`, `pinterest_ads__campaign_region_report`, `pinterest_ads__campaign_age_report`, and `pinterest_ads__campaign_gender_report` if false
     pinterest__using_targeting_geo: false # Default is true. Will disable `pinterest_ads__campaign_country_report` if false
     pinterest__using_targeting_geo_region: false # Default is true. Will disable `pinterest_ads__campaign_region_report` if false
 ```

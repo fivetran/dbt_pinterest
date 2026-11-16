@@ -1,0 +1,9 @@
+version: 1.4.0
+schema_data_changes:
+  entries:
+    - models:
+        - pinterest_ads__campaign_age_report
+        - pinterest_ads__campaign_gender_report
+      change_type: New field/model
+      is_breaking: false
+      notes: Daily campaign performance by audience age range and by gender. Built from the `AGE_BUCKET` and `GENDER` rows of the existing `PIN_PROMOTION_TARGETING_REPORT` source table. The age report splits each age range into `min_age` and `max_age`. Enabled by default and disabled with the existing `pinterest__using_pin_promotion_targeting_report` variable. Supports the existing `pinterest__pin_promotion_targeting_report_passthrough_metrics` variable.
