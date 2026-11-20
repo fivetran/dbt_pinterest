@@ -3,7 +3,7 @@
 [PR #64](https://github.com/fivetran/dbt_pinterest/pull/64) includes the following updates:
 
 ## Feature Update
-- Raises the minimum dbt version to 1.10.0.
+- **Breaking change**: Raises the minimum dbt version to 1.10.0.
 - Adds `dbt_utils.unique_combination_of_columns` tests to staging and end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_pinterest/issues/new/choose).
 
 # dbt_pinterest v1.3.2
