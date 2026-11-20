@@ -3,12 +3,19 @@ version: 2
 models:
   - name: stg_pinterest_ads__ad_group_history
     description: Each record represents a version of a Pinterest Ad Group.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ad_group_id
+              - _fivetran_synced
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: ad_group_id
         description: Ad group ID.
-        tests:
+        data_tests:
           - not_null
       - name: campaign_id
         description: Parent Campaign ID.
@@ -37,12 +44,19 @@ models:
 
   - name: stg_pinterest_ads__campaign_history
     description: Each record represents a version of a Pinterest Campaign.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - campaign_id
+              - _fivetran_synced
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: created_at
         description: Campaign creation time.
@@ -77,12 +91,19 @@ models:
 
   - name: stg_pinterest_ads__pin_promotion_history
     description: Each record represents a version of a Pinterest Pin promotion.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - pin_promotion_id
+              - _fivetran_synced
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: pin_promotion_id
         description: Pin promotion ID.
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
@@ -126,16 +147,26 @@ models:
 
   - name: stg_pinterest_ads__pin_promotion_report
     description: Each record represents the daily performance of a Pinterest Pin promotion by ad group, campaign, and advertiser.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
+              - pin_promotion_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: pin_promotion_id
         description: "{{ doc('pin_promotion_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
@@ -159,16 +190,25 @@ models:
 
   - name: stg_pinterest_ads__ad_group_report
     description: Each record represents the daily performance of a Pinterest Ad Groups by campaign and advertiser.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_name
         description: Name of the ad group.
@@ -193,12 +233,19 @@ models:
 
   - name: stg_pinterest_ads__advertiser_history
     description: Each record represents a version of an advertiser.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - advertiser_id
+              - updated_at
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_name
         description: Name of the advertiser.
@@ -221,16 +268,23 @@ models:
 
   - name: stg_pinterest_ads__advertiser_report
     description: Each record represents the daily performance of an Advertiser.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: impressions
         description: "{{ doc('impressions') }}"
@@ -247,16 +301,24 @@ models:
 
   - name: stg_pinterest_ads__campaign_report
     description: Each record represents the daily performance of Campaigns by advertiser.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_name
         description: Name of the campaign.
@@ -279,12 +341,20 @@ models:
 
   - name: stg_pinterest_ads__keyword_history
     description: Each record represents the daily performance of a Keyword.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ad_group_id
+              - keyword_id
+              - _fivetran_synced
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: keyword_id
         description: Unique identifier of the keyword.
-        tests:
+        data_tests:
           - not_null
       - name: keyword_value
         description: The text value that makes upd the keyword.
@@ -311,16 +381,27 @@ models:
 
   - name: stg_pinterest_ads__keyword_report
     description: Each record represents the daily performance of Keywords by ad group, campaign, and advertiser.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
+              - pin_promotion_id
+              - keyword_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: keyword_id
         description: Unique identifier of the keyword.
-        tests:
+        data_tests:
           - not_null
       - name: pin_promotion_id
         description: "{{ doc('pin_promotion_id') }}"
@@ -349,6 +430,18 @@ models:
 
   - name: stg_pinterest_ads__pin_promotion_targeting_report
     description: Contains performance metrics for promoted Pins segmented by applied targeting criteria, including targeting type, value, and related campaign metadata.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - date_day
+              - advertiser_id
+              - campaign_id
+              - ad_group_id
+              - pin_promotion_id
+              - targeting_type
+              - targeting_value
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -383,6 +476,12 @@ models:
 
   - name: stg_pinterest_ads__targeting_geo
     description: Maps country targeting values used in campaigns, including standardized names and associated location codes.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - country_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -395,6 +494,13 @@ models:
 
   - name: stg_pinterest_ads__targeting_geo_region
     description: Maps region targeting values used in campaigns, including standardized names and associated location codes.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - country_id
+              - region_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
