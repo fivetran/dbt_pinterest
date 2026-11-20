@@ -15,7 +15,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: ad_group_id
         description: Ad group ID.
-        tests:
+        data_tests:
           - not_null
       - name: campaign_id
         description: Parent Campaign ID.
@@ -56,7 +56,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: created_at
         description: Campaign creation time.
@@ -103,7 +103,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: pin_promotion_id
         description: Pin promotion ID.
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
@@ -162,11 +162,11 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: pin_promotion_id
         description: "{{ doc('pin_promotion_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
@@ -204,11 +204,11 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_name
         description: Name of the ad group.
@@ -245,7 +245,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_name
         description: Name of the advertiser.
@@ -280,11 +280,11 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: impressions
         description: "{{ doc('impressions') }}"
@@ -314,11 +314,11 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_name
         description: Name of the campaign.
@@ -354,7 +354,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: keyword_id
         description: Unique identifier of the keyword.
-        tests:
+        data_tests:
           - not_null
       - name: keyword_value
         description: The text value that makes upd the keyword.
@@ -397,11 +397,11 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: keyword_id
         description: Unique identifier of the keyword.
-        tests:
+        data_tests:
           - not_null
       - name: pin_promotion_id
         description: "{{ doc('pin_promotion_id') }}"

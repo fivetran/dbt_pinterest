@@ -21,7 +21,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
@@ -33,14 +33,14 @@ models:
         description: Status of the ad group.
       - name: destination_url
         description: Pin destination URL.
-        tests:
+        data_tests:
           - not_null:
               config:
                 # Below is so we don't run this test if the user has allowed urls to have null entries
                 enabled: "{{ var('ad_reporting__url_report__using_null_filter', true) }}"
       - name: pin_promotion_id
         description: "{{ doc('pin_promotion_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: pin_name
         description: Pin promotion name.
@@ -104,7 +104,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
@@ -118,7 +118,7 @@ models:
         description: Status of the campaign.
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_name
         description: The name of the related Ad group.
@@ -158,7 +158,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
@@ -166,7 +166,7 @@ models:
         description: Name of the advertiser.
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_name
         description: The name of the related Campaign.
@@ -199,13 +199,13 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_name
         description: Name of the advertiser.
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: currency_code
         description: The currency code which the advertiser is set up using.
@@ -241,7 +241,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_name
         description: Name of the advertiser.
@@ -257,7 +257,7 @@ models:
         description: "{{ doc('ad_group_id') }}"
       - name: keyword_id
         description: Unique identifier of the keyword.
-        tests:
+        data_tests:
           - not_null
       - name: match_type
         description: Type of match the keyword is tied to. Either Exact or Broad.
@@ -295,7 +295,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
@@ -320,7 +320,7 @@ models:
           "SEARCH_PROMINENCE", "SEARCH_PROMINENCE_CAROUSEL", "SHOPPING", "SHOP_THE_PIN", "THIRD_PARTY", or "VIDEO".
       - name: pin_promotion_id
         description: "{{ doc('pin_promotion_id') }}"
-        tests: 
+        data_tests: 
           - not_null
       - name: pin_name
         description: Name of the pin.
@@ -359,7 +359,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: country_id
         description: "{{ doc('country_id') }}"
@@ -367,7 +367,7 @@ models:
         description: Name of the targeted country.
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_name
         description: The name of the related Campaign.
@@ -425,7 +425,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('date_day') }}"
-        tests:
+        data_tests:
           - not_null
       - name: country_id
         description: "{{ doc('country_id') }}"
@@ -437,7 +437,7 @@ models:
         description: Name of the targeted region.
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_name
         description: The name of the related Campaign.
