@@ -41,6 +41,7 @@ joined as (
         report.date_day,
         campaigns.advertiser_id,
         advertisers.advertiser_name,
+        advertisers.currency_code,
         report.campaign_id,
         campaigns.campaign_name,
         campaigns.campaign_status,
@@ -87,7 +88,7 @@ joined as (
     where pins.destination_url is not null
     {% endif %}
 
-    {{ dbt_utils.group_by(23) }}
+    {{ dbt_utils.group_by(24) }}
 )
 
 select * 

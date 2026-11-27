@@ -1,0 +1,17 @@
+version: 1.5.0
+schema_data_changes:
+  entries:
+  - models:
+    - '[pinterest_ads__campaign_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_report)'
+    - '[pinterest_ads__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__ad_group_report)'
+    - '[pinterest_ads__keyword_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report)'
+    - '[pinterest_ads__pin_promotion_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__pin_promotion_report)'
+    - '[pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)'
+    - '[pinterest_ads__campaign_country_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report)'
+    - '[pinterest_ads__campaign_region_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report)'
+    change_type: New column
+    is_breaking: false
+    notes: Adds `currency_code`, the advertiser's currency from `ADVERTISER_HISTORY`, matching
+      the column already in `pinterest_ads__advertiser_report`. Pinterest reports spend in the
+      advertiser's currency, despite the `spend_in_micro_dollar` source field name.
+date: '2026-11-27'
