@@ -40,6 +40,7 @@ fields as (
         report.source_relation,
         report.date_day,
         advertisers.advertiser_name,
+        advertisers.currency_code,
         report.advertiser_id,
         campaigns.campaign_name,
         report.campaign_id,
@@ -71,7 +72,7 @@ fields as (
     left join advertisers
         on report.advertiser_id = advertisers.advertiser_id
         and report.source_relation = advertisers.source_relation
-    {{ dbt_utils.group_by(12) }}
+    {{ dbt_utils.group_by(13) }}
 )
 
 select *

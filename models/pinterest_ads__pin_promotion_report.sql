@@ -41,6 +41,7 @@ joined as (
         report.date_day,
         campaigns.advertiser_id,
         advertisers.advertiser_name,
+        advertisers.currency_code,
         report.campaign_id,
         campaigns.campaign_name,
         campaigns.campaign_status,
@@ -76,7 +77,7 @@ joined as (
         on campaigns.advertiser_id = advertisers.advertiser_id
         and campaigns.source_relation = advertisers.source_relation
 
-    {{ dbt_utils.group_by(16) }}
+    {{ dbt_utils.group_by(17) }}
 )
 
 select * 

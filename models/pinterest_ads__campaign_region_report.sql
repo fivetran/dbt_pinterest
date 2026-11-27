@@ -64,6 +64,7 @@ final as (
         fields.*,
         {{ 'countries.country_name,' if using_targeting_geo }}
         advertisers.advertiser_name,
+        advertisers.currency_code,
         advertisers.advertiser_id,
         campaigns.campaign_name,
         campaigns.campaign_status,

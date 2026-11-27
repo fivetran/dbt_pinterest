@@ -53,6 +53,7 @@ final as (
     select
         fields.*,
         advertisers.advertiser_name,
+        advertisers.currency_code,
         advertisers.advertiser_id,
         campaigns.campaign_name,
         campaigns.campaign_status,

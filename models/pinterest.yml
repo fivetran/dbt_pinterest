@@ -27,6 +27,8 @@ models:
         description: "{{ doc('advertiser_id') }}"
       - name: advertiser_name
         description: Name of the advertiser.
+      - name: currency_code
+        description: The currency code which the advertiser is set up using.
       - name: campaign_status
         description: Status of the campaign.
       - name: ad_group_status
@@ -110,6 +112,8 @@ models:
         description: "{{ doc('advertiser_id') }}"
       - name: advertiser_name
         description: Name of the advertiser.
+      - name: currency_code
+        description: The currency code which the advertiser is set up using.
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
       - name: campaign_name
@@ -164,6 +168,8 @@ models:
         description: "{{ doc('advertiser_id') }}"
       - name: advertiser_name
         description: Name of the advertiser.
+      - name: currency_code
+        description: The currency code which the advertiser is set up using.
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
         data_tests:
@@ -245,6 +251,8 @@ models:
           - not_null
       - name: advertiser_name
         description: Name of the advertiser.
+      - name: currency_code
+        description: The currency code which the advertiser is set up using.
       - name: advertiser_id
         description: "{{ doc('advertiser_id') }}"
       - name: campaign_name
@@ -301,6 +309,8 @@ models:
         description: "{{ doc('advertiser_id') }}"
       - name: advertiser_name
         description: Name of the advertiser.
+      - name: currency_code
+        description: The currency code which the advertiser is set up using.
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
       - name: campaign_name
@@ -377,6 +387,8 @@ models:
         description: "{{ doc('advertiser_id') }}"
       - name: advertiser_name
         description: Name of the advertiser.
+      - name: currency_code
+        description: The currency code which the advertiser is set up using.
       - name: campaign_created_at
         description: Campaign creation time.
       - name: campaign_start_time
@@ -447,6 +459,8 @@ models:
         description: "{{ doc('advertiser_id') }}"
       - name: advertiser_name
         description: Name of the advertiser.
+      - name: currency_code
+        description: The currency code which the advertiser is set up using.
       - name: campaign_created_at
         description: Campaign creation time.
       - name: campaign_start_time
