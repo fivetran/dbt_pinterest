@@ -1,3 +1,14 @@
+# dbt_pinterest v1.5.0
+
+[PR #67](https://github.com/fivetran/dbt_pinterest/pull/67) includes the following updates:
+
+## Schema/Data Change
+**1 total change • 0 possible breaking changes**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | --- | --- | ----- |
+| [pinterest_ads__campaign_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_report)<br>[pinterest_ads__ad_group_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__ad_group_report)<br>[pinterest_ads__keyword_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__keyword_report)<br>[pinterest_ads__pin_promotion_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__pin_promotion_report)<br>[pinterest_ads__url_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__url_report)<br>[pinterest_ads__campaign_country_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_country_report)<br>[pinterest_ads__campaign_region_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report) | New column |  |  | Adds `currency_code`, the advertiser's currency from `ADVERTISER_HISTORY`, matching the column already in `pinterest_ads__advertiser_report`. Pinterest reports spend in the advertiser's currency, despite the `spend_in_micro_dollar` source field name. |
+
 # dbt_pinterest v1.4.0
 
 [PR #64](https://github.com/fivetran/dbt_pinterest/pull/64) includes the following updates:

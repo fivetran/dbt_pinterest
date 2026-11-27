@@ -12,7 +12,8 @@ schema_data_changes:
     - '[pinterest_ads__campaign_region_report](https://fivetran.github.io/dbt_pinterest/#!/model/model.pinterest.pinterest_ads__campaign_region_report)'
     change_type: New column
     is_breaking: false
-    notes: Adds `currency_code`, the advertiser's currency from `ADVERTISER_HISTORY`, matching
-      the column already in `pinterest_ads__advertiser_report`. Pinterest reports spend in the
-      advertiser's currency, despite the `spend_in_micro_dollar` source field name.
+    notes: Adds `currency_code`, the advertiser's currency from `ADVERTISER_HISTORY`,
+      matching the column already in `pinterest_ads__advertiser_report`. Pinterest
+      reports spend in the advertiser's currency, despite the `spend_in_micro_dollar`
+      source field name.
 date: '2026-11-27'
